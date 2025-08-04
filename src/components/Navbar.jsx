@@ -6,9 +6,9 @@ const navItems = [
   { name: 'Home', to: '/' },
   { name: 'About', to: '/about' },
   { name: 'Products', to: '/products' },
-  { name: 'Franchise Enquiry', to: '/franchise' },
+  { name: 'Franchise', to: '/franchise' },
   { name: 'Career', to: '/career' },
-  { name: 'Contact', to: '/contact' }
+  { name: 'Enquiry', to: '/enquiry' }
 ];
 
 const Navbar = () => {
@@ -19,15 +19,15 @@ const Navbar = () => {
   const activeClass =
     'bg-yellow-400 text-black px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform scale-105';
   const inactiveClass =
-    'text-yellow-400 hover:bg-yellow-400 hover:text-black px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105';
+    'text-black hover:bg-yellow-400 hover:text-black px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105';
 
   return (
-    <nav className="bg-black shadow-lg sticky top-0 z-50">
+    <nav className=" shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <div className="text-yellow-400 text-2xl font-bold cursor-pointer hover:text-yellow-300 transition-colors duration-200">
+            <div className="text-black text-2xl font-bold cursor-pointer hover:text-yellow-300 transition-colors duration-200">
               LOGO
             </div>
           </div>
