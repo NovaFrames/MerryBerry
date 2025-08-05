@@ -167,10 +167,10 @@ const Products = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-white via-white to-orange-50">
+        <div className="bg-gradient-to-br from-white via-white to-orange-50">
             <div className="flex">
                 {/* Desktop Sidebar */}
-                <div className="hidden lg:block fixed left-0 top-0 h-full w-64 bg-white shadow-lg overflow-y-auto z-10">
+                <div className="hidden lg:block fixed left-0 top-30 h-full w-64 bg-white shadow-lg overflow-y-auto z-10">
                     <div className="p-6">
                         <h2 className="text-2xl font-bold text-gray-800 mb-6">Categories</h2>
                         <div className="space-y-2">
@@ -200,7 +200,7 @@ const Products = () => {
                     <div className="lg:hidden fixed inset-0 z-50">
                         {/* Backdrop */}
                         <div 
-                            className="absolute inset-0 bg-black bg-opacity-50"
+                            className="absolute inset-0 bg-black/20 bg-opacity-50"
                             onClick={() => setIsMobileSidebarOpen(false)}
                         ></div>
                         
@@ -242,7 +242,7 @@ const Products = () => {
 
                 {/* Main Content */}
                 <div className="flex-1 lg:ml-64">
-                    <div className="max-w-6xl mx-auto px-4 lg:px-6 py-8">
+                    <div className="max-w-6xl mx-auto px-4 lg:px-6 py-30">
                         {/* Mobile Header with Filter Button */}
                         <div className="lg:hidden flex justify-between items-center mb-6">
                             <div>
