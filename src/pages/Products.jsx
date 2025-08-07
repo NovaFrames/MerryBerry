@@ -1,349 +1,397 @@
 import React, { useState } from 'react';
-import { IceCream, ChefHat, Star, Eye, ShoppingCart, Clock, Flame, Sandwich, Coffee, Filter, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { IceCream, ChefHat, Star, Eye, ShoppingCart, Clock, Flame, Sandwich, Coffee, X, ArrowRight, CupSoda, Drumstick, ChevronLeft, ChevronRight } from 'lucide-react';
+import one from '../assets/bg/1.png'
+import two from '../assets/bg/2.png'
+import three from '../assets/bg/3.png'
+import four from '../assets/bg/4.png'
+import five from '../assets/bg/5.png'
+import six from '../assets/bg/6.png'
+import seven from '../assets/bg/7.png'
+import { allProducts } from './AllProducts';
+
+
+// Mock background images
+const backgroundImages = {
+  'ice-cream': one,
+  'chicken':two ,
+  'burger': three,
+  'sandwich': four,
+  'mojito': five,
+  'fries': six
+};
 
 const Products = () => {
-    const [activeCategory, setActiveCategory] = useState('all');
-    const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+    const [currentIndices, setCurrentIndices] = useState({});
 
     const categories = [
-        { id: 'all', name: 'All Items', icon: null },
         { id: 'ice-cream', name: 'Ice Creams', icon: IceCream },
-        { id: 'chicken', name: 'Fried Chicken', icon: ChefHat },
-        { id: 'burger', name: 'Burger', icon: Sandwich },
+        { id: 'chicken', name: 'Fried Chicken', icon: Drumstick },
+        { id: 'burger', name: 'Burger', icon: ShoppingCart },
         { id: 'sandwich', name: 'Sandwich', icon: Sandwich },
-        { id: 'mojito', name: 'Mojito', icon: Coffee },
+        { id: 'mojito', name: 'Mojito', icon: CupSoda },
         { id: 'fries', name: 'Fries', icon: Flame }
     ];
 
-    const iceCreams = [
-        {
-            id: 1,
-            name: "Vanilla Bean Supreme",
-            description: "Our signature vanilla ice cream made with premium Madagascar vanilla beans. Each scoop is packed with real vanilla bean specks for an authentic, rich flavor. The creamy base is churned slowly to create the perfect velvety texture that melts luxuriously on your tongue. A timeless classic that pairs perfectly with any topping or enjoyed on its own.",
-            image: "https://www.foodnetwork.com/content/dam/images/food/fullset/2022/02/9/0/KC3004_katie-lee-biegel-edible-cereal-treat-bowls-for-ice-cream-sundae-2_s4x3.jpg",
-            rating: 4.8,
-            category: "ice-cream"
-        },
-        {
-            id: 2,
-            name: "Chocolate Fudge Delight",
-            description: "A chocolate lover's dream come true! We start with a rich, dark chocolate base made from premium cocoa beans, then swirl in ribbons of homemade fudge that stay perfectly soft even when frozen. The intense chocolate flavor develops in layers, starting with deep cocoa notes and finishing with a sweet fudge aftertaste. Contains real Belgian chocolate chunks for occasional bursts of extra indulgence.",
-            image: "https://www.foodnetwork.com/content/dam/images/food/fullset/2022/02/9/0/KC3004_katie-lee-biegel-edible-cereal-treat-bowls-for-ice-cream-sundae-2_s4x3.jpg",
-            rating: 4.9,
-            category: "ice-cream"
-        },
-        {
-            id: 3,
-            name: "Strawberry Fields",
-            description: "Made with sun-ripened strawberries picked at peak season, this flavor bursts with natural fruitiness. We macerate fresh strawberries in their own juices before folding them into a sweet cream base. You'll find real strawberry pieces throughout, with just the right balance of tart and sweet. The pink hue comes entirely from the fruit - no artificial colors added. A refreshing choice for warm summer days.",
-            image: "https://www.foodnetwork.com/content/dam/images/food/fullset/2022/02/9/0/KC3004_katie-lee-biegel-edible-cereal-treat-bowls-for-ice-cream-sundae-2_s4x3.jpg",
-            rating: 4.7,
-            category: "ice-cream"
-        }
-    ];
-
-    const friedChicken = [
-        {
-            id: 7,
-            name: "Classic Crispy Wings",
-            description: "Our signature fried chicken wings with an impossibly crispy exterior that gives way to juicy, tender meat inside. Each wing is brined for 12 hours in our secret spice blend, then double-dredged in seasoned flour for extra crunch. Fried to golden perfection in small batches using a blend of oils for optimal flavor. Served with your choice of dipping sauce - try it with our house-made buttermilk ranch for the ultimate experience.",
-            image: "https://recipes.baccarat.com.au/wp-content/uploads/2021/10/FRIED-CHICKEN-DRUMSTICKS-1024x1024.png",
-            rating: 4.7,
-            category: "chicken",
-            spicy: false
-        },
-        {
-            id: 8,
-            name: "Spicy Buffalo Tenders",
-            description: "Premium chicken tenders hand-breaded with our special spicy flour blend, then fried until golden and tossed in authentic Buffalo sauce made with aged cayenne peppers. The tenders are cut from whole chicken breasts for maximum juiciness, with the perfect meat-to-breading ratio. Our Buffalo sauce delivers the ideal balance of heat, tang, and buttery richness. Served with cooling blue cheese dressing and crisp celery sticks to tame the heat.",
-            image: "https://recipes.baccarat.com.au/wp-content/uploads/2021/10/FRIED-CHICKEN-DRUMSTICKS-1024x1024.png",
-            rating: 4.8,
-            category: "chicken",
-            spicy: true
-        }
-    ];
-
-    const burgers = [
-        {
-            id: 13,
-            name: "Classic Beef Burger",
-            description: "Juicy beef patty with lettuce, tomato, onion, and our special sauce on a toasted bun.",
-            image: "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=500",
-            rating: 4.6,
-            category: "burger"
-        },
-        {
-            id: 14,
-            name: "Chicken Deluxe Burger",
-            description: "Grilled chicken breast with avocado, bacon, and mayo on a brioche bun.",
-            image: "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=500",
-            rating: 4.5,
-            category: "burger"
-        }
-    ];
-
-    const sandwiches = [
-        {
-            id: 15,
-            name: "Club Sandwich",
-            description: "Triple-layered sandwich with turkey, bacon, lettuce, and tomato.",
-            image: "https://images.unsplash.com/photo-1539252554453-80ab65ce3586?w=500",
-            rating: 4.4,
-            category: "sandwich"
-        },
-        {
-            id: 16,
-            name: "Grilled Cheese Supreme",
-            description: "Three types of cheese grilled to perfection with crispy bacon.",
-            image: "https://images.unsplash.com/photo-1539252554453-80ab65ce3586?w=500",
-            rating: 4.7,
-            category: "sandwich"
-        }
-    ];
-
-    const mojitos = [
-        {
-            id: 17,
-            name: "Classic Mojito",
-            description: "Fresh mint, lime, and soda water for the perfect refreshing drink.",
-            image: "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=500",
-            rating: 4.8,
-            category: "mojito"
-        },
-        {
-            id: 18,
-            name: "Strawberry Mojito",
-            description: "Classic mojito with fresh strawberries and a hint of sweetness.",
-            image: "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=500",
-            rating: 4.6,
-            category: "mojito"
-        }
-    ];
-
-    const fries = [
-        {
-            id: 19,
-            name: "Classic French Fries",
-            description: "Golden crispy fries seasoned with salt and served hot.",
-            image: "https://images.unsplash.com/photo-1576107232684-1279f390859f?w=500",
-            rating: 4.3,
-            category: "fries"
-        },
-        {
-            id: 20,
-            name: "Loaded Cheese Fries",
-            description: "Crispy fries topped with melted cheese, bacon bits, and green onions.",
-            image: "https://images.unsplash.com/photo-1576107232684-1279f390859f?w=500",
-            rating: 4.7,
-            category: "fries"
-        }
-    ];
-
-    const allProducts = [...iceCreams, ...friedChicken, ...burgers, ...sandwiches, ...mojitos, ...fries];
-
-    const filteredProducts = activeCategory === 'all'
-        ? allProducts
-        : allProducts.filter(product => product.category === activeCategory);
-
-    const handleCategorySelect = (categoryId) => {
-        setActiveCategory(categoryId);
-        setIsMobileSidebarOpen(false); // Close mobile sidebar after selection
+    const getCategoryProducts = (categoryId) => {
+        return allProducts.filter(product => product.category === categoryId);
     };
 
-    const viewProduct = (product) => {
-        // View product details - you can implement your own navigation logic here
-        console.log('Viewing product:', product);
-        alert(`Viewing details for: ${product.name}`);
+    const getCurrentIndex = (categoryId) => {
+        return currentIndices[categoryId] || 0;
     };
 
-    const renderStars = (rating) => {
-        return Array.from({ length: 5 }, (_, i) => (
-            <Star
-                key={i}
-                size={14}
-                className={i < Math.floor(rating) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}
-            />
-        ));
+    const setCurrentIndex = (categoryId, index) => {
+        setCurrentIndices(prev => ({
+            ...prev,
+            [categoryId]: index
+        }));
     };
 
-    return (
-        <div className="bg-gradient-to-br from-white via-white to-orange-50">
-            <div className="flex">
-                {/* Desktop Sidebar */}
-                <div className="hidden lg:block fixed left-0 top-30 h-full w-64 bg-white shadow-lg overflow-y-auto z-10">
-                    <div className="p-6">
-                        <h2 className="text-2xl font-bold text-gray-800 mb-6">Categories</h2>
-                        <div className="space-y-2">
-                            {categories.map((category) => {
-                                const Icon = category.icon;
-                                return (
-                                    <button
-                                        key={category.id}
-                                        onClick={() => handleCategorySelect(category.id)}
-                                        className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg font-medium transition-all duration-300 ${
-                                            activeCategory === category.id
-                                                ? 'bg-gradient-to-r from-yellow-500 to-yellow-500 text-white shadow-lg'
-                                                : 'text-gray-700 hover:bg-gray-100'
-                                        }`}
-                                    >
-                                        {Icon && <Icon size={20} />}
-                                        <span>{category.name}</span>
-                                    </button>
-                                );
-                            })}
-                        </div>
-                    </div>
-                </div>
+    const handleNext = (categoryId) => {
+        const products = getCategoryProducts(categoryId);
+        const currentIndex = getCurrentIndex(categoryId);
+        if (currentIndex < products.length - 1) {
+            setCurrentIndex(categoryId, currentIndex + 1);
+        }
+    };
 
-                {/* Mobile Sidebar Overlay */}
-                {isMobileSidebarOpen && (
-                    <div className="lg:hidden fixed inset-0 z-50">
-                        {/* Backdrop */}
-                        <div 
-                            className="absolute inset-0 bg-black/20 bg-opacity-50"
-                            onClick={() => setIsMobileSidebarOpen(false)}
-                        ></div>
-                        
-                        {/* Sidebar */}
-                        <div className="absolute left-0 top-0 h-full w-80 bg-white shadow-lg overflow-y-auto">
-                            <div className="p-6">
-                                <div className="flex justify-between items-center mb-6">
-                                    <h2 className="text-2xl font-bold text-gray-800">Categories</h2>
-                                    <button
-                                        onClick={() => setIsMobileSidebarOpen(false)}
-                                        className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-                                    >
-                                        <X size={24} className="text-gray-600" />
-                                    </button>
+    const handlePrevious = (categoryId) => {
+        const currentIndex = getCurrentIndex(categoryId);
+        if (currentIndex > 0) {
+            setCurrentIndex(categoryId, currentIndex - 1);
+        }
+    };
+
+    // Animation variants
+    const imageVariants = {
+        enter: (direction) => ({
+            x: direction > 0 ? 300 : -300,
+            opacity: 0,
+            scale: 0.8,
+        }),
+        center: {
+            x: 0,
+            opacity: 1,
+            scale: 1,
+        },
+        exit: (direction) => ({
+            x: direction < 0 ? 300 : -300,
+            opacity: 0,
+            scale: 0.8,
+        }),
+    };
+
+    const textVariants = {
+        enter: (direction) => ({
+            x: direction > 0 ? 50 : -50,
+            opacity: 0,
+        }),
+        center: {
+            x: 0,
+            opacity: 1,
+        },
+        exit: (direction) => ({
+            x: direction < 0 ? 50 : -50,
+            opacity: 0,
+        }),
+    };
+
+    const CategorySection = ({ category }) => {
+        const products = getCategoryProducts(category.id);
+        const currentIndex = getCurrentIndex(category.id);
+        const currentProduct = products[currentIndex];
+        const [direction, setDirection] = useState(0);
+
+        if (products.length === 0) return null;
+
+        const paginate = (newDirection) => {
+            setDirection(newDirection);
+            if (newDirection === 1) {
+                handleNext(category.id);
+            } else {
+                handlePrevious(category.id);
+            }
+        };
+
+        return (
+            <div
+                className="min-h-screen bg-cover bg-center bg-no-repeat relative"
+                style={{
+                    backgroundImage: `url(${backgroundImages[category.id]})`
+                }}
+            >
+                <div className="absolute inset-0 bg-black/60 z-0"></div>
+                <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 lg:px-6 md:px-4 sm:px-4">
+                    {/* Desktop Layout */}
+                    <div className="hidden lg:flex items-center space-x-8 w-full max-w-6xl">
+                        {/* Previous Button */}
+                        <motion.button
+                            onClick={() => currentIndex > 0 && paginate(-1)}
+                            disabled={currentIndex === 0}
+                            className={`p-4 rounded-full transition-all ${currentIndex === 0
+                                ? 'bg-white/10 text-white/30 cursor-not-allowed'
+                                : 'bg-white/20 backdrop-blur-md text-white hover:bg-white/30'
+                                }`}
+                            whileHover={{ scale: currentIndex === 0 ? 1 : 1.1 }}
+                            whileTap={{ scale: currentIndex === 0 ? 1 : 0.9 }}
+                        >
+                            <ChevronLeft size={24} />
+                        </motion.button>
+
+                        {/* Product Card */}
+                        <div className="flex-1 flex items-center space-x-8">
+                            {/* Product Image */}
+                            <div className="w-1/2">
+                                <div className="relative">
+                                    <div className="w-96 h-96 mx-auto flex items-center justify-center drop-shadow-2xl">
+                                        <AnimatePresence mode="wait" custom={direction}>
+                                            <motion.img
+                                                key={currentProduct?.id || currentIndex}
+                                                src={currentProduct?.image}
+                                                alt={currentProduct?.name}
+                                                className="w-full h-full object-contain drop-shadow-2xl"
+                                                custom={direction}
+                                                variants={imageVariants}
+                                                initial="enter"
+                                                animate="center"
+                                                exit="exit"
+                                                transition={{
+                                                    x: { type: "spring", stiffness: 300, damping: 30 },
+                                                    opacity: { duration: 0.2 },
+                                                    scale: { duration: 0.3 }
+                                                }}
+                                            />
+                                        </AnimatePresence>
+                                    </div>
+                                    {currentProduct?.spicy && (
+                                        <motion.div
+                                            className="absolute -top-4 -right-4 bg-white rounded-full p-3 shadow-lg"
+                                            initial={{ scale: 0, rotate: -180 }}
+                                            animate={{ scale: 1, rotate: 0 }}
+                                            transition={{ delay: 0.3, type: "spring", stiffness: 500 }}
+                                        >
+                                            <Flame size={20} className="text-red-500" />
+                                        </motion.div>
+                                    )}
                                 </div>
-                                <div className="space-y-2">
-                                    {categories.map((category) => {
-                                        const Icon = category.icon;
-                                        return (
-                                            <button
-                                                key={category.id}
-                                                onClick={() => handleCategorySelect(category.id)}
-                                                className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg font-medium transition-all duration-300 ${
-                                                    activeCategory === category.id
-                                                        ? 'bg-gradient-to-r from-yellow-500 to-yellow-500 text-white shadow-lg'
-                                                        : 'text-gray-700 hover:bg-gray-100'
-                                                }`}
+                            </div>
+
+                            {/* Product Info */}
+                            <div className="w-1/2 text-white">
+                                <div className="mb-8">
+                                    <motion.h2
+                                        className="text-3xl font-bold mb-2 tracking-wider"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.1 }}
+                                    >
+                                        {category.name}
+                                    </motion.h2>
+                                    <motion.p
+                                        className="text-white/80 text-sm uppercase tracking-widest"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.2 }}
+                                    >
+                                        Presented by Merry Berry
+                                    </motion.p>
+                                </div>
+
+                                <div className="space-y-6">
+                                    <div>
+                                        <AnimatePresence mode="wait" custom={direction}>
+                                            <motion.div
+                                                key={currentProduct?.id || currentIndex}
+                                                custom={direction}
+                                                variants={textVariants}
+                                                initial="enter"
+                                                animate="center"
+                                                exit="exit"
+                                                transition={{
+                                                    x: { type: "spring", stiffness: 300, damping: 30 },
+                                                    opacity: { duration: 0.2 }
+                                                }}
                                             >
-                                                {Icon && <Icon size={20} />}
-                                                <span>{category.name}</span>
-                                            </button>
-                                        );
-                                    })}
+                                                <h3 className="text-3xl font-bold mb-2">
+                                                    {currentProduct?.name}
+                                                </h3>
+                                                <p className="text-white/80 text-lg">
+                                                    {currentProduct?.description}
+                                                </p>
+                                            </motion.div>
+                                        </AnimatePresence>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
-
-                {/* Main Content */}
-                <div className="flex-1 lg:ml-64">
-                    <div className="max-w-6xl mx-auto px-4 lg:px-6 py-30">
-                        {/* Mobile Header with Filter Button */}
-                        <div className="lg:hidden flex justify-between items-center mb-6">
-                            <div>
-                                <h1 className="text-2xl font-bold text-gray-800">
-                                    {activeCategory === 'all' ? 'All Products' : categories.find(cat => cat.id === activeCategory)?.name}
-                                </h1>
-                                <p className="text-gray-600 text-sm">
-                                    {filteredProducts.length} item{filteredProducts.length !== 1 ? 's' : ''} available
-                                </p>
-                            </div>
-                            <button
-                                onClick={() => setIsMobileSidebarOpen(true)}
-                                className="flex items-center space-x-2 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors"
-                            >
-                                <Filter size={20} />
-                                <span>Filter</span>
-                            </button>
-                        </div>
-
-                        {/* Desktop Header */}
-                        <div className="hidden lg:block mb-8">
-                            <h1 className="text-3xl font-bold text-gray-800 mb-2">
-                                {activeCategory === 'all' ? 'All Products' : categories.find(cat => cat.id === activeCategory)?.name}
-                            </h1>
-                            <p className="text-gray-600">
-                                {filteredProducts.length} item{filteredProducts.length !== 1 ? 's' : ''} available
-                            </p>
-                        </div>
-
-                        {/* Products Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-                            {filteredProducts.map((product) => (
-                                <div
-                                    key={product.id}
-                                    className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 overflow-hidden group"
-                                >
-                                    <div className="h-48 w-full overflow-hidden">
-                                        <img
-                                            src={product.image}
-                                            alt={product.name || "product"}
-                                            className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-300"
+                                
+                                {/* Product Counter */}
+                                <div className="mt-8 flex items-center space-x-2">
+                                    {products.map((_, index) => (
+                                        <div
+                                            key={index}
+                                            className={`w-2 h-2 rounded-full transition-all ${
+                                                index === currentIndex ? 'bg-white' : 'bg-white/30'
+                                            }`}
                                         />
-                                    </div>
-
-                                    <div className="p-6">
-                                        <div className="mb-3">
-                                            <h3 className="text-xl font-bold text-gray-800 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-black group-hover:to-black group-hover:bg-clip-text transition-all duration-300">
-                                                {product.name}
-                                            </h3>
-                                            <div className="flex items-center space-x-1 mt-1">
-                                                {renderStars(product.rating)}
-                                                <span className="text-sm text-gray-600 ml-1">{product.rating}</span>
-                                            </div>
-                                        </div>
-
-                                        <p className="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-3">
-                                            {product.description}
-                                        </p>
-
-                                        <div className="flex justify-between items-center">
-                                            <button
-                                                onClick={() => viewProduct(product)}
-                                                className="flex items-center space-x-2 px-6 py-2 rounded-full font-semibold transition-all duration-300 bg-yellow-500 hover:bg-yellow-600 text-white shadow-md hover:shadow-lg transform hover:scale-105"
-                                            >
-                                                <Eye size={16} />
-                                                <span>View Details</span>
-                                            </button>
-                                            {product.spicy && (
-                                                <div className="flex items-center space-x-1 text-red-500">
-                                                    <Flame size={16} />
-                                                    <span className="text-xs font-medium">Spicy</span>
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
+                                    ))}
                                 </div>
-                            ))}
+                            </div>
                         </div>
 
-                        {/* Empty State */}
-                        {filteredProducts.length === 0 && (
-                            <div className="text-center py-12">
-                                <div className="text-6xl mb-4">🍽️</div>
-                                <h3 className="text-xl font-semibold text-gray-600 mb-2">No items found</h3>
-                                <p className="text-gray-500">Try selecting a different category</p>
-                            </div>
-                        )}
+                        {/* Next Button */}
+                        <motion.button
+                            onClick={() => currentIndex < products.length - 1 && paginate(1)}
+                            disabled={currentIndex === products.length - 1}
+                            className={`p-4 rounded-full transition-all ${currentIndex === products.length - 1
+                                ? 'bg-white/10 text-white/30 cursor-not-allowed'
+                                : 'bg-white/20 backdrop-blur-md text-white hover:bg-white/30'
+                                }`}
+                            whileHover={{ scale: currentIndex === products.length - 1 ? 1 : 1.1 }}
+                            whileTap={{ scale: currentIndex === products.length - 1 ? 1 : 0.9 }}
+                        >
+                            <ChevronRight size={24} />
+                        </motion.button>
+                    </div>
 
-                        {/* Footer */}
-                        <div className="mt-16 text-center">
-                            <div className="flex items-center justify-center space-x-2 text-gray-600 mb-4">
-                                <Clock size={20} />
-                                <span>Open Daily: 10:00 AM - 10:00 PM</span>
+                    {/* Mobile Layout */}
+                    <div className="lg:hidden flex flex-col items-center w-full max-w-lg space-y-6">
+                        {/* Mobile Image */}
+                        <div className="relative flex items-center w-full">
+                            <div className="flex-1 flex justify-center pt-30">
+                                <div className="relative">
+                                    <div className="w-72 h-72 md:w-80 md:h-80 flex items-center justify-center drop-shadow-2xl">
+                                        <AnimatePresence mode="wait" custom={direction}>
+                                            <motion.img
+                                                key={currentProduct?.id || currentIndex}
+                                                src={currentProduct?.image}
+                                                alt={currentProduct?.name}
+                                                className="w-full h-full object-contain drop-shadow-2xl"
+                                                custom={direction}
+                                                variants={imageVariants}
+                                                initial="enter"
+                                                animate="center"
+                                                exit="exit"
+                                                transition={{
+                                                    x: { type: "spring", stiffness: 300, damping: 30 },
+                                                    opacity: { duration: 0.2 },
+                                                    scale: { duration: 0.3 }
+                                                }}
+                                            />
+                                        </AnimatePresence>
+                                    </div>
+                                    {currentProduct?.spicy && (
+                                        <motion.div
+                                            className="absolute -top-4 -right-4 bg-white rounded-full p-2 shadow-lg"
+                                            initial={{ scale: 0, rotate: -180 }}
+                                            animate={{ scale: 1, rotate: 0 }}
+                                            transition={{ delay: 0.3, type: "spring", stiffness: 500 }}
+                                        >
+                                            <Flame size={16} className="text-red-500" />
+                                        </motion.div>
+                                    )}
+                                </div>
                             </div>
-                            <p className="text-gray-500">
-                                The perfect combination of sweet treats and savory delights!
-                            </p>
+                        </div>
+
+                        {/* Mobile Navigation */}
+                        <div className='flex justify-around w-full'>
+                            <motion.button
+                                onClick={() => currentIndex > 0 && paginate(-1)}
+                                disabled={currentIndex === 0}
+                                className={`p-3 rounded-full transition-all ${currentIndex === 0
+                                    ? 'bg-white/10 text-white/30 cursor-not-allowed'
+                                    : 'bg-white/20 backdrop-blur-md text-white hover:bg-white/30'
+                                    }`}
+                                whileHover={{ scale: currentIndex === 0 ? 1 : 1.1 }}
+                                whileTap={{ scale: currentIndex === 0 ? 1 : 0.9 }}
+                            >
+                                <ChevronLeft size={20} />
+                            </motion.button>
+
+                            <motion.button
+                                onClick={() => currentIndex < products.length - 1 && paginate(1)}
+                                disabled={currentIndex === products.length - 1}
+                                className={`p-3 rounded-full transition-all ${currentIndex === products.length - 1
+                                    ? 'bg-white/10 text-white/30 cursor-not-allowed'
+                                    : 'bg-white/20 backdrop-blur-md text-white hover:bg-white/30'
+                                    }`}
+                                whileHover={{ scale: currentIndex === products.length - 1 ? 1 : 1.1 }}
+                                whileTap={{ scale: currentIndex === products.length - 1 ? 1 : 0.9 }}
+                            >
+                                <ChevronRight size={20} />
+                            </motion.button>
+                        </div>
+
+                        {/* Mobile Product Info */}
+                        <div className="text-white text-center px-4 mt-1">
+                            <div className="mb-6">
+                                <motion.h2
+                                    className="text-3xl md:text-4xl font-bold mb-3 tracking-wider"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.1 }}
+                                >
+                                    {category.name}
+                                </motion.h2>
+                                <motion.p
+                                    className="text-white/80 text-xs md:text-sm uppercase tracking-widest"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.2 }}
+                                >
+                                    Presented by Merry Berry
+                                </motion.p>
+                            </div>
+
+                            <div className="space-y-4">
+                                <div>
+                                    <AnimatePresence mode="wait" custom={direction}>
+                                        <motion.div
+                                            key={currentProduct?.id || currentIndex}
+                                            custom={direction}
+                                            variants={textVariants}
+                                            initial="enter"
+                                            animate="center"
+                                            exit="exit"
+                                            transition={{
+                                                x: { type: "spring", stiffness: 300, damping: 30 },
+                                                opacity: { duration: 0.2 }
+                                            }}
+                                        >
+                                            <h3 className="text-xl md:text-2xl font-bold mb-2">
+                                                {currentProduct?.name}
+                                            </h3>
+                                            <p className="text-white/80 text-sm md:text-base">
+                                                {currentProduct?.description}
+                                            </p>
+                                        </motion.div>
+                                    </AnimatePresence>
+                                </div>
+                            </div>
+                            
+                            {/* Mobile Product Counter */}
+                            <div className="mt-6 flex justify-center items-center space-x-2">
+                                {products.map((_, index) => (
+                                    <div
+                                        key={index}
+                                        className={`w-2 h-2 rounded-full transition-all ${
+                                            index === currentIndex ? 'bg-white' : 'bg-white/30'
+                                        }`}
+                                    />
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        );
+    };
+
+    return (
+        <div>
+            {categories.map((category) => (
+                <CategorySection key={category.id} category={category} />
+            ))}
         </div>
     );
 };
