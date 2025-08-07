@@ -8,7 +8,7 @@ import Career from './pages/Career';
 import Enquiry from './pages/Enquiry';
 import Navbar from './components/Navbar';
 import { Outlet } from 'react-router-dom';
-
+import './App.css'
 // Layout with persistent Navbar
 const Layout = () => (
   <>

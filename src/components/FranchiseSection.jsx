@@ -1,0 +1,181 @@
+import React, { useEffect, useRef } from 'react';
+
+const FranchiseSection = () => {
+    const sectionRef = useRef(null);
+    const wrapperRef = useRef(null);
+
+    useEffect(() => {
+        const section = sectionRef.current;
+        const wrapper = wrapperRef.current;
+
+        // Exit early if on mobile
+        const isMobile = window.innerWidth < 768;
+        if (isMobile) return;
+
+        const handleScroll = () => {
+            if (!section || !wrapper) return;
+
+            const scrollY = window.scrollY;
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const windowHeight = window.innerHeight;
+            const scrollEnd = sectionTop + sectionHeight - windowHeight;
+
+            if (scrollY >= sectionTop && scrollY <= scrollEnd) {
+                const progress = (scrollY - sectionTop) / (sectionHeight - windowHeight);
+                const maxScroll = wrapper.scrollWidth - window.innerWidth;
+                const scrollAmount = progress * maxScroll;
+                wrapper.style.transform = `translateX(-${scrollAmount}px)`;
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const panels = [
+        {
+            name: "Franchise Success Story",
+            description: `Over the years, we’ve built an unshakable trust with our clients and partners. Our commitment to quality, innovation, and consistency has helped us grow a strong franchise network across regions. Each outlet reflects our shared vision — a successful, thriving brand that our franchisees proudly represent. Join the journey and see how Merry Berry franchises are blooming with success.`,
+            // bg: 'bg-red-500',
+            bg: 'bg-black',
+            text: 'text-yellow-300',
+            img: "http://merryberry.co.in/wp-content/uploads/2024/03/cropped-cropped-cropped-logo-1-removebg-preview.png"
+        },
+        {
+            name: "Our First Outlet",
+            description: `Welcome to our very first Merry Berry outlet, a cozy 32-seater space designed to offer comfort and style. Featuring a classy interior with a striking red exterior elevation, this outlet is not only a visual treat but also a bustling spot, serving over 20,000+ bills a year. It's where our journey began, combining great food with a warm, inviting atmosphere.`,
+            bg: 'bg-red-900',
+            text: 'text-white',
+            img: "https://merryberry.co.in/wp-content/uploads/2024/03/White-Cream-and-Brown-Grand-Opening-Coffee-Shop-Presentation_20240223_145652_0000-1536x864.png" // (base64 truncated)
+        },
+        {
+            name: "Our Second Outlet",
+            description: `Welcome to our very first Merry Berry outlet, a cozy 32-seater space designed to offer comfort and style. Featuring a classy interior with a striking red exterior elevation, this outlet is not only a visual treat but also a bustling spot, serving over 20,000+ bills a year. It's where our journey began, combining great food with a warm, inviting atmosphere.`,
+            bg: 'bg-amber-950',
+            text: 'text-white',
+            img: "https://merryberry.co.in/wp-content/uploads/2024/03/White-Cream-and-Brown-Grand-Opening-Coffee-Shop-Presentation_20240223_145508_0000-1536x864.png" // (base64 truncated)
+        },
+        // Add more entries here if needed
+    ];
+
+
+    return (
+        <div
+            ref={sectionRef}
+            className="relative w-full bg-white"
+            style={{ height: window.innerWidth < 768 ? '100vh' : `${panels.length * 100}vh` }}
+        >
+            <div
+                ref={wrapperRef}
+                className={`h-screen sticky top-0 left-0 will-change-transform transition-transform duration-200 ease-out ${window.innerWidth < 768 ? '' : 'flex'
+                    }`}
+                style={{ width: window.innerWidth < 768 ? '100vw' : `${panels.length * 100}vw` }}
+            >
+                {panels.map((panel, idx) => (
+                    <section
+                        key={idx}
+                        className={`
+                      w-screen h-full shrink-0 px-4 sm:px-6 md:px-10 
+                      flex flex-col md:flex-row items-center justify-center text-center md:text-left
+                      ${panel.bg}
+                      ${typeof window !== 'undefined' && window.innerWidth < 768 ? (idx === 0 ? 'flex' : 'hidden') : 'flex'}
+                    `}
+                    >
+                        {/* Image section */}
+                        {typeof window !== 'undefined' && window.innerWidth < 768 ? (
+                            idx === 0 && (
+                                <div className="w-full flex flex-col items-center space-y-4 px-2 mb-6">
+                                    {/* Panel 1 image */}
+                                    {panels[0]?.img && (
+                                        <img
+                                            src={panels[0].img}
+                                            alt={panels[0].name}
+                                            className="rounded-lg shadow-lg w-full max-w-xs"
+                                        />
+                                    )}
+
+                                    {/* Panel 2 and 3 side by side on all screen sizes */}
+                                    <div className="flex flex-row items-center justify-center gap-4 w-full">
+                                        {panels[1]?.img && (
+                                            <img
+                                                src={panels[1].img}
+                                                alt={panels[1].name}
+                                                className="rounded-lg shadow-lg w-1/2 max-w-full"
+                                            />
+                                        )}
+                                        {panels[2]?.img && (
+                                            <img
+                                                src={panels[2].img}
+                                                alt={panels[2].name}
+                                                className="rounded-lg shadow-lg w-1/2 max-w-full"
+                                            />
+                                        )}
+                                    </div>
+                                </div>
+
+
+
+
+                            )
+                        ) : (
+                            panel.img && (
+                                <div className="w-full md:w-1/2 flex justify-center md:justify-end p-4">
+                                    <img
+                                        src={panel.img}
+                                        alt={panel.name}
+                                        className="rounded-lg shadow-lg w-full"
+                                    />
+                                </div>
+                            )
+                        )}
+
+
+                        <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start p-4">
+                            <h2
+                                className={`
+                          ${panel.text} 
+                          font-bold mb-4 
+                          text-4xl sm:text-5xl md:text-6xl lg:text-7xl
+                        `}
+                            >
+                                {panel.name}
+                            </h2>
+
+                            <p
+                                className={`
+                          ${panel.text} 
+                          max-w-lg sm:max-w-xl 
+                          text-base sm:text-lg md:text-xl lg:text-2xl
+                        `}
+                            >
+                                {panel.description}
+                            </p>
+                            {/* Button only visible on mobile */}
+                            <button className="block md:hidden bg-white text-black px-4 py-2 rounded-md shadow-md font-semibold mt-10">
+                                View Franchise
+                            </button>
+
+                            <div className="absolute md:bottom-0 -bottom-1 left-0 w-full ">
+                                <svg
+                                    className="w-full h-12 md:h-22 rotate-180"
+                                    viewBox="0 0 1440 320"
+                                    preserveAspectRatio="none"
+                                >
+                                    <path
+                                        fill="#f3f4f6"
+                                        d="M0,64L60,90.7C120,117,240,171,360,186.7C480,203,600,181,720,149.3C840,117,960,75,1080,64C1200,53,1320,75,1380,85.3L1440,96L1440,320L0,320Z"
+                                    />
+                                </svg>
+                            </div>
+                        </div>
+
+                    </section>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default FranchiseSection;
