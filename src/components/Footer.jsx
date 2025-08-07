@@ -1,39 +1,58 @@
+import { Mail, MapPin, Phone } from "lucide-react";
+
 const Footer = () => {
 
     return (
         <>
-            {/* Footer */}
-            <footer className="bg-gray-900 text-white py-8 px-6">
-                <div className="grid md:grid-cols-4 gap-6">
-                    <div>
-                        <h4 className="font-bold mb-2">Merry Berry</h4>
-                        <p>Delightful Ice Cream & Crispy Chicken Fries</p>
-                    </div>
-                    <div>
-                        <h4 className="font-bold mb-2">Quick Links</h4>
-                        <ul className="space-y-1">
-                            <li><a href="#" className="hover:underline">Home</a></li>
-                            <li><a href="#" className="hover:underline">Menu</a></li>
-                            <li><a href="#" className="hover:underline">About</a></li>
-                            <li><a href="#" className="hover:underline">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 className="font-bold mb-2">Contact</h4>
-                        <p>📞 +91 98765 43210</p>
-                        <p>✉️ hello@merryberry.com</p>
-                    </div>
-                    <div>
-                        <h4 className="font-bold mb-2">Follow Us</h4>
-                        <div className="flex space-x-4">
-                            <a href="#">🌐</a>
-                            <a href="#">📸</a>
-                            <a href="#">📘</a>
-                        </div>
-                    </div>
+            <div className="bg-black text-white py-12 sm:py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-10 sm:mb-12">
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-3 sm:mb-4">
+              Ready to Get Started?
+            </h2>
+            <p className="text-base sm:text-xl text-gray-300">
+              Let’s connect — we’re just a message away from making something delicious together.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3">
+            {[
+              {
+                icon: Phone,
+                title: "Call Us",
+                content: ["+91 9876543210", "Mon-Sat: 9 AM - 7 PM"],
+              },
+              {
+                icon: Mail,
+                title: "Email Us",
+                content: ["franchise@merryberry.co.in", "We respond within 24 hours"],
+              },
+              {
+                icon: MapPin,
+                title: "Visit Us",
+                content: ["MerryBerry Corporate Office", "Mumbai, India"],
+              },
+            ].map((contact, index) => {
+              const IconComponent = contact.icon;
+              return (
+                <div key={index} className="text-center group">
+                  <div className="bg-gradient-to-br from-yellow-400 to-yellow-500 p-4 sm:p-6 rounded-xl sm:rounded-2xl w-fit mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 text-black" />
+                  </div>
+                  <h4 className="text-lg sm:text-2xl font-bold text-yellow-400 mb-2 sm:mb-4">
+                    {contact.title}
+                  </h4>
+                  {contact.content.map((line, lineIndex) => (
+                    <p key={lineIndex} className="text-sm sm:text-lg text-gray-300">
+                      {line}
+                    </p>
+                  ))}
                 </div>
-                <p className="text-center text-sm mt-6">© 2025 Merry Berry. All rights reserved.</p>
-            </footer>
+              );
+            })}
+          </div>
+        </div>
+      </div>
         </>
     )
 }
