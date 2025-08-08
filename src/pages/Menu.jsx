@@ -8,7 +8,7 @@ const Menu = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false); // NEW
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const scrollLock = useRef(false);
   let scrollTimeout = useRef(null);
@@ -23,12 +23,12 @@ const Menu = () => {
         );
 
   const nextProduct = () => {
-    setImageLoaded(false); // reset on change
+    setImageLoaded(false);
     setCurrentIndex((prev) => (prev + 1) % filteredProducts.length);
   };
 
   const prevProduct = () => {
-    setImageLoaded(false); // reset on change
+    setImageLoaded(false);
     setCurrentIndex((prev) =>
       prev === 0 ? filteredProducts.length - 1 : prev - 1
     );
@@ -43,6 +43,7 @@ const Menu = () => {
       }, 500);
     };
 
+    // Mouse wheel navigation
     const handleWheel = (e) => {
       if (scrollLock.current) return;
       lockScroll();
@@ -53,33 +54,49 @@ const Menu = () => {
       }
     };
 
+    // Touch swipe navigation
     let touchStartY = 0;
-    let touchEndY = 0;
+    let touchMoveY = 0;
 
     const handleTouchStart = (e) => {
       touchStartY = e.touches[0].clientY;
+      touchMoveY = touchStartY;
     };
 
-    const handleTouchEnd = (e) => {
-      touchEndY = e.changedTouches[0].clientY;
+    const handleTouchMove = (e) => {
+      touchMoveY = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = () => {
       if (scrollLock.current) return;
+      const swipeDistance = touchStartY - touchMoveY;
+      if (Math.abs(swipeDistance) < 50) return; // Ignore small swipes
       lockScroll();
-      const swipeDistance = touchStartY - touchEndY;
       if (swipeDistance > 50) {
+        // Swipe up → next
         nextProduct();
       } else if (swipeDistance < -50) {
+        // Swipe down → previous
         prevProduct();
       }
     };
 
+    // Attach events
+    const contentEl = document.getElementById("menu-content");
     window.addEventListener("wheel", handleWheel, { passive: true });
-    window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    window.addEventListener("touchend", handleTouchEnd, { passive: true });
+    if (contentEl) {
+      contentEl.addEventListener("touchstart", handleTouchStart, { passive: true });
+      contentEl.addEventListener("touchmove", handleTouchMove, { passive: true });
+      contentEl.addEventListener("touchend", handleTouchEnd, { passive: true });
+    }
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
-      window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchend", handleTouchEnd);
+      if (contentEl) {
+        contentEl.removeEventListener("touchstart", handleTouchStart);
+        contentEl.removeEventListener("touchmove", handleTouchMove);
+        contentEl.removeEventListener("touchend", handleTouchEnd);
+      }
       clearTimeout(scrollTimeout.current);
     };
   }, [filteredProducts.length]);
@@ -93,6 +110,7 @@ const Menu = () => {
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden font-sans">
+      {/* Static background */}
       <div
         className="absolute inset-0 bg-center bg-cover"
         style={{
@@ -153,7 +171,10 @@ const Menu = () => {
       </AnimatePresence>
 
       {/* Main Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 text-center">
+      <div
+        id="menu-content"
+        className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 text-center"
+      >
         {filteredProducts.length > 0 ? (
           <>
             {/* Product Image */}
@@ -162,16 +183,16 @@ const Menu = () => {
                 key={currentProduct.image}
                 src={currentProduct.image}
                 alt={currentProduct.name}
-                className="w-96 md:w-80 lg:w-[32rem] object-contain mb-4 mt-20 drop-shadow-2xl"
+                className="w-96 md:w-80 lg:w-[32rem] object-contain mb-2 mt-20 drop-shadow-2xl"
                 initial={{ opacity: 0, scale: 0.85 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 1.1 }}
                 transition={{ duration: 0.6 }}
-                onLoad={() => setImageLoaded(true)} // set loaded
+                onLoad={() => setImageLoaded(true)}
               />
             </AnimatePresence>
 
-            {/* Product Name appears only after image is loaded */}
+            {/* Product Name */}
             <AnimatePresence>
               {imageLoaded && (
                 <motion.h2
