@@ -7,37 +7,35 @@ import Gallery from '../components/Gallery';
 import Details from '../components/Details';
 import CraftedSection from '../components/CraftedSection';
 import Footer from '../components/Footer';
-import c1 from '../assets/career/c1.png'
-import c2 from '../assets/career/c2.png'
-import c3 from '../assets/career/c3.png'
+import h6 from '../assets/home/6.png';
+import h7 from '../assets/home/7.png';
+import h8 from '../assets/home/8.png';
+import h9 from '../assets/home/9.png';
+import h10 from '../assets/home/10.png';
+import h11 from '../assets/home/11.png';
+import h12 from '../assets/home/12.png';
+import h13 from '../assets/home/13.png';
+import h14 from '../assets/home/14.png';
+import h15 from '../assets/home/15.png';
 
 const flavors = [
   {
     name: "Ube",
-    bgColor: "#9F4C87",
-    imgs: [
-      c2,
-      c1,
-      c3,
-      ]
-  },
-  {
-    name: "Banana",
     bgColor: "#F4D13D",
-    imgs: [
-      c1,
-      c2,
-      c3,
-    ]
+    imgs: [h7, h12, h8],
+    mobileImg: h7 // Added specific mobile image
   },
   {
     name: "Raspberry",
     bgColor: "#E30B5D",
-    imgs: [
-      c2,
-      c3,
-      c1,
-    ]
+    imgs: [h9, h10, h11],
+    mobileImg: h9
+  },
+  {
+    bgColor: "#9F4C87",
+    name: "Banana",
+    imgs: [h13, h14, h15],
+    mobileImg: h13
   },
 ];
 
@@ -53,10 +51,15 @@ const Home = () => {
   const mobileFlavorRefs = useRef({});
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    const handleResize = () => {
+      const mobile = window.innerWidth < 768;
+      if (mobile !== isMobile) {
+        setIsMobile(mobile);
+      }
+    };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [isMobile]);
 
   const triggerExpansionAnimation = (index) => {
     const containerRect = containerRef.current?.getBoundingClientRect();
@@ -134,37 +137,55 @@ const Home = () => {
           </AnimatePresence>
 
           {/* Heading */}
-          <div className="absolute top-24 text-center w-full text-white z-10">
-            <h1 className="text-6xl md:text-8xl font-extrabold leading-tight">MERRY × BERRY</h1>
-            <p className="text-xl font-bold mt-4 uppercase">A Magical Duo of Ice Cream & Chicken Fries</p>
+          <div className="absolute top-16 md:top-24 text-center w-full text-black z-10 px-4">
+            <h1 className="text-4xl md:text-6xl lg:text-8xl font-extrabold leading-tight">
+              MERRY × BERRY
+            </h1>
+            <p className="text-sm md:text-xl font-bold mt-2 md:mt-4 uppercase">
+              A Magical Duo of Ice Cream & Chicken Fries
+            </p>
           </div>
 
           {/* Main Images */}
           <AnimatePresence mode="wait">
             <motion.div
-              key={active.name} // Changes on flavor change
-              initial={{ opacity: 1, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="flex gap-30 items-center mt-20 md:mt-0 justify-center absolute z-10"
+              key={active.name}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex items-center justify-center absolute z-10 mt-32 md:mt-0"
             >
-              {active.imgs.map((imgUrl, i) => (
+              {isMobile ? (
+                // Mobile - single image
                 <motion.img
-                  key={`${active.name}-${i}`} // unique key
-                  src={imgUrl}
-                  alt={`${active.name} ${i + 1}`}
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.9, opacity: 0 }}
-                  transition={{ duration: 0 }}
-                  className="w-[500px] md:w-[300px] h-auto"
+                  key={`${active.name}-mobile`}
+                  src={active.mobileImg}
+                  alt={active.name}
+                  initial={{ scale: 0.9 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-[350px] h-auto pb-60"
                 />
-              ))}
+              ) : (
+                // Desktop - multiple images
+                <div className="flex gap-8 lg:gap-16 items-center justify-center">
+                  {active.imgs.map((imgUrl, i) => (
+                    <motion.img
+                      key={`${active.name}-${i}`}
+                      src={imgUrl}
+                      alt={`${active.name} ${i + 1}`}
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.9, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="w-[200px] lg:w-[300px] h-auto"
+                    />
+                  ))}
+                </div>
+              )}
             </motion.div>
           </AnimatePresence>
-
-
 
           {/* Flavor Selectors */}
           {/* Desktop */}
@@ -174,45 +195,51 @@ const Home = () => {
                 key={`desktop-${index}`}
                 ref={(el) => (desktopFlavorRefs.current[index] = el)}
                 onClick={() => handleFlavorChange(index)}
-                className={`w-14 h-14 rounded-full border-2 flex items-center justify-center overflow-hidden shadow-md 
-              ${activeIndex === index ? 'border-white scale-110' : 'border-transparent'} transition-transform duration-3000`}
+                className={`w-12 h-12 lg:w-14 lg:h-14 rounded-full border-2 flex items-center justify-center overflow-hidden shadow-md 
+                  ${activeIndex === index ? 'border-white scale-110' : 'border-transparent'} transition-transform duration-300`}
                 style={{ backgroundColor: flavor.bgColor }}
                 title={flavor.name}
               >
-                <img src={flavor.imgs[0]} alt={flavor.name} className="w-10 h-10 object-contain" />
+                <img 
+                  src={flavor.imgs[0]} 
+                  alt={flavor.name} 
+                  className="w-8 h-8 lg:w-10 lg:h-10 object-contain" 
+                />
               </button>
             ))}
           </div>
 
           {/* Mobile */}
-          <div className="md:hidden absolute pt-80 left-1/2 -translate-x-1/2 flex space-x-4 z-10">
+          <div className="md:hidden absolute bottom-50 left-1/2 -translate-x-1/2 flex space-x-4 z-10">
             {flavors.map((flavor, index) => (
               <button
                 key={`mobile-${index}`}
                 ref={(el) => (mobileFlavorRefs.current[index] = el)}
                 onClick={() => handleFlavorChange(index)}
-                className={`w-12 h-12 rounded-full border-2 flex items-center justify-center overflow-hidden shadow-md 
-              ${activeIndex === index ? 'border-white scale-110' : 'border-transparent'} transition-transform duration-3000`}
+                className={`w-16 h-16 rounded-full border-2 flex items-center justify-center overflow-hidden shadow-md 
+                  ${activeIndex === index ? 'border-white scale-110' : 'border-transparent'} transition-transform duration-300`}
                 style={{ backgroundColor: flavor.bgColor }}
                 title={flavor.name}
               >
-                <img src={flavor.imgs[0]} alt={flavor.name} className="w-8 h-8 object-contain" />
+                <img 
+                  src={flavor.imgs[1]} 
+                  alt={flavor.name} 
+                  className="w-26 h-26 object-contain" 
+                />
               </button>
             ))}
           </div>
         </div>
 
         {/* Decorative Bubbles */}
-        <div className="absolute bottom-0 w-full h-[20vh] md:h-48 bg-pink-200 rounded-t-[50%] z-20 flex items-center justify-center px-4">
+        <div className="absolute bottom-0 w-full h-[15vh] md:h-48 bg-pink-200 rounded-t-[50%] z-20 flex items-center justify-center px-4">
           <p
-            className="text-2xl md:text-4xl lg:text-5xl font-bold text-center"
+            className="text-xl md:text-4xl lg:text-5xl font-bold text-center"
             style={{ color: active.bgColor }}
           >
             Your Flavour is Waiting!
           </p>
         </div>
-
-
       </div>
 
       <OurStory />

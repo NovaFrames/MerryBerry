@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from 'react';
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
 const FranchiseSection = () => {
     const sectionRef = useRef(null);
     const wrapperRef = useRef(null);
+    const touchStartX = useRef(0);
+    const touchEndX = useRef(0);
 
     useEffect(() => {
         const section = sectionRef.current;
@@ -35,6 +37,17 @@ const FranchiseSection = () => {
 
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    // Handle touch events to prevent swiping between panels on mobile
+    const handleTouchStart = (e) => {
+        touchStartX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchMove = (e) => {
+        touchEndX.current = e.touches[0].clientX;
+        // Prevent horizontal scrolling/swiping
+        e.preventDefault();
+    };
 
     const panels = [
         {
@@ -78,57 +91,58 @@ const FranchiseSection = () => {
                     <section
                         key={idx}
                         className={`
-                      w-screen h-full shrink-0 px-4 sm:px-6 md:px-10 
-                      flex flex-col md:flex-row items-center justify-center text-center md:text-left
-                      ${panel.bg}
-                      ${typeof window !== 'undefined' && window.innerWidth < 768 ? (idx === 0 ? 'flex' : 'hidden') : 'flex'}
-                    `}
+                          w-screen h-full shrink-0 px-4 sm:px-6 md:px-10 
+                          flex flex-col md:flex-row items-center justify-center text-center md:text-left
+                          ${panel.bg}
+                          ${typeof window !== 'undefined' && window.innerWidth < 768 ? (idx === 0 ? 'flex' : 'hidden') : 'flex'}
+                        `}
+                        onTouchStart={idx === 0 ? handleTouchStart : undefined}
+                        onTouchMove={idx === 0 ? handleTouchMove : (e) => e.preventDefault()}
                     >
                         {/* Image section */}
-                         {/* Image section */}
-                         <motion.div 
-                                initial={{ scale: 0.9, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
-                                transition={{ delay: 0.1 }}
-                                className={`w-full md:w-1/2 flex justify-center items-center p-4 md:p-8 lg:p-12 relative `}
-                            >
-                                <div className="relative w-full max-w-xl">
-                                    <img
-                                        src={panel.img}
-                                        alt={panel.name}
-                                        className="rounded-xl shadow-2xl w-full transform transition-transform hover:scale-[1.02]"
-                                    />
-                                    {/* Decorative elements */}
-                                    <div className={`absolute -top-4 -left-4 w-16 h-16 rounded-full ${panel.accent} opacity-20 -z-10`}></div>
-                                    <div className={`absolute -bottom-4 -right-4 w-24 h-24 rounded-full ${panel.accent} opacity-20 -z-10`}></div>
-                                </div>
-                            </motion.div>
-
-
+                        <motion.div 
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ delay: 0.1 }}
+                            className={`w-full md:w-1/2 flex justify-center items-center p-4 md:p-8 lg:p-12 relative`}
+                        >
+                            <div className="relative w-full max-w-xl">
+                                <img
+                                    src={panel.img}
+                                    alt={panel.name}
+                                    className="rounded-xl shadow-2xl w-full transform transition-transform hover:scale-[1.02]"
+                                />
+                                {/* Decorative elements */}
+                                <div className={`absolute -top-4 -left-4 w-16 h-16 rounded-full opacity-20 -z-10`}></div>
+                                <div className={`absolute -bottom-4 -right-4 w-24 h-24 rounded-full opacity-20 -z-10`}></div>
+                            </div>
+                        </motion.div>
 
                         <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start p-4">
                             <h2
                                 className={`
-                          ${panel.text} 
-                          font-bold mb-4 
-                          text-4xl sm:text-5xl md:text-6xl lg:text-7xl
-                        `}
+                                  ${panel.text} 
+                                  font-bold mb-4 
+                                  text-4xl sm:text-5xl md:text-6xl lg:text-7xl
+                                `}
                             >
                                 {panel.name}
                             </h2>
 
                             <p
                                 className={`
-                          ${panel.text} 
-                          max-w-lg sm:max-w-xl 
-                          text-base sm:text-lg md:text-xl lg:text-2xl
-                        `}
+                                  ${panel.text} 
+                                  max-w-lg sm:max-w-xl 
+                                  text-base sm:text-lg md:text-xl lg:text-2xl
+                                `}
                             >
                                 {panel.description}
                             </p>
                             {/* Button only visible on mobile */}
-                            <button className="block bg-white text-black px-4 py-2 cursor-pointer rounded-md shadow-md font-semibold mt-10"
-                            onClick={()=>{navigate('franchise')}}>
+                            <button 
+                                className="block bg-white text-black px-4 py-2 cursor-pointer rounded-md shadow-md font-semibold mt-10"
+                                onClick={() => { navigate('franchise') }}
+                            >
                                 View Franchise
                             </button>
 
@@ -145,7 +159,6 @@ const FranchiseSection = () => {
                                 </svg>
                             </div>
                         </div>
-
                     </section>
                 ))}
             </div>

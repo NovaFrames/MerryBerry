@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import c1 from '../assets/career/c1.png'
-import c2 from '../assets/career/c2.png'
-import c3 from '../assets/career/c3.png'
+import one from '../assets/Icecreams/1.png'
+import two from '../assets/Icecreams/2.png'
+import three from '../assets/Icecreams/3.png'
+import h12 from '../assets/home/12.png'
 const flavors = [
     {
         name: "MANGO CHAMOY",
@@ -13,7 +14,7 @@ const flavors = [
         keyword: "If Thailand's full moon party was a flavor",
         theme: "PARTY",
         // mainImage: "https://images.ctfassets.net/j8k8klriwj2h/6kpjysvBK78pLbaVnrGl6x/968158796de59dea868a24a82aa6fe28/Mango_Chamoy.png?h=390&w=351&q=100&&fm=webp&q=80",
-        mainImage: c2,
+        mainImage: h12,
     },
     {
         name: "UBE DREAM",
@@ -25,7 +26,7 @@ const flavors = [
         keyword: "A dreamy purple delight",
         theme: "DREAM",
         // mainImage: "https://images.ctfassets.net/j8k8klriwj2h/01MWGFwgHjGFGI8nElbR9Y/7afe1d857f61eab7bb57b91edf7f4522/Salted_Ube_Smores.png?h=390&w=351&q=100&&fm=webp&q=80",
-        mainImage: c1,
+        mainImage: two,
     },
     {
         name: "RASPBERRY",
@@ -37,7 +38,7 @@ const flavors = [
         keyword: "Bold. Bright. Berrylicious.",
         theme: "BERRY",
         // mainImage: "https://images.ctfassets.net/j8k8klriwj2h/6dpa3z9jquNuYhDecfno4I/4d0539e4a088755f40bd0d47fbeee849/Churro_Raspberry.png?h=390&w=351&q=100&&fm=webp&q=80",
-        mainImage: c3,
+        mainImage: one,
     },
 ];
 
@@ -95,7 +96,7 @@ export default function FlavorSlider() {
 
             {/* Main Container */}
             <div
-                className="relative z-20 px-4 sm:px-6 md:px-10 py-6 sm:py-8 text-center"
+                className="relative z-20 py-6 sm:py-8 text-center"
                 style={{ color: current.textColor }}
             >
                 <div className="mt-4 sm:mt-6 min-h-[26rem] sm:min-h-[30rem] md:min-h-[32rem]">
@@ -116,7 +117,7 @@ export default function FlavorSlider() {
                     </div>
 
                     {/* Images */}
-                    <div className="relative flex justify-center items-center my-4 sm:my-6 h-[18rem] sm:h-[22rem]">
+                    <div className="relative flex justify-center items-center my-4 sm:my-6 gap-5">
                         {/* Previous */}
                         <div
                             className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-30 cursor-pointer"
@@ -125,7 +126,7 @@ export default function FlavorSlider() {
                             <img
                                 src={flavors[prevIndex].mainImage}
                                 alt="Previous flavor"
-                                className="w-16 sm:w-32 md:w-40"
+                                className="w-30 md:w-50"
                             />
                         </div>
 
@@ -151,7 +152,7 @@ export default function FlavorSlider() {
                             <img
                                 src={flavors[nextIndex].mainImage}
                                 alt="Next flavor"
-                                className="w-16 sm:w-32 md:w-40"
+                                className="w-30 md:w-50"
                             />
                         </div>
                     </div>
