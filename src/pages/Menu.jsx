@@ -6,14 +6,13 @@ const categories = ["All", "Ice-Cream", "Chicken", "Milkshake", "Mojito", "Burge
 
 const Menu = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const scrollLock = useRef(false);
   let scrollTimeout = useRef(null);
 
-  // Filter products
   const filteredProducts =
     selectedCategory === "All"
       ? allProducts
@@ -24,56 +23,94 @@ const Menu = () => {
         );
 
   const nextProduct = () => {
+    setImageLoaded(false);
     setCurrentIndex((prev) => (prev + 1) % filteredProducts.length);
   };
 
   const prevProduct = () => {
+    setImageLoaded(false);
     setCurrentIndex((prev) =>
       prev === 0 ? filteredProducts.length - 1 : prev - 1
     );
   };
 
-useEffect(() => {
-  const handleWheel = (e) => {
-    if (scrollLock.current) return;
+  useEffect(() => {
+    const lockScroll = () => {
+      scrollLock.current = true;
+      clearTimeout(scrollTimeout.current);
+      scrollTimeout.current = setTimeout(() => {
+        scrollLock.current = false;
+      }, 500);
+    };
 
-    scrollLock.current = true;
-    clearTimeout(scrollTimeout.current);
-    scrollTimeout.current = setTimeout(() => {
-      scrollLock.current = false;
-    }, 500);
+    // Mouse wheel navigation
+    const handleWheel = (e) => {
+      if (scrollLock.current) return;
+      lockScroll();
+      if (e.deltaY > 0) {
+        nextProduct();
+      } else if (e.deltaY < 0) {
+        prevProduct();
+      }
+    };
 
-    setIsTransitioning(true);
+    // Touch swipe navigation
+    let touchStartY = 0;
+    let touchMoveY = 0;
 
-    if (e.deltaY > 0) {
-      setCurrentIndex((prev) => (prev + 1) % filteredProducts.length);
-    } else if (e.deltaY < 0) {
-      setCurrentIndex((prev) =>
-        prev === 0 ? filteredProducts.length - 1 : prev - 1
-      );
+    const handleTouchStart = (e) => {
+      touchStartY = e.touches[0].clientY;
+      touchMoveY = touchStartY;
+    };
+
+    const handleTouchMove = (e) => {
+      touchMoveY = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = () => {
+      if (scrollLock.current) return;
+      const swipeDistance = touchStartY - touchMoveY;
+      if (Math.abs(swipeDistance) < 50) return; // Ignore small swipes
+      lockScroll();
+      if (swipeDistance > 50) {
+        // Swipe up → next
+        nextProduct();
+      } else if (swipeDistance < -50) {
+        // Swipe down → previous
+        prevProduct();
+      }
+    };
+
+    // Attach events
+    const contentEl = document.getElementById("menu-content");
+    window.addEventListener("wheel", handleWheel, { passive: true });
+    if (contentEl) {
+      contentEl.addEventListener("touchstart", handleTouchStart, { passive: true });
+      contentEl.addEventListener("touchmove", handleTouchMove, { passive: true });
+      contentEl.addEventListener("touchend", handleTouchEnd, { passive: true });
     }
 
-    setTimeout(() => setIsTransitioning(false), 500);
-  };
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+      if (contentEl) {
+        contentEl.removeEventListener("touchstart", handleTouchStart);
+        contentEl.removeEventListener("touchmove", handleTouchMove);
+        contentEl.removeEventListener("touchend", handleTouchEnd);
+      }
+      clearTimeout(scrollTimeout.current);
+    };
+  }, [filteredProducts.length]);
 
-  window.addEventListener("wheel", handleWheel, { passive: true });
-  return () => {
-    window.removeEventListener("wheel", handleWheel);
-    clearTimeout(scrollTimeout.current);
-  };
-}, [filteredProducts.length]); // ✅ dependency on filtered list length
-
-
-  // Reset index when category changes
   useEffect(() => {
     setCurrentIndex(0);
+    setImageLoaded(false);
   }, [selectedCategory]);
 
   const currentProduct = filteredProducts[currentIndex] || {};
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden font-sans">
-      {/* Static Background */}
+      {/* Static background */}
       <div
         className="absolute inset-0 bg-center bg-cover"
         style={{
@@ -82,7 +119,7 @@ useEffect(() => {
       />
       <div className="absolute inset-0 bg-white" />
 
-      {/* Filter Button - Click to open modal (Desktop & Mobile) */}
+      {/* Filter Button */}
       <div className="absolute top-40 md:top-40 left-10 md:left-20 z-30">
         <button
           className="bg-red-600 text-white px-4 py-2 rounded shadow-lg hover:bg-red-700 transition"
@@ -92,7 +129,7 @@ useEffect(() => {
         </button>
       </div>
 
-      {/* Category Selection Modal */}
+      {/* Category Modal */}
       <AnimatePresence>
         {isCategoryModalOpen && (
           <motion.div
@@ -134,33 +171,42 @@ useEffect(() => {
       </AnimatePresence>
 
       {/* Main Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 text-center">
+      <div
+        id="menu-content"
+        className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 text-center"
+      >
         {filteredProducts.length > 0 ? (
           <>
-            {/* Big Image */}
+            {/* Product Image */}
             <AnimatePresence mode="wait">
               <motion.img
                 key={currentProduct.image}
                 src={currentProduct.image}
                 alt={currentProduct.name}
-                className="w-96 md:w-80 lg:w-[32rem] object-contain mb-4 mt-20 drop-shadow-2xl"
+                className="w-96 md:w-80 lg:w-[32rem] object-contain mb-2 mt-20 drop-shadow-2xl"
                 initial={{ opacity: 0, scale: 0.85 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 1.1 }}
                 transition={{ duration: 0.6 }}
+                onLoad={() => setImageLoaded(true)}
               />
             </AnimatePresence>
 
-            {/* Text */}
-            <motion.h2
-              key={currentProduct.name}
-              className="text-4xl md:text-5xl font-bold text-red-600 uppercase tracking-wide"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-            >
-              {currentProduct.name}
-            </motion.h2>
+            {/* Product Name */}
+            <AnimatePresence>
+              {imageLoaded && (
+                <motion.h2
+                  key={currentProduct.name}
+                  className="text-4xl md:text-5xl font-bold text-red-600 uppercase tracking-wide"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  {currentProduct.name}
+                </motion.h2>
+              )}
+            </AnimatePresence>
           </>
         ) : (
           <p className="text-gray-500 mt-20">No products found in this category.</p>
