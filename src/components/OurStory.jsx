@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import story from '../../public/images/story.png'
+import { useNavigate } from "react-router-dom";
 const OurStory = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
@@ -29,6 +30,8 @@ const OurStory = () => {
     }
   };
 
+  const navigate = useNavigate();
+
   return (
     <section
       ref={sectionRef}
@@ -37,7 +40,7 @@ const OurStory = () => {
         backgroundImage:
           window.innerWidth < 768
             ? "url('https://merryberry.co.in/wp-content/uploads/2024/03/A2-Frames-7-Nos-7-1088x1536.png')"
-            : "none",
+            : "url('https://woodlands-ice-cream.co.uk/wp-content/uploads/2018/09/wooden_panels-copy-2@2x.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
@@ -109,7 +112,8 @@ const OurStory = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-3 bg-amber-500 text-white font-medium rounded-full shadow-lg hover:bg-amber-600 transition-colors"
+                  className="px-8 py-3 bg-amber-500 cursor-pointer text-white font-medium rounded-full shadow-lg hover:bg-amber-600 transition-colors"
+                  onClick={()=>{navigate('about')}}
                 >
                   Discover More
                 </motion.button>

@@ -4,33 +4,39 @@ import FlavorSlider from '../components/FlavorSlider';
 import FranchiseSection from '../components/FranchiseSection';
 import OurStory from '../components/OurStory';
 import Gallery from '../components/Gallery';
+import Details from '../components/Details';
+import CraftedSection from '../components/CraftedSection';
+import Footer from '../components/Footer';
+import c1 from '../assets/career/c1.png'
+import c2 from '../assets/career/c2.png'
+import c3 from '../assets/career/c3.png'
 
 const flavors = [
   {
     name: "Ube",
     bgColor: "#9F4C87",
     imgs: [
-      "https://images.ctfassets.net/j8k8klriwj2h/1OjxEwoD5tTfRWuEMzPKyt/e7b2f8dc1ce2a88eb170ed5c2bb43aba/Boba_x_Ice_Cream_UBE.png",
-      "https://images.ctfassets.net/j8k8klriwj2h/1OjxEwoD5tTfRWuEMzPKyt/e7b2f8dc1ce2a88eb170ed5c2bb43aba/Boba_x_Ice_Cream_UBE.png",
-      "https://images.ctfassets.net/j8k8klriwj2h/1OjxEwoD5tTfRWuEMzPKyt/e7b2f8dc1ce2a88eb170ed5c2bb43aba/Boba_x_Ice_Cream_UBE.png",
-    ]
+      c2,
+      c1,
+      c3,
+      ]
   },
   {
     name: "Banana",
     bgColor: "#F4D13D",
     imgs: [
-      "https://images.ctfassets.net/j8k8klriwj2h/3W5W2yk2jbULRv1yTamjli/77e529d150811ed9ce12997c9c14c9b9/Boba_x_Ice_Cream_Banana.png",
-      "https://images.ctfassets.net/j8k8klriwj2h/3W5W2yk2jbULRv1yTamjli/77e529d150811ed9ce12997c9c14c9b9/Boba_x_Ice_Cream_Banana.png",
-      "https://images.ctfassets.net/j8k8klriwj2h/3W5W2yk2jbULRv1yTamjli/77e529d150811ed9ce12997c9c14c9b9/Boba_x_Ice_Cream_Banana.png",
+      c1,
+      c2,
+      c3,
     ]
   },
   {
     name: "Raspberry",
     bgColor: "#E30B5D",
     imgs: [
-      "https://images.ctfassets.net/j8k8klriwj2h/3R4DGEkjMI6ORb3ieGZeov/529982783301b739116f5f88fea2cde2/Boba_x_Ice_Cream_PikaChurro.png?w=1560&q=80&&fm=webp&q=80",
-      "https://images.ctfassets.net/j8k8klriwj2h/3R4DGEkjMI6ORb3ieGZeov/529982783301b739116f5f88fea2cde2/Boba_x_Ice_Cream_PikaChurro.png?w=1560&q=80&&fm=webp&q=80",
-      "https://images.ctfassets.net/j8k8klriwj2h/3R4DGEkjMI6ORb3ieGZeov/529982783301b739116f5f88fea2cde2/Boba_x_Ice_Cream_PikaChurro.png?w=1560&q=80&&fm=webp&q=80",
+      c2,
+      c3,
+      c1,
     ]
   },
 ];
@@ -141,7 +147,7 @@ const Home = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="flex -gap-2 items-center justify-center absolute z-10"
+              className="flex gap-30 items-center mt-20 md:mt-0 justify-center absolute z-10"
             >
               {active.imgs.map((imgUrl, i) => (
                 <motion.img
@@ -152,7 +158,7 @@ const Home = () => {
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0.9, opacity: 0 }}
                   transition={{ duration: 0 }}
-                  className="w-[500px] md:w-[500px] h-auto"
+                  className="w-[500px] md:w-[300px] h-auto"
                 />
               ))}
             </motion.div>
@@ -209,11 +215,13 @@ const Home = () => {
 
       </div>
 
-      <FlavorSlider />
       <OurStory />
+      <FlavorSlider />
       <FranchiseSection />
+      <Details />
       <Gallery />
-
+      <CraftedSection />
+      <Footer />
     </>
   );
 };

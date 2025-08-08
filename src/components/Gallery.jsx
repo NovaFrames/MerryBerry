@@ -1,7 +1,11 @@
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { StarIcon, ChevronLeft, ChevronRight, Quote, Instagram, Heart, MessageCircle, Camera } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-
+import insta1 from '../assets/instaGallery/insta1.png'
+import insta2 from '../assets/instaGallery/insta2.png'
+import insta3 from '../assets/instaGallery/insta3.png'
+import insta4 from '../assets/instaGallery/insta4.png'
+import { useNavigate } from 'react-router-dom';
 const testimonials = [
   {
     id: 1,
@@ -12,7 +16,7 @@ const testimonials = [
     image: "https://randomuser.me/api/portraits/women/44.jpg",
     source: "Instagram",
     instaLink: "https://images.unsplash.com/photo-1517984055083-fd6e1e788e54?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmlyZWQlMjBjaGlja2VufGVufDB8fDB8fHww",
-    foodImage: "https://images.unsplash.com/photo-1517984055083-fd6e1e788e54?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmlyZWQlMjBjaGlja2VufGVufDB8fDB8fHww"
+    foodImage: insta1
   },
   {
     id: 2,
@@ -23,7 +27,7 @@ const testimonials = [
     image: "https://randomuser.me/api/portraits/men/32.jpg",
     source: "Instagram",
     instaLink: "https://instagram.com/post2",
-    foodImage: "https://images.unsplash.com/photo-1517984055083-fd6e1e788e54?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmlyZWQlMjBjaGlja2VufGVufDB8fDB8fHww"
+    foodImage: insta1
   },
   {
     id: 3,
@@ -52,29 +56,34 @@ const testimonials = [
 const socialPosts = [
   {
     id: 1,
-    image: "https://source.unsplash.com/random/600x600/?food1",
-    likes: "1.2k",
-    comments: "84"
+    image: insta1,
+    likes: "95.2k",
+    comments: "84",
+    link:'https://www.instagram.com/reel/DNC2HT6ToNQ/?utm_source=ig_web_copy_link&igsh=MTNkbTBiZ3AzNXpkNg=='
   },
   {
     id: 2,
-    image: "https://source.unsplash.com/random/600x600/?food2",
-    likes: "2.4k",
-    comments: "156"
+    image: insta2,
+    likes: "373k",
+    comments: "156",
+    link:'https://www.instagram.com/reel/DNAw8q1T-H1/?utm_source=ig_web_copy_link&igsh=YWxnc2p3MmV2MG9x'
   },
   {
     id: 3,
-    image: "https://source.unsplash.com/random/600x600/?food3",
-    likes: "3.1k",
-    comments: "212"
+    image: insta3,
+    likes: "15.8k",
+    comments: "212",
+    link:'https://www.instagram.com/reel/DM2fxfmTldM/?utm_source=ig_web_copy_link&igsh=MWVmYjE4amVmbGlsdA=='
   },
   {
     id: 4,
-    image: "https://source.unsplash.com/random/600x600/?food4",
-    likes: "890",
-    comments: "43"
+    image: insta4,
+    likes: "6283",
+    comments: "43",
+    link:'https://www.instagram.com/reel/DMz3-HdTxE0/?utm_source=ig_web_copy_link&igsh=bXo5ZmN1aTU0dTZu'
   }
 ];
+
 
 const Rating = ({ stars }) => {
   return (
@@ -154,12 +163,13 @@ const SocialCard = ({ post }) => {
     <motion.div
       className="relative group overflow-hidden rounded-xl shadow-md"
       whileHover={{ scale: 1.03 }}
+      onClick={() => window.open(post.link, '_blank')}
     >
       <img
-        src={"https://images.unsplash.com/photo-1517984055083-fd6e1e788e54?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmlyZWQlMjBjaGlja2VufGVufDB8fDB8fHww"}
+        src={post.image}
         alt="Social media post"
         className="w-full h-full object-cover"
-      />
+        />
       <div className="absolute inset-0  bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
         <div className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 text-white text-center">
           <div className="flex items-center justify-center space-x-4">
@@ -168,6 +178,7 @@ const SocialCard = ({ post }) => {
               <span className="text-sm">{post.likes}</span>
             </div>
             <div className="flex items-center">
+        
               <MessageCircle className="w-4 h-4 mr-1" />
               <span className="text-sm">{post.comments}</span>
             </div>
@@ -198,13 +209,13 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="relative py-16 px-4 sm:px-6 lg:px-8 bg-amber-400 overflow-hidden">
+    <section className="relative py-16 px-4 sm:px-6 lg:px-8 bg-yellow-100 overflow-hidden">
       {/* Wave Background */}
-      <div className="absolute bottom-0  left-0 right-0 overflow-hidden">
+      <div className="absolute bottom-10  left-0 right-0 overflow-hidden">
         <svg 
           viewBox="0 0 1200 120" 
           preserveAspectRatio="none" 
-          className="w-full h-full"
+          className="w-full h-30"
         >
           <path 
             d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" 
@@ -241,8 +252,39 @@ export default function Testimonials() {
           </motion.p>
         </div>
 
-        {/* Testimonials Carousel */}
-        <div className="mb-16 relative">
+        {/* Instagram Feed Section */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="mb-16"
+        >
+          <div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">
+            <h3 className="inline-flex text-3xl font-extrabold gap-5 text-gray-800 tracking-tight">
+              <Camera className='w-15 h-15' /> Stay Connected with Us on Instagram
+            </h3>
+
+            <a
+              href="https://www.instagram.com/merryberry.co.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-amber-600 text-white px-5 py-2 rounded-full shadow-lg transition-transform duration-300 hover:scale-105 hover:bg-amber-700"
+            >
+              <Instagram className="w-5 h-5" />
+              <span className="text-sm font-semibold">Follow Us</span>
+            </a>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {socialPosts.map((post) => (
+              <SocialCard key={post.id} post={post} />
+            ))}
+          </div>
+        </motion.div>
+
+                {/* Testimonials Carousel */}
+                {/* <div className="mb-16 relative">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             {testimonials.map((testimonial, index) => (
               <TestimonialCard
@@ -262,38 +304,7 @@ export default function Testimonials() {
               />
             ))}
           </div>
-        </div>
-
-        {/* Instagram Feed Section */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="mb-16"
-        >
-          <div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">
-            <h3 className="inline-flex text-3xl font-extrabold gap-5 text-gray-800 tracking-tight">
-              <Camera className='w-15 h-15' /> Stay Connected with Us on Instagram
-            </h3>
-
-            <a
-              href="https://instagram.com/yourprofile"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-amber-600 text-white px-5 py-2 rounded-full shadow-lg transition-transform duration-300 hover:scale-105 hover:bg-amber-700"
-            >
-              <Instagram className="w-5 h-5" />
-              <span className="text-sm font-semibold">Follow Us</span>
-            </a>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {socialPosts.map((post) => (
-              <SocialCard key={post.id} post={post} />
-            ))}
-          </div>
-        </motion.div>
+        </div> */}
       </div>
     </section>
   );

@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from 'react';
+import {motion} from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const FranchiseSection = () => {
     const sectionRef = useRef(null);
@@ -37,29 +39,28 @@ const FranchiseSection = () => {
     const panels = [
         {
             name: "Franchise Success Story",
-            description: `Over the years, we’ve built an unshakable trust with our clients and partners. Our commitment to quality, innovation, and consistency has helped us grow a strong franchise network across regions. Each outlet reflects our shared vision — a successful, thriving brand that our franchisees proudly represent. Join the journey and see how Merry Berry franchises are blooming with success.`,
-            // bg: 'bg-red-500',
-            bg: 'bg-black',
-            text: 'text-yellow-300',
-            img: "http://merryberry.co.in/wp-content/uploads/2024/03/cropped-cropped-cropped-logo-1-removebg-preview.png"
+            description: `Over the years, we've built an unshakable trust with our clients and partners. Our commitment to quality, innovation, and consistency has helped us grow a strong franchise network across regions. Each outlet reflects our shared vision — a successful, thriving brand that our franchisees proudly represent.`,
+            bg: 'bg-gradient-to-br from-amber-100 to-amber-100',
+            text: 'text-amber-800',
+            img: "https://merryberry.co.in/wp-content/uploads/2024/03/White-Cream-and-Brown-Grand-Opening-Coffee-Shop-Presentation_20240223_145508_0000-1536x864.png",
         },
         {
             name: "Our First Outlet",
-            description: `Welcome to our very first Merry Berry outlet, a cozy 32-seater space designed to offer comfort and style. Featuring a classy interior with a striking red exterior elevation, this outlet is not only a visual treat but also a bustling spot, serving over 20,000+ bills a year. It's where our journey began, combining great food with a warm, inviting atmosphere.`,
-            bg: 'bg-red-900',
+            description: `Welcome to our very first Merry Berry outlet, a cozy 32-seater space designed to offer comfort and style. Featuring a classy interior with a striking red exterior elevation, this outlet is not only a visual treat but also a bustling spot, serving over 20,000+ bills a year.`,
+            bg: 'bg-gradient-to-br from-red-700 to-rose-600',
             text: 'text-white',
-            img: "https://merryberry.co.in/wp-content/uploads/2024/03/White-Cream-and-Brown-Grand-Opening-Coffee-Shop-Presentation_20240223_145652_0000-1536x864.png" // (base64 truncated)
+            img: "https://merryberry.co.in/wp-content/uploads/2024/03/White-Cream-and-Brown-Grand-Opening-Coffee-Shop-Presentation_20240223_145652_0000-1536x864.png",
         },
         {
             name: "Our Second Outlet",
-            description: `Welcome to our very first Merry Berry outlet, a cozy 32-seater space designed to offer comfort and style. Featuring a classy interior with a striking red exterior elevation, this outlet is not only a visual treat but also a bustling spot, serving over 20,000+ bills a year. It's where our journey began, combining great food with a warm, inviting atmosphere.`,
-            bg: 'bg-amber-950',
+            description: `Our second location expanded on our success with a modern 50-seat layout featuring an open kitchen concept. The industrial-chic design with warm wood accents creates an inviting atmosphere that has become a local favorite, serving specialty drinks and artisanal pastries to a growing customer base.`,
+            bg: 'bg-gradient-to-br from-amber-600 to-orange-600',
             text: 'text-white',
-            img: "https://merryberry.co.in/wp-content/uploads/2024/03/White-Cream-and-Brown-Grand-Opening-Coffee-Shop-Presentation_20240223_145508_0000-1536x864.png" // (base64 truncated)
+            img: "https://merryberry.co.in/wp-content/uploads/2024/03/White-Cream-and-Brown-Grand-Opening-Coffee-Shop-Presentation_20240223_145508_0000-1536x864.png",
         },
-        // Add more entries here if needed
     ];
 
+    const navigate = useNavigate();
 
     return (
         <div
@@ -84,52 +85,25 @@ const FranchiseSection = () => {
                     `}
                     >
                         {/* Image section */}
-                        {typeof window !== 'undefined' && window.innerWidth < 768 ? (
-                            idx === 0 && (
-                                <div className="w-full flex flex-col items-center space-y-4 px-2 mb-6">
-                                    {/* Panel 1 image */}
-                                    {panels[0]?.img && (
-                                        <img
-                                            src={panels[0].img}
-                                            alt={panels[0].name}
-                                            className="rounded-lg shadow-lg w-full max-w-xs"
-                                        />
-                                    )}
-
-                                    {/* Panel 2 and 3 side by side on all screen sizes */}
-                                    <div className="flex flex-row items-center justify-center gap-4 w-full">
-                                        {panels[1]?.img && (
-                                            <img
-                                                src={panels[1].img}
-                                                alt={panels[1].name}
-                                                className="rounded-lg shadow-lg w-1/2 max-w-full"
-                                            />
-                                        )}
-                                        {panels[2]?.img && (
-                                            <img
-                                                src={panels[2].img}
-                                                alt={panels[2].name}
-                                                className="rounded-lg shadow-lg w-1/2 max-w-full"
-                                            />
-                                        )}
-                                    </div>
-                                </div>
-
-
-
-
-                            )
-                        ) : (
-                            panel.img && (
-                                <div className="w-full md:w-1/2 flex justify-center md:justify-end p-4">
+                         {/* Image section */}
+                         <motion.div 
+                                initial={{ scale: 0.9, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                transition={{ delay: 0.1 }}
+                                className={`w-full md:w-1/2 flex justify-center items-center p-4 md:p-8 lg:p-12 relative `}
+                            >
+                                <div className="relative w-full max-w-xl">
                                     <img
                                         src={panel.img}
                                         alt={panel.name}
-                                        className="rounded-lg shadow-lg w-full"
+                                        className="rounded-xl shadow-2xl w-full transform transition-transform hover:scale-[1.02]"
                                     />
+                                    {/* Decorative elements */}
+                                    <div className={`absolute -top-4 -left-4 w-16 h-16 rounded-full ${panel.accent} opacity-20 -z-10`}></div>
+                                    <div className={`absolute -bottom-4 -right-4 w-24 h-24 rounded-full ${panel.accent} opacity-20 -z-10`}></div>
                                 </div>
-                            )
-                        )}
+                            </motion.div>
+
 
 
                         <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start p-4">
@@ -153,7 +127,8 @@ const FranchiseSection = () => {
                                 {panel.description}
                             </p>
                             {/* Button only visible on mobile */}
-                            <button className="block md:hidden bg-white text-black px-4 py-2 rounded-md shadow-md font-semibold mt-10">
+                            <button className="block bg-white text-black px-4 py-2 cursor-pointer rounded-md shadow-md font-semibold mt-10"
+                            onClick={()=>{navigate('franchise')}}>
                                 View Franchise
                             </button>
 
@@ -164,7 +139,7 @@ const FranchiseSection = () => {
                                     preserveAspectRatio="none"
                                 >
                                     <path
-                                        fill="#f3f4f6"
+                                        fill="white"
                                         d="M0,64L60,90.7C120,117,240,171,360,186.7C480,203,600,181,720,149.3C840,117,960,75,1080,64C1200,53,1320,75,1380,85.3L1440,96L1440,320L0,320Z"
                                     />
                                 </svg>

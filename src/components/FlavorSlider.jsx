@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-
+import c1 from '../assets/career/c1.png'
+import c2 from '../assets/career/c2.png'
+import c3 from '../assets/career/c3.png'
 const flavors = [
     {
         name: "MANGO CHAMOY",
@@ -10,7 +12,8 @@ const flavors = [
         textColor: "#d8222a",
         keyword: "If Thailand's full moon party was a flavor",
         theme: "PARTY",
-        mainImage: "https://images.ctfassets.net/j8k8klriwj2h/6kpjysvBK78pLbaVnrGl6x/968158796de59dea868a24a82aa6fe28/Mango_Chamoy.png?h=390&w=351&q=100&&fm=webp&q=80",
+        // mainImage: "https://images.ctfassets.net/j8k8klriwj2h/6kpjysvBK78pLbaVnrGl6x/968158796de59dea868a24a82aa6fe28/Mango_Chamoy.png?h=390&w=351&q=100&&fm=webp&q=80",
+        mainImage: c2,
     },
     {
         name: "UBE DREAM",
@@ -21,7 +24,8 @@ const flavors = [
         textColor: "#3b1c5e",
         keyword: "A dreamy purple delight",
         theme: "DREAM",
-        mainImage: "https://images.ctfassets.net/j8k8klriwj2h/01MWGFwgHjGFGI8nElbR9Y/7afe1d857f61eab7bb57b91edf7f4522/Salted_Ube_Smores.png?h=390&w=351&q=100&&fm=webp&q=80",
+        // mainImage: "https://images.ctfassets.net/j8k8klriwj2h/01MWGFwgHjGFGI8nElbR9Y/7afe1d857f61eab7bb57b91edf7f4522/Salted_Ube_Smores.png?h=390&w=351&q=100&&fm=webp&q=80",
+        mainImage: c1,
     },
     {
         name: "RASPBERRY",
@@ -32,18 +36,8 @@ const flavors = [
         textColor: "#ffffff",
         keyword: "Bold. Bright. Berrylicious.",
         theme: "BERRY",
-        mainImage: "https://images.ctfassets.net/j8k8klriwj2h/6dpa3z9jquNuYhDecfno4I/4d0539e4a088755f40bd0d47fbeee849/Churro_Raspberry.png?h=390&w=351&q=100&&fm=webp&q=80",
-    },
-    {
-        name: "DOUBLE ESPRESSO",
-        headline: "STRONG & SMOOTH",
-        subtext: "Caffeine lovers, this one’s for you.",
-        description: "A rich, intense espresso flavor balanced with a silky-smooth creamy base. Made for those who crave boldness in every bite.",
-        backgroundColor: "#4B3621",
-        textColor: "#ffffff",
-        keyword: "Deep. Dark. Delicious.",
-        theme: "COFFEE",
-        mainImage: "https://images.ctfassets.net/j8k8klriwj2h/qOTblA0deFa4Me5CR3RXX/523f1dfc70a5ba0aea6b2136777bdf28/Double_Espresso.png?h=390&w=351&q=100&&fm=webp&q=80",
+        // mainImage: "https://images.ctfassets.net/j8k8klriwj2h/6dpa3z9jquNuYhDecfno4I/4d0539e4a088755f40bd0d47fbeee849/Churro_Raspberry.png?h=390&w=351&q=100&&fm=webp&q=80",
+        mainImage: c3,
     },
 ];
 
@@ -131,7 +125,7 @@ export default function FlavorSlider() {
                             <img
                                 src={flavors[prevIndex].mainImage}
                                 alt="Previous flavor"
-                                className="w-16 sm:w-32 md:w-40 rounded-lg shadow-md"
+                                className="w-16 sm:w-32 md:w-40"
                             />
                         </div>
 
@@ -145,7 +139,7 @@ export default function FlavorSlider() {
                             <img
                                 src={current.mainImage}
                                 alt={current.name}
-                                className="w-[12rem] md:w-[16rem] mx-auto max-h-[24rem] object-contain"
+                                className="w-[16rem] md:w-[25rem] mx-auto max-h-[24rem] object-contain"
                             />
                         </div>
 
@@ -157,7 +151,7 @@ export default function FlavorSlider() {
                             <img
                                 src={flavors[nextIndex].mainImage}
                                 alt="Next flavor"
-                                className="w-16 sm:w-32 md:w-40 rounded-lg shadow-md"
+                                className="w-16 sm:w-32 md:w-40"
                             />
                         </div>
                     </div>
