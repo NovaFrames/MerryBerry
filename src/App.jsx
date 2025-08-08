@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import { Outlet } from 'react-router-dom';
 import './App.css'
 import ProductDetails from './pages/ProductDetails';
+import Menu from './pages/Menu';
 
 // Layout with persistent Navbar
 const Layout = () => (
@@ -27,7 +28,7 @@ const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
-          <Route path="products" element={<Products />} />
+          <Route path="products" element={<Menu />} />
           <Route path="franchise" element={<Franchise />} />
           <Route path="career" element={<Career />} />
           <Route path="enquiry" element={<Enquiry />} />

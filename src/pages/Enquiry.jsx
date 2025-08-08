@@ -29,19 +29,19 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email',
-      content: 'hello@company.com',
-      link: 'mailto:hello@company.com'
+      content: 'franchise@merryberry.co.in',
+      link: 'franchise@merryberry.co.in'
     },
     {
       icon: Phone,
       title: 'Phone',
-      content: '+1 (555) 123-4567',
-      link: 'tel:+15551234567'
+      content: '+91 97877 30500',
+      link: 'tel:+919787730500'
     },
     {
       icon: MapPin,
       title: 'Address',
-      content: '123 Business St, Suite 100\nNew York, NY 10001',
+      content: 'Raj Towers, Brindavan Rd, near HDFC Bank, Fairlands, Salem, Tamil Nadu 636016',
       link: null
     },
     {
@@ -138,6 +138,7 @@ const Contact = () => {
 
                 <div className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
+                    {/* Full Name */}
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-black mb-2">
                         Full Name
@@ -150,9 +151,11 @@ const Contact = () => {
                         onChange={handleInputChange}
                         required
                         className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-yellow-400 focus:outline-none transition-colors"
-                        placeholder="John Doe"
+                        placeholder="Enter your Name"
                       />
                     </div>
+
+                    {/* Email */}
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-black mb-2">
                         Email Address
@@ -165,27 +168,49 @@ const Contact = () => {
                         onChange={handleInputChange}
                         required
                         className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-yellow-400 focus:outline-none transition-colors"
-                        placeholder="john@example.com"
+                        placeholder="Enter your Email"
                       />
                     </div>
                   </div>
 
+                  {/* Phone Number */}
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-black mb-2">
-                      Subject
+                    <label htmlFor="phone" className="block text-sm font-medium text-black mb-2">
+                      Phone Number
                     </label>
                     <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-yellow-400 focus:outline-none transition-colors"
-                      placeholder="How can we help you?"
+                      placeholder="Enter your Phone Number"
                     />
                   </div>
 
+                  {/* Service */}
+                  <div>
+                    <label htmlFor="service" className="block text-sm font-medium text-black mb-2">
+                      Service
+                    </label>
+                    <select
+                      id="service"
+                      name="service"
+                      value={formData.service}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-yellow-400 focus:outline-none transition-colors"
+                    >
+                      <option value="">Select Service</option>
+                      <option value="Franchise">Franchise</option>
+                      <option value="Job">Job</option>
+                      <option value="Others">Others</option>
+                    </select>
+                  </div>
+
+                  {/* Message */}
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-black mb-2">
                       Message
@@ -198,10 +223,11 @@ const Contact = () => {
                       required
                       rows={6}
                       className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-yellow-400 focus:outline-none transition-colors resize-none"
-                      placeholder="Tell us more about your project or inquiry..."
+                      placeholder="Send your message"
                     />
                   </div>
 
+                  {/* Submit Button */}
                   <button
                     type="submit"
                     className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-4 px-6 rounded-lg transition-all duration-300 hover:shadow-lg flex items-center justify-center space-x-2 group"
@@ -212,6 +238,7 @@ const Contact = () => {
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -230,7 +257,7 @@ const Contact = () => {
           ></iframe>
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </div>
   )
 }

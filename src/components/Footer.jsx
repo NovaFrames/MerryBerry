@@ -20,17 +20,17 @@ const Footer = () => {
               {
                 icon: Phone,
                 title: "Call Us",
-                content: ["+91 9876543210", "Mon-Sat: 9 AM - 7 PM"],
+                content: ["+91 97877 30500", "Mon-Sat: 9 AM - 7 PM"],
               },
               {
                 icon: Mail,
                 title: "Email Us",
-                content: ["franchise@merryberry.co.in", "We respond within 24 hours"],
+                content:  ["franchise@merryberry.co.in", "We respond within 24 hours"],
               },
               {
                 icon: MapPin,
                 title: "Visit Us",
-                content: ["MerryBerry Corporate Office", "Mumbai, India"],
+                content: ["Raj Towers, Brindavan Rd, near HDFC Bank, Fairlands, Salem, Tamil Nadu 636016"],
               },
             ].map((contact, index) => {
               const IconComponent = contact.icon;

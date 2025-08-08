@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Heart, Clock, Users, Award, ChefHat, IceCream } from 'lucide-react';
 import Footer from '../components/Footer';
-import about1 from '../assets/about/about1.png'
+import about from '../assets/about/about.png'
 import about2 from '../assets/about/about2.png'
 
 const About = () => {
@@ -96,14 +96,14 @@ const About = () => {
       <section
         className="relative py-24 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url(${about1})`,
+          backgroundImage: `url(${about})`,
         }}
       >
         {/* Dark overlay with slow opacity transition */}
         <div className="absolute inset-0 bg-black/50 bg-opacity-60 transition-opacity duration-1000 ease-in-out"></div>
 
         {/* Content */}
-        <div className="relative max-w-4xl  px-6 text-center text-white">
+        <div className="relative max-w-5xl mx-auto  px-6 text-center text-white">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-6">Our Story</h1>
           <p className="text-lg md:text-xl leading-relaxed">
             Merry Berry Icecream is your destination for delicious indulgence, offering a wide range of ice creams, sundaes, shakes, fried chicken, burger and mouthwatering add-on snacks like veg burgers and sandwiches. Since opening our doors in April 2023, we have quickly grown and currently operate 3 outlets in Salem, with 4 more outlets in progress across South India-including Bangalore, Chennai, and Erode-as part of our expanding franchise model.
@@ -185,10 +185,11 @@ const About = () => {
 
         {/* Content */}
         <div className="relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-6xl font-bold text-white mb-4">Meet the Founders</h2>
+          <div className=" lg:flex justify-around text-center mb-12">
+            <h2 className="text-6xl md:text-6xl font-bold text-white mb-4">Meet our</h2>
+            <h2 className="text-6xl md:text-6xl font-bold text-white mb-4">Founders</h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-12 md:gap-100 max-w-6xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-100 max-w-7xl mx-auto px-4">
             {[
               {
                 name: 'Sarah Johnson',

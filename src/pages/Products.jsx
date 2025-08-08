@@ -29,7 +29,7 @@ const Products = () => {
         { id: 'chicken', name: 'Fried Chicken', icon: Drumstick },
         { id: 'burger', name: 'Burger', icon: ShoppingCart },
         { id: 'sandwich', name: 'Sandwich', icon: Sandwich },
-        { id: 'mojito', name: 'Mojito', icon: CupSoda },
+        { id: 'milkshake', name: 'Milkshake', icon: CupSoda },
         { id: 'fries', name: 'Fries', icon: Flame }
     ];
 
