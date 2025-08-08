@@ -6,7 +6,6 @@ const categories = ["All", "Ice-Cream", "Chicken", "Milkshake", "Mojito", "Burge
 
 const Menu = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
 
@@ -23,6 +22,7 @@ const Menu = () => {
             product.category.toLowerCase() === selectedCategory.toLowerCase()
         );
 
+  // Navigation functions
   const nextProduct = () => {
     setCurrentIndex((prev) => (prev + 1) % filteredProducts.length);
   };
@@ -33,36 +33,62 @@ const Menu = () => {
     );
   };
 
-useEffect(() => {
-  const handleWheel = (e) => {
-    if (scrollLock.current) return;
+  // Handle scroll (desktop) + swipe (mobile)
+  useEffect(() => {
+    const lockScroll = () => {
+      scrollLock.current = true;
+      clearTimeout(scrollTimeout.current);
+      scrollTimeout.current = setTimeout(() => {
+        scrollLock.current = false;
+      }, 500);
+    };
 
-    scrollLock.current = true;
-    clearTimeout(scrollTimeout.current);
-    scrollTimeout.current = setTimeout(() => {
-      scrollLock.current = false;
-    }, 500);
+    // Desktop wheel scroll
+    const handleWheel = (e) => {
+      if (scrollLock.current) return;
+      lockScroll();
 
-    setIsTransitioning(true);
+      if (e.deltaY > 0) {
+        nextProduct();
+      } else if (e.deltaY < 0) {
+        prevProduct();
+      }
+    };
 
-    if (e.deltaY > 0) {
-      setCurrentIndex((prev) => (prev + 1) % filteredProducts.length);
-    } else if (e.deltaY < 0) {
-      setCurrentIndex((prev) =>
-        prev === 0 ? filteredProducts.length - 1 : prev - 1
-      );
-    }
+    // Mobile swipe
+    let touchStartY = 0;
+    let touchEndY = 0;
 
-    setTimeout(() => setIsTransitioning(false), 500);
-  };
+    const handleTouchStart = (e) => {
+      touchStartY = e.touches[0].clientY;
+    };
 
-  window.addEventListener("wheel", handleWheel, { passive: true });
-  return () => {
-    window.removeEventListener("wheel", handleWheel);
-    clearTimeout(scrollTimeout.current);
-  };
-}, [filteredProducts.length]); // ✅ dependency on filtered list length
+    const handleTouchEnd = (e) => {
+      touchEndY = e.changedTouches[0].clientY;
+      if (scrollLock.current) return;
+      lockScroll();
 
+      const swipeDistance = touchStartY - touchEndY;
+      if (swipeDistance > 50) {
+        // swipe up → next
+        nextProduct();
+      } else if (swipeDistance < -50) {
+        // swipe down → previous
+        prevProduct();
+      }
+    };
+
+    window.addEventListener("wheel", handleWheel, { passive: true });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
+
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
+      clearTimeout(scrollTimeout.current);
+    };
+  }, [filteredProducts.length]);
 
   // Reset index when category changes
   useEffect(() => {
@@ -82,7 +108,7 @@ useEffect(() => {
       />
       <div className="absolute inset-0 bg-white" />
 
-      {/* Filter Button - Click to open modal (Desktop & Mobile) */}
+      {/* Filter Button */}
       <div className="absolute top-40 md:top-40 left-10 md:left-20 z-30">
         <button
           className="bg-red-600 text-white px-4 py-2 rounded shadow-lg hover:bg-red-700 transition"
@@ -92,7 +118,7 @@ useEffect(() => {
         </button>
       </div>
 
-      {/* Category Selection Modal */}
+      {/* Category Modal */}
       <AnimatePresence>
         {isCategoryModalOpen && (
           <motion.div
@@ -137,7 +163,7 @@ useEffect(() => {
       <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 text-center">
         {filteredProducts.length > 0 ? (
           <>
-            {/* Big Image */}
+            {/* Product Image */}
             <AnimatePresence mode="wait">
               <motion.img
                 key={currentProduct.image}
@@ -151,7 +177,7 @@ useEffect(() => {
               />
             </AnimatePresence>
 
-            {/* Text */}
+            {/* Product Name */}
             <motion.h2
               key={currentProduct.name}
               className="text-4xl md:text-5xl font-bold text-red-600 uppercase tracking-wide"
