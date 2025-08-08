@@ -8,11 +8,11 @@ const Menu = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false); // NEW
 
   const scrollLock = useRef(false);
   let scrollTimeout = useRef(null);
 
-  // Filter products
   const filteredProducts =
     selectedCategory === "All"
       ? allProducts
@@ -22,18 +22,18 @@ const Menu = () => {
             product.category.toLowerCase() === selectedCategory.toLowerCase()
         );
 
-  // Navigation functions
   const nextProduct = () => {
+    setImageLoaded(false); // reset on change
     setCurrentIndex((prev) => (prev + 1) % filteredProducts.length);
   };
 
   const prevProduct = () => {
+    setImageLoaded(false); // reset on change
     setCurrentIndex((prev) =>
       prev === 0 ? filteredProducts.length - 1 : prev - 1
     );
   };
 
-  // Handle scroll (desktop) + swipe (mobile)
   useEffect(() => {
     const lockScroll = () => {
       scrollLock.current = true;
@@ -43,11 +43,9 @@ const Menu = () => {
       }, 500);
     };
 
-    // Desktop wheel scroll
     const handleWheel = (e) => {
       if (scrollLock.current) return;
       lockScroll();
-
       if (e.deltaY > 0) {
         nextProduct();
       } else if (e.deltaY < 0) {
@@ -55,7 +53,6 @@ const Menu = () => {
       }
     };
 
-    // Mobile swipe
     let touchStartY = 0;
     let touchEndY = 0;
 
@@ -67,13 +64,10 @@ const Menu = () => {
       touchEndY = e.changedTouches[0].clientY;
       if (scrollLock.current) return;
       lockScroll();
-
       const swipeDistance = touchStartY - touchEndY;
       if (swipeDistance > 50) {
-        // swipe up → next
         nextProduct();
       } else if (swipeDistance < -50) {
-        // swipe down → previous
         prevProduct();
       }
     };
@@ -90,16 +84,15 @@ const Menu = () => {
     };
   }, [filteredProducts.length]);
 
-  // Reset index when category changes
   useEffect(() => {
     setCurrentIndex(0);
+    setImageLoaded(false);
   }, [selectedCategory]);
 
   const currentProduct = filteredProducts[currentIndex] || {};
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden font-sans">
-      {/* Static Background */}
       <div
         className="absolute inset-0 bg-center bg-cover"
         style={{
@@ -174,19 +167,25 @@ const Menu = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 1.1 }}
                 transition={{ duration: 0.6 }}
+                onLoad={() => setImageLoaded(true)} // set loaded
               />
             </AnimatePresence>
 
-            {/* Product Name */}
-            <motion.h2
-              key={currentProduct.name}
-              className="text-4xl md:text-5xl font-bold text-red-600 uppercase tracking-wide"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-            >
-              {currentProduct.name}
-            </motion.h2>
+            {/* Product Name appears only after image is loaded */}
+            <AnimatePresence>
+              {imageLoaded && (
+                <motion.h2
+                  key={currentProduct.name}
+                  className="text-4xl md:text-5xl font-bold text-red-600 uppercase tracking-wide"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  {currentProduct.name}
+                </motion.h2>
+              )}
+            </AnimatePresence>
           </>
         ) : (
           <p className="text-gray-500 mt-20">No products found in this category.</p>
