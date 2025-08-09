@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import one from '../assets/Icecreams/1.png'
 import two from '../assets/Icecreams/2.png'
 import three from '../assets/Icecreams/3.png'
-import h12 from '../assets/home/12.png'
+import h6 from '../assets/home/6.png'
 const flavors = [
     {
         name: "MANGO CHAMOY",
@@ -14,7 +14,7 @@ const flavors = [
         keyword: "If Thailand's full moon party was a flavor",
         theme: "PARTY",
         // mainImage: "https://images.ctfassets.net/j8k8klriwj2h/6kpjysvBK78pLbaVnrGl6x/968158796de59dea868a24a82aa6fe28/Mango_Chamoy.png?h=390&w=351&q=100&&fm=webp&q=80",
-        mainImage: h12,
+        mainImage: h6,
     },
     {
         name: "UBE DREAM",
