@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, Clock, Users, Award, ChefHat, IceCream } from 'lucide-react';
+import { Heart, Clock, Users, CheckCircle2 , Award, ChefHat, IceCream } from 'lucide-react';
 import Footer from '../components/Footer';
 import about from '../assets/about/about.png'
 import about2 from '../assets/about/about2.png'
@@ -100,7 +100,7 @@ const About = () => {
         }}
       >
         {/* Dark overlay with slow opacity transition */}
-        <div className="absolute inset-0 bg-black/50 bg-opacity-60 transition-opacity duration-1000 ease-in-out"></div>
+        <div className="absolute inset-0 bg-black/60 bg-opacity-60 transition-opacity duration-1000 ease-in-out"></div>
 
         {/* Content */}
         <div className="relative max-w-5xl mx-auto  px-6 text-center text-white">
@@ -173,6 +173,8 @@ const About = () => {
         </div>
       </section>
 
+
+
       {/* === 4. Team Section === */}
       <section
         className="relative py-24 bg-cover bg-center bg-no-repeat"
@@ -218,6 +220,113 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      <section className="bg-gray-200 py-12">
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Heading */}
+        <h2 className="text-center text-black text-4xl font-extrabold mb-12">
+          VALUES &amp; MERITS
+        </h2>
+
+        {/* Content Box */}
+        <div className="bg-white text-black p-8 rounded-xl shadow-lg">
+          {/* Values */}
+          <h3 className="text-center text-lg font-semibold mb-6">
+            Merry Berry Values
+          </h3>
+          <ul className="space-y-3">
+            <li className="flex items-start gap-3">
+              <CheckCircle2 className="text-yellow-500 w-5 h-5 mt-1" />
+              <p>
+                <strong>Quality First:</strong> We are committed to using only
+                the finest ingredients in our ice creams and snacks, ensuring
+                every bite delivers an exceptional experience.
+              </p>
+            </li>
+            <li className="flex items-start gap-3">
+              <CheckCircle2 className="text-yellow-500 w-5 h-5 mt-1" />
+              <p>
+                <strong>Innovation:</strong> We continually explore new flavors,
+                sundaes, and food combinations to bring exciting, fresh
+                creations to our customers.
+              </p>
+            </li>
+            <li className="flex items-start gap-3">
+              <CheckCircle2 className="text-yellow-500 w-5 h-5 mt-1" />
+              <p>
+                <strong>Customer Delight:</strong> Our goal is to not just
+                satisfy but delight every customer with friendly service, a
+                welcoming atmosphere, and delectable treats.
+              </p>
+            </li>
+            <li className="flex items-start gap-3">
+              <CheckCircle2 className="text-yellow-500 w-5 h-5 mt-1" />
+              <p>
+                <strong>Integrity:</strong> We believe in transparency and
+                honesty in all our operations, maintaining ethical practices
+                with our customers, partners, and employees.
+              </p>
+            </li>
+            <li className="flex items-start gap-3">
+              <CheckCircle2 className="text-yellow-500 w-5 h-5 mt-1" />
+              <p>
+                <strong>Community-Centric:</strong> We remain rooted in the
+                communities we serve, fostering strong local partnerships and
+                supporting regional growth.
+              </p>
+            </li>
+          </ul>
+
+          {/* Merits */}
+          <h3 className="text-center text-lg font-semibold mt-10 mb-6">
+            Merry Berry Merits
+          </h3>
+          <ul className="space-y-3">
+            <li className="flex items-start gap-3">
+              <CheckCircle2 className="text-yellow-500 w-5 h-5 mt-1" />
+              <p>
+                <strong>Diverse Menu:</strong> Offering over 50+ varieties of ice
+                cream sundaes and a range of delicious snacks, we cater to a
+                wide array of tastes and preferences.
+              </p>
+            </li>
+            <li className="flex items-start gap-3">
+              <CheckCircle2 className="text-yellow-500 w-5 h-5 mt-1" />
+              <p>
+                <strong>Franchise Growth:</strong> With successful outlets in
+                Salem and franchises across South India, we offer lucrative
+                business opportunities with a proven model for growth.
+              </p>
+            </li>
+            <li className="flex items-start gap-3">
+              <CheckCircle2 className="text-yellow-500 w-5 h-5 mt-1" />
+              <p>
+                <strong>Customer Loyalty:</strong> We have built a strong and
+                loyal customer base through exceptional service, consistently
+                high-quality products, and an inviting dining experience.
+              </p>
+            </li>
+            <li className="flex items-start gap-3">
+              <CheckCircle2 className="text-yellow-500 w-5 h-5 mt-1" />
+              <p>
+                <strong>Profitability:</strong> We operate with a solid profit
+                margin, making it a profitable venture for franchisees while
+                offering affordable indulgence for customers.
+              </p>
+            </li>
+            <li className="flex items-start gap-3">
+              <CheckCircle2 className="text-yellow-500 w-5 h-5 mt-1" />
+              <p>
+                <strong>Trusted Brand:</strong> Our focus on quality, customer
+                satisfaction, and innovation has positioned us as a trusted and
+                rapidly growing brand in the food and beverage industry.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
 
 
       {/* === 5. Footer Section === */}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { allProducts } from "./AllProducts";
-import arrow from '../assets/arrow/arrow.png'
+import arrow from "../assets/arrow/arrow.png";
 
 const categories = ["Ice-Cream", "Chicken", "Milkshake", "Mojito", "Burger", "Sandwich"];
 
@@ -27,7 +27,7 @@ const Menu = () => {
     }));
   };
 
-  // Push transition variants - images push each other out
+  // Push transition variants
   const pushVariants = {
     enter: (direction) => ({
       x: direction > 0 ? "100%" : "-100%",
@@ -44,8 +44,8 @@ const Menu = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-[#fefaf3] via-[#fdf4e3] to-[#fcf0d4] min-h-screen">
-      {categories.map((cat) => {
+    <div className="min-h-screen">
+      {categories.map((cat, index) => {
         const products = allProducts.filter(
           (p) => p.category && p.category.toLowerCase() === cat.toLowerCase()
         );
@@ -56,10 +56,12 @@ const Menu = () => {
         return (
           <section
             key={cat}
-            className="min-h-[90vh] flex flex-col items-center justify-center py-16 px-4"
+            className={`min-h-[90vh] flex flex-col items-center justify-center py-2 px-4 ${
+              index % 2 === 0 ? "bg-white" : "bg-white"
+            }`}
           >
-            {/* Category title with gradient */}
-            <motion.h2 
+            {/* Category title */}
+            <motion.h2
               className="text-5xl font-bold mb-12 bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent"
               initial={{ opacity: 0, y: -30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -69,7 +71,7 @@ const Menu = () => {
             </motion.h2>
 
             <div className="relative w-full max-w-5xl mx-auto">
-              {/* Arrow Navigation Buttons */}
+              {/* Prev button */}
               <motion.button
                 onClick={() => prevProduct(cat, products.length)}
                 className="absolute left-4 top-1/2 -translate-y-1/2 z-20 group"
@@ -78,9 +80,9 @@ const Menu = () => {
               >
                 <div className="w-14 h-14 bg-white/90 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center group-hover:bg-white transition-all duration-300 border border-white/20">
                   <motion.img
-                    src={arrow} // Replace with your arrow image path
+                    src={arrow}
                     alt="Previous"
-                    className="w-10 h-10 md:w-12 md:h-12 transform rotate-180" // Rotate 180 degrees for left arrow
+                    className="w-10 h-10 md:w-12 md:h-12 transform rotate-180"
                     whileHover={{ x: -2 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   />
@@ -88,17 +90,18 @@ const Menu = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
               </motion.button>
 
+              {/* Next button */}
               <motion.button
                 onClick={() => nextProduct(cat, products.length)}
                 className="absolute right-4 top-1/2 -translate-y-1/2 z-20 group"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <div className="w-14 h-14  bg-white/90 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center group-hover:bg-white transition-all duration-300 border border-white/20">
+                <div className="w-14 h-14 bg-white/90 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center group-hover:bg-white transition-all duration-300 border border-white/20">
                   <motion.img
-                    src={arrow} // Replace with your arrow image path
+                    src={arrow}
                     alt="Next"
-                    className="w-10 h-10 md:w-12 md:h-12" // Normal orientation for right arrow
+                    className="w-10 h-10 md:w-12 md:h-12"
                     whileHover={{ x: 2 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   />
@@ -106,7 +109,7 @@ const Menu = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-500 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
               </motion.button>
 
-              {/* Product display with push transition */}
+              {/* Product display */}
               <div className="relative w-full h-[70vh] rounded-[2.5rem] overflow-hidden shadow-2xl">
                 <AnimatePresence initial={false} custom={direction} mode="popLayout">
                   <motion.div
@@ -128,11 +131,11 @@ const Menu = () => {
                       alt={currentProduct?.name}
                       className="w-full h-full object-cover"
                     />
-                    {/* Gradient overlay for better text readability */}
+                    {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-                    
-                    {/* Product info overlay */}
-                    <motion.div 
+
+                    {/* Product info */}
+                    <motion.div
                       className="absolute bottom-8 left-8 right-8 z-10"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -152,13 +155,11 @@ const Menu = () => {
 
                 {/* Progress indicators */}
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
-                  {products.map((_, index) => (
+                  {products.map((_, i) => (
                     <motion.div
-                      key={index}
+                      key={i}
                       className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                        index === currentIndexes[cat] 
-                          ? 'bg-white' 
-                          : 'bg-white/40'
+                        i === currentIndexes[cat] ? "bg-white" : "bg-white/40"
                       }`}
                       whileHover={{ scale: 1.2 }}
                     />

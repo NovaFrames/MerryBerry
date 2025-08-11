@@ -10,8 +10,8 @@ import Navbar from './components/Navbar';
 import { Outlet } from 'react-router-dom';
 import './App.css'
 import ProductDetails from './pages/ProductDetails';
-import Menu from './pages/Menu';
 import Menu2 from './pages/Menu2';
+import Menu from './pages/menu';
 // import Video from './pages/Video';
 
 // Layout with persistent Navbar
