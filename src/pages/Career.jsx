@@ -218,7 +218,7 @@ const Career = () => {
 
             {/* Left Text Content */}
             <div className='md:ml-20'>
-              <h2 className="text-4xl font-bold text-yellow-600 mb-4">
+              <h2 className="text-4xl font-bold text-yellow -600 mb-4">
                 We're Hiring Ice Cream Sundae Makers!
               </h2>
               <p className="text-lg text-gray-700 mb-6">

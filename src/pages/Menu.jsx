@@ -1,217 +1,174 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { allProducts } from "./AllProducts";
+import arrow from '../assets/arrow/arrow.png'
 
-const categories = ["All", "Ice-Cream", "Chicken", "Milkshake", "Mojito", "Burger", "Sandwich"];
+const categories = ["Ice-Cream", "Chicken", "Milkshake", "Mojito", "Burger", "Sandwich"];
 
 const Menu = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const [currentIndexes, setCurrentIndexes] = useState(
+    Object.fromEntries(categories.map((cat) => [cat, 0]))
+  );
+  const [direction, setDirection] = useState(0);
 
-  const scrollLock = useRef(false);
-  let scrollTimeout = useRef(null);
-
-  const filteredProducts =
-    selectedCategory === "All"
-      ? allProducts
-      : allProducts.filter(
-          (product) =>
-            product.category &&
-            product.category.toLowerCase() === selectedCategory.toLowerCase()
-        );
-
-  const nextProduct = () => {
-    setImageLoaded(false);
-    setCurrentIndex((prev) => (prev + 1) % filteredProducts.length);
+  const nextProduct = (cat, length) => {
+    setDirection(1);
+    setCurrentIndexes((prev) => ({
+      ...prev,
+      [cat]: (prev[cat] + 1) % length,
+    }));
   };
 
-  const prevProduct = () => {
-    setImageLoaded(false);
-    setCurrentIndex((prev) =>
-      prev === 0 ? filteredProducts.length - 1 : prev - 1
-    );
+  const prevProduct = (cat, length) => {
+    setDirection(-1);
+    setCurrentIndexes((prev) => ({
+      ...prev,
+      [cat]: prev[cat] === 0 ? length - 1 : prev[cat] - 1,
+    }));
   };
 
-  useEffect(() => {
-    const lockScroll = () => {
-      scrollLock.current = true;
-      clearTimeout(scrollTimeout.current);
-      scrollTimeout.current = setTimeout(() => {
-        scrollLock.current = false;
-      }, 500);
-    };
-
-    // Mouse wheel navigation
-    const handleWheel = (e) => {
-      if (scrollLock.current) return;
-      lockScroll();
-      if (e.deltaY > 0) {
-        nextProduct();
-      } else if (e.deltaY < 0) {
-        prevProduct();
-      }
-    };
-
-    // Touch swipe navigation
-    let touchStartY = 0;
-    let touchMoveY = 0;
-
-    const handleTouchStart = (e) => {
-      touchStartY = e.touches[0].clientY;
-      touchMoveY = touchStartY;
-    };
-
-    const handleTouchMove = (e) => {
-      touchMoveY = e.touches[0].clientY;
-    };
-
-    const handleTouchEnd = () => {
-      if (scrollLock.current) return;
-      const swipeDistance = touchStartY - touchMoveY;
-      if (Math.abs(swipeDistance) < 50) return; // Ignore small swipes
-      lockScroll();
-      if (swipeDistance > 50) {
-        // Swipe up → next
-        nextProduct();
-      } else if (swipeDistance < -50) {
-        // Swipe down → previous
-        prevProduct();
-      }
-    };
-
-    // Attach events
-    const contentEl = document.getElementById("menu-content");
-    window.addEventListener("wheel", handleWheel, { passive: true });
-    if (contentEl) {
-      contentEl.addEventListener("touchstart", handleTouchStart, { passive: true });
-      contentEl.addEventListener("touchmove", handleTouchMove, { passive: true });
-      contentEl.addEventListener("touchend", handleTouchEnd, { passive: true });
-    }
-
-    return () => {
-      window.removeEventListener("wheel", handleWheel);
-      if (contentEl) {
-        contentEl.removeEventListener("touchstart", handleTouchStart);
-        contentEl.removeEventListener("touchmove", handleTouchMove);
-        contentEl.removeEventListener("touchend", handleTouchEnd);
-      }
-      clearTimeout(scrollTimeout.current);
-    };
-  }, [filteredProducts.length]);
-
-  useEffect(() => {
-    setCurrentIndex(0);
-    setImageLoaded(false);
-  }, [selectedCategory]);
-
-  const currentProduct = filteredProducts[currentIndex] || {};
+  // Push transition variants - images push each other out
+  const pushVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? "100%" : "-100%",
+      zIndex: 2,
+    }),
+    center: {
+      x: 0,
+      zIndex: 2,
+    },
+    exit: (direction) => ({
+      x: direction < 0 ? "100%" : "-100%",
+      zIndex: 1,
+    }),
+  };
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden font-sans">
-      {/* Static background */}
-      <div
-        className="absolute inset-0 bg-center bg-cover"
-        style={{
-          backgroundImage: `url('/static-bg.jpg')`,
-        }}
-      />
-      <div className="absolute inset-0 bg-white" />
+    <div className="bg-gradient-to-br from-[#fefaf3] via-[#fdf4e3] to-[#fcf0d4] min-h-screen">
+      {categories.map((cat) => {
+        const products = allProducts.filter(
+          (p) => p.category && p.category.toLowerCase() === cat.toLowerCase()
+        );
+        const currentProduct = products[currentIndexes[cat]];
 
-      {/* Filter Button */}
-      <div className="absolute top-40 md:top-40 left-10 md:left-20 z-30">
-        <button
-          className="bg-red-600 text-white px-4 py-2 rounded shadow-lg hover:bg-red-700 transition"
-          onClick={() => setIsCategoryModalOpen(true)}
-        >
-          {selectedCategory === "All" ? "Filter" : selectedCategory}
-        </button>
-      </div>
+        if (products.length === 0) return null;
 
-      {/* Category Modal */}
-      <AnimatePresence>
-        {isCategoryModalOpen && (
-          <motion.div
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+        return (
+          <section
+            key={cat}
+            className="min-h-[90vh] flex flex-col items-center justify-center py-16 px-4"
           >
-            <motion.div
-              className="bg-white rounded-lg shadow-xl p-6 w-80"
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
+            {/* Category title with gradient */}
+            <motion.h2 
+              className="text-5xl font-bold mb-12 bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent"
+              initial={{ opacity: 0, y: -30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
             >
-              <h2 className="text-lg font-bold mb-4">Select Category</h2>
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  className={`block w-full text-left px-4 py-2 rounded hover:bg-red-100 ${
-                    selectedCategory === cat ? "font-bold text-red-600" : ""
-                  }`}
-                  onClick={() => {
-                    setSelectedCategory(cat);
-                    setIsCategoryModalOpen(false);
-                  }}
-                >
-                  {cat}
-                </button>
-              ))}
-              <button
-                className="mt-4 bg-gray-300 px-4 py-2 rounded w-full hover:bg-gray-400"
-                onClick={() => setIsCategoryModalOpen(false)}
+              {cat}
+            </motion.h2>
+
+            <div className="relative w-full max-w-5xl mx-auto">
+              {/* Arrow Navigation Buttons */}
+              <motion.button
+                onClick={() => prevProduct(cat, products.length)}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 group"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Close
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                <div className="w-14 h-14 bg-white/90 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center group-hover:bg-white transition-all duration-300 border border-white/20">
+                  <motion.img
+                    src={arrow} // Replace with your arrow image path
+                    alt="Previous"
+                    className="w-10 h-10 md:w-12 md:h-12 transform rotate-180" // Rotate 180 degrees for left arrow
+                    whileHover={{ x: -2 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+              </motion.button>
 
-      {/* Main Content */}
-      <div
-        id="menu-content"
-        className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 text-center"
-      >
-        {filteredProducts.length > 0 ? (
-          <>
-            {/* Product Image */}
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={currentProduct.image}
-                src={currentProduct.image}
-                alt={currentProduct.name}
-                className="w-96 md:w-80 lg:w-[32rem] object-contain mb-2 mt-20 drop-shadow-2xl"
-                initial={{ opacity: 0, scale: 0.85 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.1 }}
-                transition={{ duration: 0.6 }}
-                onLoad={() => setImageLoaded(true)}
-              />
-            </AnimatePresence>
+              <motion.button
+                onClick={() => nextProduct(cat, products.length)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 group"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <div className="w-14 h-14  bg-white/90 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center group-hover:bg-white transition-all duration-300 border border-white/20">
+                  <motion.img
+                    src={arrow} // Replace with your arrow image path
+                    alt="Next"
+                    className="w-10 h-10 md:w-12 md:h-12" // Normal orientation for right arrow
+                    whileHover={{ x: 2 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-500 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+              </motion.button>
 
-            {/* Product Name */}
-            <AnimatePresence>
-              {imageLoaded && (
-                <motion.h2
-                  key={currentProduct.name}
-                  className="text-4xl md:text-5xl font-bold text-red-600 uppercase tracking-wide"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  {currentProduct.name}
-                </motion.h2>
-              )}
-            </AnimatePresence>
-          </>
-        ) : (
-          <p className="text-gray-500 mt-20">No products found in this category.</p>
-        )}
-      </div>
+              {/* Product display with push transition */}
+              <div className="relative w-full h-[70vh] rounded-[2.5rem] overflow-hidden shadow-2xl">
+                <AnimatePresence initial={false} custom={direction} mode="popLayout">
+                  <motion.div
+                    key={currentProduct?.id}
+                    custom={direction}
+                    variants={pushVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{
+                      type: "tween",
+                      ease: "easeInOut",
+                      duration: 0.5,
+                    }}
+                    className="absolute inset-0"
+                  >
+                    <img
+                      src={currentProduct?.image}
+                      alt={currentProduct?.name}
+                      className="w-full h-full object-cover"
+                    />
+                    {/* Gradient overlay for better text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                    
+                    {/* Product info overlay */}
+                    <motion.div 
+                      className="absolute bottom-8 left-8 right-8 z-10"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2, duration: 0.4 }}
+                    >
+                      <h3 className="text-white text-2xl font-bold drop-shadow-lg mb-1">
+                        {currentProduct?.name}
+                      </h3>
+                      {currentProduct?.price && (
+                        <p className="text-white/90 text-lg font-semibold drop-shadow-lg">
+                          {currentProduct.price}
+                        </p>
+                      )}
+                    </motion.div>
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Progress indicators */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+                  {products.map((_, index) => (
+                    <motion.div
+                      key={index}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        index === currentIndexes[cat] 
+                          ? 'bg-white' 
+                          : 'bg-white/40'
+                      }`}
+                      whileHover={{ scale: 1.2 }}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      })}
     </div>
   );
 };
