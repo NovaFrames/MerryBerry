@@ -1,126 +1,94 @@
-import { motion } from 'framer-motion';
-import { Instagram, Heart, MessageCircle, Camera } from 'lucide-react';
-import { memo } from 'react';
-import insta1 from '../assets/instaGallery/insta1.png';
-import insta2 from '../assets/instaGallery/insta2.png';
-import insta3 from '../assets/instaGallery/insta3.png';
-import insta4 from '../assets/instaGallery/insta4.png';
+import React from "react";
 
-// ================== DATA ==================
-const socialPosts = [
+const images = [
   {
-    id: 1,
-    image: insta1,
-    likes: "95.2k",
-    comments: "84",
-    link: 'https://www.instagram.com/reel/DNC2HT6ToNQ'
+    src: "https://images.unsplash.com/photo-1586769412527-ab0855979b2e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGljZWNyZWFtfGVufDB8fDB8fHww",
+    name: "Ice Cream",
   },
   {
-    id: 2,
-    image: insta2,
-    likes: "373k",
-    comments: "156",
-    link: 'https://www.instagram.com/reel/DNAw8q1T-H1'
+    src: "https://plus.unsplash.com/premium_photo-1678198786424-c2cc6593f59c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8aWNlY3JlYW18ZW58MHx8MHx8fDA%3D",
+    name: "Brownie Dessert",
   },
   {
-    id: 3,
-    image: insta3,
-    likes: "15.8k",
-    comments: "212",
-    link: 'https://www.instagram.com/reel/DM2fxfmTldM'
+    src: "https://images.unsplash.com/photo-1628585352636-f4a24c2e17d5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGljZWNyZWFtfGVufDB8fDB8fHww",
+    name: "Couple with Ice Cream",
   },
   {
-    id: 4,
-    image: insta4,
-    likes: "6283",
-    comments: "43",
-    link: 'https://www.instagram.com/reel/DMz3-HdTxE0'
-  }
+    src: "https://images.unsplash.com/photo-1593558159516-d0be2a960c52?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aWNlY3JlYW18ZW58MHx8MHx8fDA%3D",
+    name: "Cafe Vibes",
+  },
 ];
 
-// ================== COMPONENTS ==================
-const SocialCard = memo(({ post }) => (
-  <div
-    className="relative group overflow-hidden rounded-xl shadow-md cursor-pointer"
-    style={{ transform: 'translateZ(0)' }}
-    onClick={() => window.open(post.link, '_blank')}
-  >
+const ImageCard = ({ src, name }) => (
+  <div className="relative rounded-xl overflow-hidden h-[300px] group cursor-pointer">
     <img
-      src={post.image}
-      alt="Social media post"
-      className="w-full h-full object-cover"
-      loading="lazy"
-      decoding="async"
+      src={src}
+      alt={name}
+      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
     />
-    <div className="absolute inset-0 bg-black/30  transition-all duration-300 flex items-center justify-center">
-      <div className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 text-white text-center">
-        <div className="flex items-center justify-center space-x-4">
-          <div className="flex items-center">
-            <Heart className="w-4 h-4 mr-1" />
-            <span className="text-sm">{post.likes}</span>
+    {/* Overlay */}
+    <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 bg-black/50 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
+      <span className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+        {name}
+      </span>
+    </div>
+  </div>
+);
+
+const ServiceSection = () => {
+  return (
+    <section className="max-w-7xl mx-auto px-6 py-16">
+      {/* Heading */}
+      <div className="text-center mb-12">
+        <h2
+          className="text-4xl font-bold text-gray-800 mb-2"
+          style={{ fontFamily: "'Fredoka One', cursive" }}
+        >
+          Our Special Services
+        </h2>
+        <p className="text-gray-600 max-w-2xl mx-auto text-sm">
+          Indulge in our handcrafted treats, made fresh daily with love and
+          passion. Experience the magic in every bite.
+        </p>
+      </div>
+
+      {/* Content grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Left column */}
+        <div className="flex flex-col gap-6">
+          <div className="bg-amber-50 p-8 rounded-xl flex flex-col justify-center">
+            <span className="text-amber-500 font-semibold text-sm mb-2">
+              Service
+            </span>
+            <h3
+              className="font-bold text-3xl leading-snug mb-4"
+              style={{ fontFamily: "'Fredoka One', cursive" }}
+            >
+              Made by Hand with Love
+            </h3>
+            <p className="text-gray-700 text-sm mb-6 max-w-xs">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
+              tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+            </p>
+            <button className="bg-amber-500 text-white rounded-full px-6 py-2 w-max text-sm font-semibold hover:bg-amber-600 transition">
+              Learn More
+            </button>
           </div>
-          <div className="flex items-center">
-            <MessageCircle className="w-4 h-4 mr-1" />
-            <span className="text-sm">{post.comments}</span>
+          <ImageCard src={images[2].src} name={images[2].name} />
+        </div>
+
+        {/* Right column */}
+        <div className="grid grid-cols-2 gap-6 col-span-2">
+          <ImageCard src={images[0].src} name={images[0].name} />
+          <ImageCard src={images[1].src} name={images[1].name} />
+          <div className="col-span-2">
+            <ImageCard src={images[3].src} name={images[3].name} />
           </div>
         </div>
       </div>
-    </div>
-  </div>
-));
-
-// ================== MAIN SECTION ==================
-export default function Testimonials() {
-  return (
-    <section className="relative py-16 px-4 sm:px-6 lg:px-8 bg-yellow-100 wave-bg overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
-        
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4">
-            Foodie Love on Social
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            See why our customers can't stop posting about us
-          </p>
-        </motion.div>
-
-        {/* Instagram Feed */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="mb-16"
-        >
-          <div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">
-            <h3 className="inline-flex text-3xl font-extrabold gap-5 text-gray-800 tracking-tight">
-              <Camera className='w-15 h-15' /> Stay Connected with Us on Instagram
-            </h3>
-            <a
-              href="https://www.instagram.com/merryberry.co.in/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-amber-600 text-white px-5 py-2 rounded-full shadow-lg transition-transform duration-300 hover:scale-105 hover:bg-amber-700"
-            >
-              <Instagram className="w-5 h-5" />
-              <span className="text-sm font-semibold">Follow Us</span>
-            </a>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {socialPosts.map((post) => (
-              <SocialCard key={post.id} post={post} />
-            ))}
-          </div>
-        </motion.div>
-      </div>
     </section>
   );
-}
+};
+
+export default ServiceSection;

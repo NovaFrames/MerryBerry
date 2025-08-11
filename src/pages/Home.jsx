@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import FlavorSlider from '../components/FlavorSlider';
-import FranchiseSection from '../components/FranchiseSection';
+import ParallaxOffers from '../components/ParallaxOffers';
 import OurStory from '../components/OurStory';
 import Gallery from '../components/Gallery';
 import Details from '../components/Details';
@@ -17,27 +17,30 @@ import h12 from '../assets/home/12.png';
 import h13 from '../assets/home/13.png';
 import h14 from '../assets/home/14.png';
 import h15 from '../assets/home/15.png';
+import SpecialOffers from '../components/SpecialOffers';
+import FranchiseSection from '../components/FranchiseSection';
 
 const flavors = [
   {
-    name: "Ube",
-    bgColor: "#F4D13D",
-    imgs: [h7, h12, h8],
-    mobileImg: h7 // Added specific mobile image
-  },
-  {
-    name: "Raspberry",
-    bgColor: "#E30B5D",
-    imgs: [h9, h10, h11],
-    mobileImg: h9
-  },
-  {
-    bgColor: "#9F4C87",
-    name: "Banana",
+    name: 'Ube',
+    bgColor: '#FCE4EC', // Soft pink
     imgs: [h13, h14, h15],
-    mobileImg: h13
+    mobileImg: h7,
+  },
+  {
+    name: 'Banana',
+    bgColor: '#FFF9C4', // Warm pastel yellow
+    imgs: [h7, h12, h8],
+    mobileImg: h13,
+  },
+  {
+    name: 'Raspberry',
+    bgColor: '#E3F2FD', // Soft sky blue
+    imgs: [h9, h10, h11],
+    mobileImg: h9,
   },
 ];
+
 
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -101,7 +104,7 @@ const Home = () => {
   const active = flavors[activeIndex];
 
   return (
-    <>
+    <div style={{ fontFamily: "'Fredoka One', cursive" }}>
       <div ref={containerRef} className="relative w-full h-screen overflow-hidden">
         {/* Background Layer */}
         <motion.div
@@ -137,9 +140,24 @@ const Home = () => {
           </AnimatePresence>
 
           {/* Heading */}
-          <div className="absolute top-16 md:top-24 text-center w-full text-black z-10 px-4">
+          <div className="absolute top-16  text-center w-full text-black z-10 px-4">
             <h1 className="text-4xl md:text-6xl lg:text-8xl font-extrabold leading-tight">
-              MERRY × BERRY
+            <span className="text-orange-500 relative inline-block">
+              MERRY BERRY
+              {/* Wavy underline */}
+              <svg
+                className="absolute left-0 -bottom-1 w-full h-3"
+                viewBox="0 0 100 10"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M0,5 Q5,0 10,5 T20,5 T30,5 T40,5 T50,5 T60,5 T70,5 T80,5 T90,5 T100,5"
+                  stroke="#fdba74"
+                  strokeWidth="2"
+                  fill="transparent"
+                />
+              </svg>
+            </span>
             </h1>
             <p className="text-sm md:text-xl font-bold mt-2 md:mt-4 uppercase">
               A Magical Duo of Ice Cream & Chicken Fries
@@ -187,8 +205,7 @@ const Home = () => {
             </motion.div>
           </AnimatePresence>
 
-          {/* Flavor Selectors */}
-          {/* Desktop */}
+          {/* Flavor Selectors - Desktop */}
           <div className="hidden md:block absolute right-8 top-1/2 -translate-y-1/2 space-y-4 z-10">
             {flavors.map((flavor, index) => (
               <button
@@ -200,16 +217,16 @@ const Home = () => {
                 style={{ backgroundColor: flavor.bgColor }}
                 title={flavor.name}
               >
-                <img 
-                  src={flavor.imgs[0]} 
-                  alt={flavor.name} 
-                  className="w-8 h-8 lg:w-10 lg:h-10 object-contain" 
+                <img
+                  src={flavor.imgs[0]}
+                  alt={flavor.name}
+                  className="w-8 h-8 lg:w-10 lg:h-10 object-contain"
                 />
               </button>
             ))}
           </div>
 
-          {/* Mobile */}
+          {/* Flavor Selectors - Mobile */}
           <div className="md:hidden absolute bottom-50 left-1/2 -translate-x-1/2 flex space-x-4 z-10">
             {flavors.map((flavor, index) => (
               <button
@@ -221,10 +238,10 @@ const Home = () => {
                 style={{ backgroundColor: flavor.bgColor }}
                 title={flavor.name}
               >
-                <img 
-                  src={flavor.imgs[1]} 
-                  alt={flavor.name} 
-                  className="w-26 h-26 object-contain" 
+                <img
+                  src={flavor.imgs[1]}
+                  alt={flavor.name}
+                  className="w-10 h-10 object-contain"
                 />
               </button>
             ))}
@@ -232,24 +249,26 @@ const Home = () => {
         </div>
 
         {/* Decorative Bubbles */}
-        <div className="absolute bottom-0 w-full h-[15vh] md:h-48 bg-pink-200 rounded-t-[50%] z-20 flex items-center justify-center px-4">
+        <div className="absolute bottom-0 w-full h-[15vh] md:h-48 bg-white rounded-t-[50%] z-20 flex items-center justify-center px-4">
           <p
-            className="text-xl md:text-4xl lg:text-5xl font-bold text-center"
-            style={{ color: active.bgColor }}
+            className="text-xl md:text-4xl lg:text-5xl font-bold text-center text-black"
           >
             Your Flavour is Waiting!
           </p>
         </div>
       </div>
 
+      {/* Sections below */}
+      <SpecialOffers />
+      <ParallaxOffers />
       <OurStory />
       <FlavorSlider />
       <FranchiseSection />
       <Details />
-      <Gallery />
       <CraftedSection />
+      <Gallery />
       <Footer />
-    </>
+    </div>
   );
 };
 
