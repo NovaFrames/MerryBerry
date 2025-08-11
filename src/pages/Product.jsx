@@ -56,13 +56,13 @@ const Product = () => {
         return (
           <section
             key={cat}
-            className={`min-h-[90vh] flex flex-col items-center justify-center py-2 px-4 ${
+            className={`min-h-[90vh] flex flex-col items-center justify-center py-0 px-4 ${
               index % 2 === 0 ? "bg-white" : "bg-white"
             }`}
           >
             {/* Category title */}
             <motion.h2
-              className="text-5xl font-bold mb-12 bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent"
+              className="text-5xl font-bold mb-12 bg-red-600 p-2 bg-clip-text text-transparent"
               initial={{ opacity: 0, y: -30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
