@@ -5,7 +5,7 @@ import arrow from "../assets/arrow/arrow.png";
 
 const categories = ["Ice-Cream", "Chicken", "Milkshake", "Mojito", "Burger", "Sandwich"];
 
-const Menu = () => {
+const Product = () => {
   const [currentIndexes, setCurrentIndexes] = useState(
     Object.fromEntries(categories.map((cat) => [cat, 0]))
   );
@@ -174,4 +174,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default Product;
