@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { allProducts } from "./AllProducts";
-import arrow from "../assets/arrow/arrow.png";
+import arrow from "../assets/arrow/arrow2.png";
 
 const categories = ["Ice-Cream", "Chicken", "Milkshake", "Mojito", "Burger", "Sandwich"];
 
@@ -57,7 +57,7 @@ const Product = () => {
           <section
             key={cat}
             className={`min-h-[90vh] flex flex-col items-center justify-center py-0 px-4 ${
-              index % 2 === 0 ? "bg-white" : "bg-white"
+              index % 2 === 0 ? "bg-fuchsia-100" : "bg-[#fff9f0]"
             }`}
           >
             {/* Category title */}
@@ -78,11 +78,11 @@ const Product = () => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <div className="w-14 h-14 bg-white/90 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center group-hover:bg-white transition-all duration-300 border border-white/20">
+                <div className="w-12 h-12 bg-white/90 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center group-hover:bg-white transition-all duration-300 border border-white/20">
                   <motion.img
                     src={arrow}
                     alt="Previous"
-                    className="w-10 h-10 md:w-12 md:h-12 transform rotate-180"
+                    className="w-6 h-6 md:w-8 md:h-8 transform rotate-180"
                     whileHover={{ x: -2 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   />
@@ -97,11 +97,11 @@ const Product = () => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <div className="w-14 h-14 bg-white/90 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center group-hover:bg-white transition-all duration-300 border border-white/20">
+                <div className="w-12 h-12 bg-white/90 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center group-hover:bg-white transition-all duration-300 border border-white/20">
                   <motion.img
                     src={arrow}
                     alt="Next"
-                    className="w-10 h-10 md:w-12 md:h-12"
+                    className="w-6 h-6 md:w-8 md:h-8"
                     whileHover={{ x: 2 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   />

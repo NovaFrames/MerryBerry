@@ -22,83 +22,6 @@ import c3 from '../assets/career/c3.png'
 import bg from '../assets/career/bg.png'
 
 const Career = () => {
-  const [selectedJob, setSelectedJob] = useState(null)
-
-  const jobs = [
-    {
-      id: 1,
-      title: "Kitchen Crew Member",
-      department: "Kitchen",
-      location: "All Locations",
-      type: "Full-time / Part-time",
-      salary: "₹30000/per month",
-      description: "Join our kitchen team and master the art of crispy fried chicken and creamy ice cream preparation.",
-      requirements: [
-        "Food handling certification preferred",
-        "Ability to work in a fast-paced environment",
-        "Team player attitude",
-        "Attention to detail"
-      ],
-      icon: ChefHat
-    },
-    {
-      id: 2,
-      title: "Ice Cream Specialist",
-      department: "Front of House",
-      location: "Main Store",
-      type: "Part-time",
-      salary: "₹25000/per month",
-      description: "Create magical ice cream experiences for our customers with creative scooping and topping skills.",
-      requirements: [
-        "Customer service experience",
-        "Creative flair for presentation",
-        "Ability to work weekends",
-        "Friendly personality"
-      ],
-      icon: IceCream
-    },
-    {
-      id: 3,
-      title: "Shift Supervisor",
-      department: "Management",
-      location: "Downtown Location",
-      type: "Full-time",
-      salary: "₹20000/per month",
-      description: "Lead our team during busy shifts and ensure exceptional customer experience while maintaining quality standards.",
-      requirements: [
-        "2+ years supervisory experience",
-        "Strong leadership skills",
-        "Problem-solving abilities",
-        "Flexible schedule availability"
-      ],
-      icon: Users
-    },
-    {
-      id: 4,
-      title: "Brand Ambassador",
-      department: "Marketing",
-      location: "Remote/Field",
-      type: "Part-time",
-      salary: "₹20000/per month",
-      description: "Represent our brand at events, social media, and community outreach programs.",
-      requirements: [
-        "Social media savvy",
-        "Excellent communication skills",
-        "Own transportation",
-        "Photography skills a plus"
-      ],
-      icon: Star
-    }
-  ]
-
-  const benefits = [
-    { icon: DollarSign, title: "Competitive Pay", description: "Above market wages with performance bonuses" },
-    { icon: Clock, title: "Flexible Hours", description: "Work schedules that fit your lifestyle" },
-    { icon: GraduationCap, title: "Training & Development", description: "Comprehensive training and career advancement" },
-    { icon: Coffee, title: "Free Meals", description: "Enjoy our delicious food during your shifts" },
-    { icon: Heart, title: "Health Benefits", description: "Medical and dental coverage for full-time employees" },
-    { icon: Award, title: "Employee Recognition", description: "Monthly awards and team appreciation events" }
-  ]
 
   return (
     <div className="min-h-screen bg-white">
@@ -135,10 +58,8 @@ const Career = () => {
       </div>
 
       <section
-        className="py-24 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${bg})`, // 🔁 Replace with your actual image path
-        }}
+        className="py-24 bg-cover bg-fuchsia-100 bg-center bg-no-repeat"
+        
       >
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-10 items-center">
@@ -172,7 +93,7 @@ const Career = () => {
         </div>
       </section>
       <section
-        className="py-24 bg-white"
+        className="py-24 bg-[#fff9f0]"
 
       >
         <div className="container mx-auto px-6">
@@ -208,10 +129,10 @@ const Career = () => {
       </section>
 
       <section
-        className="py-24 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${bg})`, // 🔁 Replace with your actual image path
-        }}
+        className="py-24 bg-cover bg-fuchsia-100 bg-center bg-no-repeat"
+        // style={{
+        //   backgroundImage: `url(${bg})`, // 🔁 Replace with your actual image path
+        // }}
       >
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-10 items-center">

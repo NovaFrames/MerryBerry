@@ -110,13 +110,13 @@ const Franchise = () => {
 
       {/* Stats Section */}
       <section
-        className="relative py-24 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${f2})`,
-        }}
+        className="relative py-24 bg-cover bg-center bg-fuchsia-100 bg-no-repeat"
+        // style={{
+        //   backgroundImage: `url(${f2})`,
+        // }}
       >
         {/* Dark overlay with slow opacity transition */}
-        <div className="absolute inset-0 bg-black/40 transition-opacity duration-1000 ease-in-out"></div>
+        {/* <div className="absolute inset-0 bg-black/40 transition-opacity duration-1000 ease-in-out"></div> */}
 
         <div className="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center p-8 z-10">
           {/* Left: Image */}
@@ -131,14 +131,14 @@ const Franchise = () => {
           {/* Right: Text Content */}
           <div className="text-white space-y-6">
             <h2 className="text-4xl font-bold">
-              <span className="text-yellow-400">Grab</span> And <span className="text-yellow-400">Go</span>
+              <span className="text-black">Grab And Go</span>
             </h2>
 
             <div className="text-3xl font-bold bg-yellow-400 text-black inline-block px-6 py-2 rounded-lg">
               2.99 LACS
             </div>
 
-            <ul className="space-y-2 text-lg">
+            <ul className="space-y-2 text-black text-lg">
               <li>• Franchise Fee: ₹2.99 Lakhs + GST</li>
               <li>• Area Required: 50 to 100 sq.ft</li>
               <li>• Setup Type: Kiosk Setup</li>
@@ -148,7 +148,7 @@ const Franchise = () => {
               <li>• Setup Cost: Upto ₹4.00 Lakhs</li>
             </ul>
 
-            <div className="text-xl font-semibold mt-6">
+            <div className="text-xl text-black font-semibold mt-6">
               Total Investment Upto <span className="text-yellow-400">₹7.00 Lakhs</span>
             </div>
           </div>
@@ -157,13 +157,13 @@ const Franchise = () => {
 
 
       <section
-        className="relative py-24 bg-gray-200"
+        className="relative py-24 bg-[#fff9f0]"
       >
         <div className="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center p-8  z-10">
           {/* Left: Image */}
           <div className="text-black space-y-6">
             <h2 className="text-4xl font-bold">
-              <span className="text--400">Grab</span> And <span className="text-yellow-400">Go</span>
+              <span className="text-black">Grab And Go</span>
             </h2>
 
             <div className="text-3xl font-bold bg-yellow-400 text-black inline-block px-6 py-2 rounded-lg">
@@ -196,13 +196,13 @@ const Franchise = () => {
       </section>
 
       <section
-        className="relative py-24 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${f2})`,
-        }}
+        className="relative py-24 bg-cover bg-center bg-fuchsia-100 bg-no-repeat"
+        // style={{
+        //   backgroundImage: `url(${f2})`,
+        // }}
       >
         {/* Dark overlay with slow opacity transition */}
-        <div className="absolute inset-0 bg-black/40 transition-opacity duration-1000 ease-in-out"></div>
+        {/* <div className="absolute inset-0 bg-black/40 transition-opacity duration-1000 ease-in-out"></div> */}
 
         <div className="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center p-8 z-10">
           {/* Left: Image */}
@@ -217,14 +217,14 @@ const Franchise = () => {
           {/* Right: Text Content */}
           <div className="text-white space-y-6">
             <h2 className="text-4xl font-bold">
-              <span className="text-yellow-400">Grab</span> And <span className="text-yellow-400">Go</span>
+              <span className="text-black">Grab And Go</span>
             </h2>
 
             <div className="text-3xl font-bold bg-yellow-400 text-black inline-block px-6 py-2 rounded-lg">
               4.99 LACS
             </div>
 
-            <ul className="space-y-2 text-base font-medium pt-4">
+            <ul className="space-y-2 text-black text-base font-medium pt-4">
               <li>3. Metro Junction</li>
               <li>• Franchise Fee: ₹4.99 Lakhs</li>
               <li>• Area Required: 500 to 800 sq.ft</li>
@@ -234,14 +234,14 @@ const Franchise = () => {
               <li>• Setup Cost: Upto ₹12.50 Lakhs</li>
             </ul>
 
-            <div className="text-xl font-semibold mt-6">
+            <div className="text-xl text-black font-semibold mt-6">
               Total Investment Upto <span className="text-yellow-400">₹17.50 Lakhs</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-gray-200 text-black py-24 px-6 md:px-12 relative">
+      <section className="bg-[#fff9f0] text-black py-24 px-6 md:px-12 relative">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           {/* Left Side: ROI Image */}
           <div className="w-full flex justify-center">
@@ -312,13 +312,13 @@ const Franchise = () => {
       </section>
 
       <section
-        className="relative py-24 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${f2})`,
-        }}
+        className="relative py-24 bg-cover bg-center bg-fuchsia-100 bg-no-repeat"
+        // style={{
+        //   backgroundImage: `url(${f2})`,
+        // }}
       >
         {/* Dark overlay with slow opacity transition */}
-        <div className="absolute inset-0 bg-black/40 transition-opacity duration-1000 ease-in-out"></div>
+        {/* <div className="absolute inset-0 bg-black/40 transition-opacity duration-1000 ease-in-out"></div> */}
 
         <div className="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center p-8 z-10">
           {/* Left: Image */}
@@ -333,14 +333,14 @@ const Franchise = () => {
           {/* Right: Text Content */}
           <div className="text-white space-y-6 md:ml-30">
             <h2 className="text-4xl font-bold">
-              <span className="text-yellow-400">Grab</span> And <span className="text-yellow-400">Go</span>
+              <span className="text-black">Grab And Go</span>
             </h2>
 
             <div className="text-3xl font-bold bg-yellow-400 text-black inline-block px-6 py-2 rounded-lg">
               2.99 LACS
             </div>
 
-            <ul className="space-y-4 text-lg">
+            <ul className="space-y-4 text-black text-lg">
               <li>• Total Investment: Upto ₹7 Lakhs</li>
               <li>• Average Monthly Sales: ₹3 Lakhs</li>
               <li>• Net Profit Margin: 22.5%</li>
@@ -353,13 +353,13 @@ const Franchise = () => {
 
 
       <section
-        className="relative py-24 bg-gray-200"
+        className="relative py-24 bg-[#fff9f0]"
       >
         <div className="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center p-8  z-10">
           {/* Left: Image */}
           <div className="text-black space-y-6">
             <h2 className="text-4xl font-bold">
-              Urban <span className="text-yellow-400">Junction</span>
+              Urban Junction
             </h2>
 
             <div className="text-3xl font-bold bg-yellow-400 text-black inline-block px-6 py-2 rounded-lg">
@@ -387,13 +387,13 @@ const Franchise = () => {
       </section>
 
       <section
-        className="relative py-24 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${f2})`,
-        }}
+        className="relative py-24 bg-cover bg-center bg-fuchsia-100 bg-no-repeat"
+        // style={{
+        //   backgroundImage: `url(${f2})`,
+        // }}
       >
         {/* Dark overlay with slow opacity transition */}
-        <div className="absolute inset-0 bg-black/40 transition-opacity duration-1000 ease-in-out"></div>
+        {/* <div className="absolute inset-0 bg-black/40 transition-opacity duration-1000 ease-in-out"></div> */}
 
         <div className="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center p-8 z-10">
           {/* Left: Image */}
@@ -407,15 +407,15 @@ const Franchise = () => {
 
           {/* Right: Text Content */}
           <div className="text-white space-y-6 md:ml-30">
-            <h2 className="text-4xl font-bold">
-              Metro <span className="text-yellow-400">Junction</span>
+            <h2 className="text-4xl text-black font-bold">
+              Metro Junction
             </h2>
 
             <div className="text-3xl font-bold bg-yellow-400 text-black inline-block px-6 py-2 rounded-lg">
               2.99 LACS
             </div>
 
-            <ul className="space-y-4 text-lg">
+            <ul className="space-y-4 text-black text-lg">
               <li>• Total Investment: Upto ₹25 Lakhs</li>
               <li>• Average Monthly Sales: ₹7.5 Lakhs</li>
               <li>• Net Profit Margin: 23.33%</li>
