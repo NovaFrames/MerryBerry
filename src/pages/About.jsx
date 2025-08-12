@@ -9,12 +9,10 @@ import { Heart, Clock, Users, CheckCircle2, Award, ChefHat, IceCream,
   DollarSign,
  } from 'lucide-react';
 import Footer from '../components/Footer';
-import about from '../assets/about/about.png'
-import about2 from '../assets/about/about2.png'
 import ice from '../assets/home/16.png'
-import milkshake from '../assets/icecreams/milkshake.png'
-import chicken from '../assets/icecreams/chicken.png'
-import burger from '../assets/icecreams/burger.png'
+import milkshake from '../assets/Icecreams/milkshake.png'
+import chicken from '../assets/Icecreams/chicken.png'
+import burger from '../assets/Icecreams/burger.png'
 
 const About = () => {
   const values = [
