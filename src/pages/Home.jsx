@@ -104,7 +104,7 @@ const Home = () => {
   const active = flavors[activeIndex];
 
   return (
-    <div style={{ fontFamily: "cursive" }}>
+    <div style={{ fontFamily: "Fredoka One" }}>
       <div ref={containerRef} className="relative w-full h-screen overflow-hidden">
         {/* Background Layer */}
         <motion.div
