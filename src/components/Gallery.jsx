@@ -43,7 +43,7 @@ const ServiceSection = () => {
       <div className="text-center mb-12">
         <h2
           className="text-4xl font-bold text-gray-800 mb-2"
-          style={{ fontFamily: "'Fredoka One', cursive" }}
+          // style={{ fontFamily: "'Fredoka One', cursive" }}
         >
           Our Special Services
         </h2>
@@ -63,7 +63,7 @@ const ServiceSection = () => {
             </span>
             <h3
               className="font-bold text-3xl leading-snug mb-4"
-              style={{ fontFamily: "'Fredoka One', cursive" }}
+              // style={{ fontFamily: "'Fredoka One', cursive" }}
             >
               Made by Hand with Love
             </h3>
