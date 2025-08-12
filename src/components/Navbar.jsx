@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import MBLOGO from '../../public/images/MBLOGO.png';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -16,6 +16,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate()
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -117,6 +118,7 @@ const Navbar = () => {
                 }}
                 whileTap={{ scale: 0.95 }}
                 className="ml-2 lg:ml-6 bg-yellow-500 hover:bg-yellow-600 text-white px-4 lg:px-6 py-1.5 lg:py-2 rounded-full font-medium transition-all duration-300 shadow-md"
+                onClick={()=>navigate("/enquiry")}
               >
                 Enquiry
               </motion.button>
@@ -215,6 +217,7 @@ const Navbar = () => {
                   }}
                   whileTap={{ scale: 0.95 }}
                   className="mt-4 bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-2.5 rounded-full text-lg font-medium transition-all duration-300 shadow-md"
+                  onClick={()=>navigate("/enquiry")}
                 >
                   Enquiry
                 </motion.button>
