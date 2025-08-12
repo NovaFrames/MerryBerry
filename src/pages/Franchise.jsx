@@ -256,7 +256,7 @@ const Franchise = () => {
           <div className="space-y-6">
             <h2 className="text-5xl font-bold leading-tight">
               <span className="block text-black text-4xl font-script italic">Our</span>
-              <span className="block text-yellow-600 mt-2">
+              <span className="block text-2xl md:text-5xl text-yellow-600 mt-2">
                 MERRY BERRY – RETURN ON INVESTMENT (ROI)
               </span>
             </h2>
