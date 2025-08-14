@@ -194,7 +194,7 @@ const About = () => {
                   </div>
                 </div>
                 {/* Floating icons */}
-                <div className="absolute -top-4 -right-4 bg-yellow-400 rounded-full p-3">
+                <div className="absolute -top-4 -right-4 bg-pink-400 rounded-full p-3">
                   <Lightbulb className="w-6 h-6 text-white" />
                 </div>
                 <div className="absolute -bottom-4 -left-4 bg-pink-400 rounded-full p-3">
@@ -357,7 +357,7 @@ const About = () => {
                 </div>
               </div>
               {/* Floating icons */}
-              <div className="absolute -top-4 -right-4 bg-green-400 rounded-full p-3">
+              <div className="absolute -top-4 -right-4 bg-yellow-400 rounded-full p-3">
                 <TrendingUp className="w-6 h-6 text-white" />
               </div>
               <div className="absolute -bottom-4 -left-4 bg-yellow-400 rounded-full p-3">
@@ -376,14 +376,14 @@ const About = () => {
             <div className="text-center">
               <h2 className="text-black text-3xl font-bold mb-6 hidden md:block">Founder</h2>
               <h2 className="text-black text-3xl font-bold mb-6 md:hidden">Meet our Founders</h2>
-              <div className="w-20 h-20 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-20 h-20 bg-yellow-300 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-black text-2xl font-bold">S</span>
               </div>
-              <h3 className="text-black font-bold text-lg">Sarah Johnson</h3>
+              <h3 className="text-black font-bold text-2xl">Sarah Johnson</h3>
               <p className="text-yellow-400 font-semibold mb-3">
                 Ice Cream Artisan & Co-Founder
               </p>
-              <p className="text-black text-sm leading-relaxed">
+              <p className="text-black text-lg leading-relaxed">
                 Former pastry chef with 15 years of experience, Sarah brings her passion for creating
                 unique frozen treats that complement our savory offerings perfectly.
               </p>
@@ -401,14 +401,14 @@ const About = () => {
             {/* Right Founder */}
             <div className="text-center">
               <h2 className="text-black text-3xl font-bold mb-6 hidden md:block">Co-Founder</h2>
-              <div className="w-20 h-20 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-20 h-20 bg-yellow-300 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-black text-2xl font-bold">M</span>
               </div>
-              <h3 className="text-black font-bold text-lg">Mike Chen</h3>
+              <h3 className="text-black font-bold text-2xl">Mike Chen</h3>
               <p className="text-yellow-400 font-semibold mb-3">
                 Chicken Master & Co-Founder
               </p>
-              <p className="text-black text-sm leading-relaxed">
+              <p className="text-black text-lg leading-relaxed">
                 Growing up in his family’s restaurant, Mike learned the secrets of perfect fried chicken.
                 His innovative approach creates the crispiest, most flavorful chicken in town.
               </p>

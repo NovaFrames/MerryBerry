@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Star, MapPin, DollarSign, Users, TrendingUp, Clock, Shield, Award, Phone, Mail, CheckCircle, ArrowRight, Zap, Target, Crown, Gift, ChefHat, IceCream, Heart } from 'lucide-react';
+import { Star, MapPin, DollarSign, Users, TrendingUp, Clock, Shield, Award, Phone, Mail, CheckCircle, ArrowRight, Zap, Target, Crown, Gift, ChefHat, IceCream, Heart, Locate, LocationEdit } from 'lucide-react';
 import Footer from '../components/Footer';
 import about3 from '../assets/about/about3.png'
 import f1 from '../assets/franchise/f1.png'
@@ -7,6 +7,7 @@ import f2 from '../assets/franchise/f2.png'
 import f3 from '../assets/franchise/f3.png'
 import f4 from '../assets/franchise/f4.png'
 import roi from '../assets/franchise/roi.png'
+import map from '../assets/map/map.png'
 
 
 const Franchise = () => {
@@ -38,6 +39,9 @@ const Franchise = () => {
       message: ''
     });
   };
+
+  const [selectedBranch, setSelectedBranch] = useState(null);
+
 
   const stats = [
     { icon: Star, value: "95%", label: "Customer Satisfaction" },
@@ -71,6 +75,77 @@ const Franchise = () => {
     "Ongoing operational guidance",
     "Quality control and brand standards",
     "Technology and POS system support"
+  ];
+
+  const branches = [
+    {
+      name: "Merry Berry - Fairlands",
+      top: "32%",
+      left: "40%",
+      mapEmbed: (
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62516.371879432074!2d78.06231379508971!3d11.675037244280663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babf10058d90ac7%3A0xefc97b971af8a8dd!2sMerry%20Berry!5e0!3m2!1sen!2sin!4v1755172159847!5m2!1sen!2sin"
+          width="100%"
+          height="300"
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Merry Berry - Fairlands"
+        />
+      ),
+    },
+    {
+      name: "Merry Berry - Hasthampatti",
+      top: "35%",
+      left: "43%",
+      mapEmbed: (
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62516.371879432074!2d78.06231379508971!3d11.675037244280663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babf1bfe3701fed%3A0xd93817a4d6fa69a!2sMerry%20Berry!5e0!3m2!1sen!2sin!4v1755172263431!5m2!1sen!2sin"
+          width="100%"
+          height="300"
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Merry Berry - Hasthampatti"
+        />
+      ),
+    },
+    {
+      name: "Merry Berry - Ammapet",
+      top: "32%",
+      left: "46%",
+      mapEmbed: (
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62516.371879432074!2d78.06231379508971!3d11.675037244280663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babf1007ecf415f%3A0xc16f8a23cfae35ae!2sMerry%20Berry!5e0!3m2!1sen!2sin!4v1755172284804!5m2!1sen!2sin"
+          width="100%"
+          height="300"
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Merry Berry - Ammapet"
+        />
+      ),
+    },
+    {
+      name: "Merry Berry - Shevapet",
+      top: "34%",
+      left: "49%",
+      mapEmbed: (
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62514.64919642507!2d78.13525101084346!3d11.68267540466377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babf100098f2d2d%3A0x93673fe5cc00f084!2sMerry%20Berry!5e0!3m2!1sen!2sin!4v1755172313598!5m2!1sen!2sin"
+          width="100%"
+          height="300"
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Merry Berry - Shevapet"
+        />
+      ),
+    },
   ];
 
   return (
@@ -108,12 +183,69 @@ const Franchise = () => {
         </div>
       </section>
 
+      <section className="relative py-24 bg-[#fff9f0]">
+        <div className="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center p-8 z-10">
+          {/* Left: Branch list */}
+          <div className="text-white space-y-6">
+            <h2 className="text-4xl font-bold">
+              <span className="text-black">Our Merry Berry Branches in Tamilnadu</span>
+            </h2>
+
+            <div className="text-3xl font-bold bg-yellow-400 text-black inline-block px-6 py-2 rounded-lg">
+              Salem District
+            </div>
+
+            <ul className="space-y-2 text-black text-lg">
+              {branches.map((branch, index) => (
+                <li key={index}>
+                  {index + 1}• {branch.name}
+                </li>
+              ))}
+            </ul>
+
+            <div className="text-xl text-black font-semibold mt-6">
+              Visit your nearest <span className="text-yellow-400">Merry Berry</span> today!
+            </div>
+          </div>
+
+          {/* Right: Map with clickable pins */}
+          <div className="relative w-full">
+            <img src={map} alt="Tamil Nadu Map" className="w-full h-auto " />
+            {branches.map((branch, index) => (
+              <button
+                key={index}
+                className="absolute text-red-500 text-xl"
+                style={{ top: branch.top, left: branch.left }}
+                onClick={() => setSelectedBranch(branch)}
+              >
+                <MapPin className='h-5 cursor-pointer' />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Modal */}
+        {selectedBranch && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+            <div className="bg-white p-6 rounded-lg max-w-lg w-full text-center">
+              <h2 className="text-xl font-bold mb-4">{selectedBranch.name}</h2>
+              {selectedBranch.mapEmbed}
+              <button
+                className="mt-4 px-4 py-2 bg-red-500 text-white rounded"
+                onClick={() => setSelectedBranch(null)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+      </section>
       {/* Stats Section */}
       <section
         className="relative py-24 bg-cover bg-center bg-fuchsia-100 bg-no-repeat"
-        // style={{
-        //   backgroundImage: `url(${f2})`,
-        // }}
+      // style={{
+      //   backgroundImage: `url(${f2})`,
+      // }}
       >
         {/* Dark overlay with slow opacity transition */}
         {/* <div className="absolute inset-0 bg-black/40 transition-opacity duration-1000 ease-in-out"></div> */}
@@ -170,7 +302,7 @@ const Franchise = () => {
               4.99 LACS
             </div>
 
-            <ul className="space-y-2 text-sm font-medium">
+            <ul className="space-y-2 text-lg">
               <li>Franchise Fee: ₹4.99 Lakhs</li>
               <li>Area Required: 300-400 Sqft</li>
               <li>Setup Type: Kiosk / Takeaway / Café Lounge</li>
@@ -197,9 +329,9 @@ const Franchise = () => {
 
       <section
         className="relative py-24 bg-cover bg-center bg-fuchsia-100 bg-no-repeat"
-        // style={{
-        //   backgroundImage: `url(${f2})`,
-        // }}
+      // style={{
+      //   backgroundImage: `url(${f2})`,
+      // }}
       >
         {/* Dark overlay with slow opacity transition */}
         {/* <div className="absolute inset-0 bg-black/40 transition-opacity duration-1000 ease-in-out"></div> */}
@@ -313,9 +445,9 @@ const Franchise = () => {
 
       <section
         className="relative py-24 bg-cover bg-center bg-fuchsia-100 bg-no-repeat"
-        // style={{
-        //   backgroundImage: `url(${f2})`,
-        // }}
+      // style={{
+      //   backgroundImage: `url(${f2})`,
+      // }}
       >
         {/* Dark overlay with slow opacity transition */}
         {/* <div className="absolute inset-0 bg-black/40 transition-opacity duration-1000 ease-in-out"></div> */}
@@ -388,9 +520,9 @@ const Franchise = () => {
 
       <section
         className="relative py-24 bg-cover bg-center bg-fuchsia-100 bg-no-repeat"
-        // style={{
-        //   backgroundImage: `url(${f2})`,
-        // }}
+      // style={{
+      //   backgroundImage: `url(${f2})`,
+      // }}
       >
         {/* Dark overlay with slow opacity transition */}
         {/* <div className="absolute inset-0 bg-black/40 transition-opacity duration-1000 ease-in-out"></div> */}

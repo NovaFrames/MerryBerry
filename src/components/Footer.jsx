@@ -104,8 +104,8 @@ export default function Footer() {
 
       {/* Bottom */}
       <div className="border-t border-gray-200 mt-8 pt-4 text-center text-gray-500 text-sm">
-        Ice Cream Shop Template Kit by Jegtheme <br />
-        Copyright © 2021. All rights reserved.
+        Merry Berry <br />
+        Copyright © {new Date().getFullYear()}. All rights reserved.
       </div>
     </footer>
   );

@@ -16,7 +16,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -65,7 +65,7 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, type: 'spring' }}
-        className={`bg-white ${scrolled ? ' py-2' : 'py-2'} fixed top-0 left-0 right-0 z-50 transition-all duration-300`}
+        className={`bg-white ${scrolled ? 'py-2' : 'py-2'} fixed top-0 left-0 right-0 z-50 transition-all duration-300`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex justify-between items-center h-16">
@@ -118,7 +118,7 @@ const Navbar = () => {
                 }}
                 whileTap={{ scale: 0.95 }}
                 className="ml-2 lg:ml-6 bg-yellow-500 hover:bg-yellow-600 text-white px-4 lg:px-6 py-1.5 lg:py-2 rounded-full font-medium transition-all duration-300 shadow-md"
-                onClick={()=>navigate("/enquiry")}
+                onClick={() => navigate("/enquiry")}
               >
                 Enquiry
               </motion.button>
@@ -141,29 +141,24 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Wave Border (repeating wwww shape) */}
-        <div className="absolute -bottom-[30px] rotate-180 left-0 w-full overflow-hidden leading-none z-0">
-          <svg
-            className="
-      relative block w-full h-10
-      drop-shadow-[0_3px_3px_rgba(0,0,0,0.15)]
-      sm:drop-shadow-[0_4px_4px_rgba(0,0,0,0.2)]
-      md:drop-shadow-[0_6px_6px_rgba(0,0,0,0.25)]
-    "
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1440 80"
-            preserveAspectRatio="none"
-          >
-            <path
-              fill="#ffffff"
-              d="M0,40 Q45,0 90,40 T180,40 T270,40 T360,40 T450,40 T540,40 T630,40 T720,40 T810,40 T900,40 T990,40 T1080,40 T1170,40 T1260,40 T1350,40 T1440,40 V80 H0 Z"
-            />
-          </svg>
-        </div>
-
-
-
-
+        {/* Bottom Border: Curve disappears on scroll */}
+        {!scrolled && (
+          <div className="absolute -bottom-[30px] left-0 w-full overflow-hidden leading-none z-0">
+            <svg
+              className="relative block w-full h-10 drop-shadow-[0_3px_3px_rgba(0,0,0,0.15)]
+                sm:drop-shadow-[0_4px_4px_rgba(0,0,0,0.2)]
+                md:drop-shadow-[0_6px_6px_rgba(0,0,0,0.25)] rotate-180"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 1440 80"
+              preserveAspectRatio="none"
+            >
+              <path
+                fill="#ffffff"
+                d="M0,40 Q45,0 90,40 T180,40 T270,40 T360,40 T450,40 T540,40 T630,40 T720,40 T810,40 T900,40 T990,40 T1080,40 T1170,40 T1260,40 T1350,40 T1440,40 V80 H0 Z"
+              />
+            </svg>
+          </div>
+        )}
 
         {/* Mobile Menu */}
         <AnimatePresence>
@@ -217,7 +212,7 @@ const Navbar = () => {
                   }}
                   whileTap={{ scale: 0.95 }}
                   className="mt-4 bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-2.5 rounded-full text-lg font-medium transition-all duration-300 shadow-md"
-                  onClick={()=>navigate("/enquiry")}
+                  onClick={() => navigate("/enquiry")}
                 >
                   Enquiry
                 </motion.button>
