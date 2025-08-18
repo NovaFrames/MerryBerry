@@ -53,7 +53,7 @@ const Franchise = () => {
     },
     {
       name: "Merry Berry - Hasthampatti",
-      top: "35%",
+      top: "34%",
       left: "43%",
       image: fra2,
       details: "Popular outlet near Hasthampatti junction, Salem.",
@@ -68,7 +68,7 @@ const Franchise = () => {
     {
       name: "Merry Berry - Ammapet",
       top: "34%",
-      left: "48%",
+      left: "49%",
       image: fra4,
       details: "Located at Ammapet Main Road, a must-visit place for families.",
     },
@@ -200,43 +200,34 @@ const Franchise = () => {
             <div className="relative w-full mb-50">
               <img src={map} alt="Tamil Nadu Map" className="w-full h-auto" />
 
-              {branches.map((branch, index) => {
-                const isSelected = selectedBranch.name === branch.name;
-                return (
-                  <div key={index}>
-                    {/* Map Pin */}
-                    <button
-                      className="absolute text-red-500"
-                      style={{ top: branch.top, left: branch.left }}
-                      onClick={() => {
-                        setSelectedBranch(branch);
-                        setCurrentIndex(index);
-                      }}
-                    >
-                      <MapPin
-                        className={`cursor-pointer transition-all duration-300 ${isSelected ? "h-8 w-8 text-red-600" : "h-4 w-4 text-red-500"
-                          }`}
-                      />
-                    </button>
+              {/* Show only the selected branch pin */}
+              {selectedBranch && (
+                <>
+                  <button
+                    className="absolute text-red-500"
+                    style={{ top: selectedBranch.top, left: selectedBranch.left }}
+                    onClick={() => {
+                      // no need to update, already selected
+                    }}
+                  >
+                    <MapPin className="h-4 w-4 md:h-6 md:w-6 text-red-600 cursor-pointer" />
+                  </button>
 
-                    {/* Overlay Modal near selected pin */}
-                    {isSelected && (
-                      <div
-                        className="absolute bg-white shadow-lg rounded-lg p-3 text-sm w-30 md:w-48 z-20"
-                        style={{
-                          top: `calc(${branch.top} - 100px)`, // position above pin
-                          left: `calc(${branch.left} + 70px)`, // little right
-                        }}
-                      >
-                        <div className="flex justify-between items-start">
-                          <h4 className="font-bold text-red-600 text-sm">{branch.name}</h4>
-                        </div>
-                        <p className="text-gray-700 mt-1">{branch.details}</p>
-                      </div>
-                    )}
+                  {/* Overlay Modal near selected pin */}
+                  <div
+                    className="absolute bg-white shadow-lg rounded-lg p-3 text-sm w-30 md:w-48 z-20"
+                    style={{
+                      top: `calc(${selectedBranch.top} - 100px)`, // position above pin
+                      left: `calc(${selectedBranch.left} + 70px)`, // little right
+                    }}
+                  >
+                    <div className="flex justify-between items-start">
+                      <h4 className="font-bold text-red-600 text-sm">{selectedBranch.name}</h4>
+                    </div>
+                    <p className="text-gray-700 mt-1">{selectedBranch.details}</p>
                   </div>
-                );
-              })}
+                </>
+              )}
             </div>
           </div>
         </section>
@@ -340,75 +331,75 @@ const Franchise = () => {
 
         {/* ROI Section - Not sticky */}
         <section className="bg-[#fff9f0] sticky top-10 h-screen z-50 text-black py-24 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        {/* Heading */}
-        <div className="space-y-6">
-          <h2 className="text-5xl font-bold leading-tight">
-            <span className="block text-black text-4xl font-script">Our</span>
-            <span className="block text-2xl md:text-5xl text-yellow-600 mt-2">
-              MERRY BERRY – RETURN ON INVESTMENT (ROI)
-            </span>
-          </h2>
-          <p className="text-lg text-gray-600">
-            At Merry Berry, we believe in not just building great experiences for
-            our customers—but also delivering strong, sustainable returns for our
-            franchise partners.
-          </p>
-        </div>
-      </div>
-
-      {/* ROI Cards */}
-      {/* Desktop: Show Grid */}
-      <div className="hidden md:grid md:grid-cols-3 gap-6 mt-16">
-        {cards.map((card, index) => (
-          <div
-            key={index}
-            className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition"
-          >
-            <h3 className="text-xl font-semibold text-yellow-600">{card.title}</h3>
-            <div className="mt-4 space-y-2 text-gray-700 text-sm">
-              <p><span className="font-semibold">Monthly Sales:</span> {card.sales}</p>
-              <p><span className="font-semibold">Expenses:</span> {card.expenses}</p>
-              <p><span className="font-semibold">Net Profit:</span> {card.netProfit}</p>
-              <p><span className="font-semibold">Net Profit %:</span> {card.netProfitPercent}</p>
-              <p><span className="font-semibold">Gross Profit:</span> {card.grossProfit}</p>
+          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            {/* Heading */}
+            <div className="space-y-6">
+              <h2 className="text-5xl font-bold leading-tight">
+                <span className="block text-black text-4xl font-script">Our</span>
+                <span className="block text-2xl md:text-5xl text-yellow-600 mt-2">
+                  MERRY BERRY – RETURN ON INVESTMENT (ROI)
+                </span>
+              </h2>
+              <p className="text-lg text-gray-600">
+                At Merry Berry, we believe in not just building great experiences for
+                our customers—but also delivering strong, sustainable returns for our
+                franchise partners.
+              </p>
             </div>
           </div>
-        ))}
-      </div>
 
-      {/* Mobile: Show one card at a time */}
-      <div className="md:hidden mt-16 text-center">
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-          <h3 className="text-xl font-semibold text-yellow-600">
-            {cards[currentIndexes].title}
-          </h3>
-          <div className="mt-4 space-y-2 text-gray-700 text-sm">
-            <p><span className="font-semibold">Monthly Sales:</span> {cards[currentIndexes].sales}</p>
-            <p><span className="font-semibold">Expenses:</span> {cards[currentIndexes].expenses}</p>
-            <p><span className="font-semibold">Net Profit:</span> {cards[currentIndexes].netProfit}</p>
-            <p><span className="font-semibold">Net Profit %:</span> {cards[currentIndexes].netProfitPercent}</p>
-            <p><span className="font-semibold">Gross Profit:</span> {cards[currentIndexes].grossProfit}</p>
+          {/* ROI Cards */}
+          {/* Desktop: Show Grid */}
+          <div className="hidden md:grid md:grid-cols-3 gap-6 mt-16">
+            {cards.map((card, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition"
+              >
+                <h3 className="text-xl font-semibold text-yellow-600">{card.title}</h3>
+                <div className="mt-4 space-y-2 text-gray-700 text-sm">
+                  <p><span className="font-semibold">Monthly Sales:</span> {card.sales}</p>
+                  <p><span className="font-semibold">Expenses:</span> {card.expenses}</p>
+                  <p><span className="font-semibold">Net Profit:</span> {card.netProfit}</p>
+                  <p><span className="font-semibold">Net Profit %:</span> {card.netProfitPercent}</p>
+                  <p><span className="font-semibold">Gross Profit:</span> {card.grossProfit}</p>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
 
-        {/* Navigation Buttons */}
-        <div className="flex justify-center gap-6">
-          <button
-            onClick={prevCard}
-            className="px-4 py-2 bg-yellow-600 text-white rounded-lg shadow-md hover:bg-yellow-700 transition"
-          >
-            Previous
-          </button>
-          <button
-            onClick={nextCard}
-            className="px-4 py-2 bg-yellow-600 text-white rounded-lg shadow-md hover:bg-yellow-700 transition"
-          >
-            Next
-          </button>
-        </div>
-      </div>
-    </section>
+          {/* Mobile: Show one card at a time */}
+          <div className="md:hidden mt-16 text-center">
+            <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+              <h3 className="text-xl font-semibold text-yellow-600">
+                {cards[currentIndexes].title}
+              </h3>
+              <div className="mt-4 space-y-2 text-gray-700 text-sm">
+                <p><span className="font-semibold">Monthly Sales:</span> {cards[currentIndexes].sales}</p>
+                <p><span className="font-semibold">Expenses:</span> {cards[currentIndexes].expenses}</p>
+                <p><span className="font-semibold">Net Profit:</span> {cards[currentIndexes].netProfit}</p>
+                <p><span className="font-semibold">Net Profit %:</span> {cards[currentIndexes].netProfitPercent}</p>
+                <p><span className="font-semibold">Gross Profit:</span> {cards[currentIndexes].grossProfit}</p>
+              </div>
+            </div>
+
+            {/* Navigation Buttons */}
+            <div className="flex justify-center gap-6">
+              <button
+                onClick={prevCard}
+                className="px-4 py-2 bg-yellow-600 text-white rounded-lg shadow-md hover:bg-yellow-700 transition"
+              >
+                Previous
+              </button>
+              <button
+                onClick={nextCard}
+                className="px-4 py-2 bg-yellow-600 text-white rounded-lg shadow-md hover:bg-yellow-700 transition"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </section>
 
 
         {/* ROI Details Sections - Sticky */}
