@@ -258,7 +258,7 @@ const Franchise = () => {
               <div className="text-xl md:text-3xl font-bold text-black inline-block rounded-lg">
                 2.99 LACS
               </div>
-              <ul className="space-y-2 text-black text-sm">
+              <ul className="space-y-2 text-black pt-2 text-sm md:text-lg">
                 <li>• Franchise Fee: ₹2.99 Lakhs + GST</li>
                 <li>• Area Required: 50 to 100 sq.ft</li>
                 <li>• Setup Type: Kiosk Setup</li>
@@ -284,7 +284,7 @@ const Franchise = () => {
               <div className="text-xl md:text-3xl font-bold text-black inline-block rounded-lg">
                 4.99 LACS
               </div>
-              <ul className="space-y-2 text-sm">
+              <ul className="space-y-2 text-sm md:text-lg pt-2">
                 <li>Franchise Fee: ₹4.99 Lakhs</li>
                 <li>Area Required: 300-400 Sqft</li>
                 <li>Setup Type: Kiosk / Takeaway / Café Lounge</li>
@@ -323,7 +323,7 @@ const Franchise = () => {
               <div className="text-xl md:text-3xl font-bold  text-black inline-block rounded-lg">
                 4.99 LACS
               </div>
-              <ul className="space-y-2 text-black text-sm font-medium pt-4">
+              <ul className="space-y-2 text-black text-sm md:text-lg pt-2">
                 <li>• Franchise Fee: ₹4.99 Lakhs</li>
                 <li>• Area Required: 500 to 800 sq.ft</li>
                 <li>• Setup Type: Full-Scale Premium Icecream Café Outlet</li>
