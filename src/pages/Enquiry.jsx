@@ -6,10 +6,13 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
+    phone: '',
+    service: '',
     message: ''
   })
+
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleInputChange = (e) => {
     setFormData({
@@ -18,11 +21,30 @@ const Contact = () => {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setIsSubmitted(true)
-    setTimeout(() => setIsSubmitted(false), 3000)
-    setFormData({ name: '', email: '', subject: '', message: '' })
+    setIsLoading(true)
+    setIsSubmitted(false)
+
+    try {
+      const response = await fetch("http://localhost:5000/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+      if (result.success) {
+        setFormData({ name: '', email: '', phone: '', service: '', message: '' })
+        setIsSubmitted(true)
+      } else {
+        console.error(result.message || "Failed to send application")
+      }
+    } catch (err) {
+      console.error("Network error:", err)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const contactInfo = [
@@ -30,7 +52,7 @@ const Contact = () => {
       icon: Mail,
       title: 'Email',
       content: 'franchise@merryberry.co.in',
-      link: 'franchise@merryberry.co.in'
+      link: 'mailto:franchise@merryberry.co.in'
     },
     {
       icon: Phone,
@@ -60,10 +82,10 @@ const Contact = () => {
         {/* Background Food Images */}
         <div className="absolute inset-0 opacity-10">
           <div className="grid grid-cols-4 gap-4 h-full">
-            <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="" className="w-full h-full object-cover" />
-            <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="" className="w-full h-full object-cover" />
-            <img src="https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="" className="w-full h-full object-cover" />
-            <img src="https://images.unsplash.com/photo-1576506295286-5cda18df43e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="" className="w-full h-full object-cover" />
+            <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=400&q=80" alt="" className="w-full h-full object-cover" />
+            <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=400&q=80" alt="" className="w-full h-full object-cover" />
+            <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=400&q=80" alt="" className="w-full h-full object-cover" />
+            <img src="https://images.unsplash.com/photo-1576506295286-5cda18df43e7?auto=format&fit=crop&w=400&q=80" alt="" className="w-full h-full object-cover" />
           </div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 py-40 sm:px-6 lg:px-8 text-center">
@@ -129,14 +151,7 @@ const Contact = () => {
               <div className="bg-gray-50 p-8 rounded-xl">
                 <h2 className="text-3xl font-bold text-black mb-8">Send us a message</h2>
 
-                {isSubmitted && (
-                  <div className="mb-6 p-4 bg-yellow-100 border border-yellow-400 rounded-lg flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-yellow-600" />
-                    <p className="text-yellow-800">Thank you! Your message has been sent successfully.</p>
-                  </div>
-                )}
-
-                <div className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     {/* Full Name */}
                     <div>
@@ -226,16 +241,25 @@ const Contact = () => {
                       placeholder="Send your message"
                     />
                   </div>
+                  
+                  {isSubmitted && (
+                    <div className="mb-6 p-4 bg-yellow-100 border border-yellow-400 rounded-lg flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-yellow-600" />
+                      <p className="text-yellow-800">Thank you! Your message has been sent successfully.</p>
+                    </div>
+                  )}
 
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-4 px-6 rounded-lg transition-all duration-300 hover:shadow-lg flex items-center justify-center space-x-2 group"
+                    disabled={isLoading}
+                    className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-4 px-6 rounded-lg transition-all duration-300 hover:shadow-lg flex items-center justify-center space-x-2 group disabled:opacity-50"
                   >
                     <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    <span>Send Message</span>
+                    <span>{isLoading ? "Sending..." : "Send Message"}</span>
                   </button>
-                </div>
+
+                </form>
               </div>
             </div>
 
@@ -257,6 +281,7 @@ const Contact = () => {
           ></iframe>
         </div>
       </section>
+
       <Footer />
     </div>
   )

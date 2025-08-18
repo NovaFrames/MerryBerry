@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const menuItems = [
   {
@@ -28,6 +29,7 @@ const menuItems = [
 ];
 
 export default function RecommendationMenu() {
+  const navigate = useNavigate();
   return (
     <section className="py-12 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -81,7 +83,9 @@ export default function RecommendationMenu() {
 
         {/* Button */}
         <div className="text-center mt-10">
-          <button className="bg-[#d18b28] text-white px-5 sm:px-6 py-2 sm:py-3 rounded-full font-medium hover:bg-[#b67620] transition text-sm sm:text-base">
+          <button
+          onClick={()=>{navigate('/products')}}
+          className="bg-[#d18b28] text-white px-5 sm:px-6 py-2 sm:py-3 rounded-full font-medium hover:bg-[#b67620] transition text-sm sm:text-base">
             More Menu
           </button>
         </div>

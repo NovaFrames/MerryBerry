@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const franchises = [
   {
@@ -43,6 +44,7 @@ const FranchiseCard = ({ name, img, location }) => (
 );
 
 const FranchiseSection = () => {
+  const navigate = useNavigate();
   return (
     <section className="max-w-7xl mx-auto px-6 py-16">
       {/* Heading */}
@@ -73,7 +75,9 @@ const FranchiseSection = () => {
 
       {/* Centered Button */}
       <div className="flex justify-center">
-        <button className="mt-6 px-5 sm:px-6 py-2 sm:py-3 cursor-pointer bg-orange-500 hover:bg-orange-600 text-white rounded-full text-sm sm:text-base">
+        <button 
+        onClick={()=>{navigate('/franchise')}}
+        className="mt-6 px-5 sm:px-6 py-2 sm:py-3 cursor-pointer bg-orange-500 hover:bg-orange-600 text-white rounded-full text-sm sm:text-base">
           View All
         </button>
       </div>

@@ -41,7 +41,7 @@ const ParallaxOffers = () => {
             <h2 className="text-4xl font-bold mb-4">{offer.title}</h2>
             <p className="text-lg mb-6">{offer.desc}</p>
             <button className="bg-amber-400 text-black px-6 py-3 rounded-lg font-bold hover:bg-amber-500 transition-colors">
-              Grab Now
+              Visit to Grab
             </button>
           </motion.div>
         </section>

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const images = [
   {
@@ -37,6 +38,7 @@ const ImageCard = ({ src, name }) => (
 );
 
 const ServiceSection = () => {
+  const navigate = useNavigate();
   return (
     <section className="max-w-7xl mx-auto px-6 py-16">
       {/* Heading */}
@@ -71,8 +73,10 @@ const ServiceSection = () => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
               tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
             </p>
-            <button className="bg-amber-500 text-white rounded-full px-6 py-2 w-max text-sm font-semibold hover:bg-amber-600 transition">
-              Learn More
+            <button
+            onClick={()=>{navigate('/products')}}
+            className="bg-amber-500 text-white rounded-full px-6 py-2 w-max text-sm font-semibold hover:bg-amber-600 transition">
+              See More
             </button>
           </div>
           <ImageCard src={images[2].src} name={images[2].name} />
