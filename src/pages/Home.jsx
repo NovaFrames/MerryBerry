@@ -140,27 +140,31 @@ const Home = () => {
           </AnimatePresence>
 
           {/* Heading */}
-          <div className="absolute top-16  text-center w-full text-black z-10 px-4">
-            <h1 className="text-4xl md:text-6xl lg:text-8xl font-extrabold leading-tight">
-            <span className="text-orange-500 relative inline-block">
-              MERRY BERRY
-              {/* Wavy underline */}
-              <svg
-                className="absolute left-0 -bottom-1 w-full h-3"
-                viewBox="0 0 100 10"
-                preserveAspectRatio="none"
-              >
-                <path
-                  d="M0,5 Q5,0 10,5 T20,5 T30,5 T40,5 T50,5 T60,5 T70,5 T80,5 T90,5 T100,5"
-                  stroke="#fdba74"
-                  strokeWidth="2"
-                  fill="transparent"
-                />
-              </svg>
-            </span>
+          <div className="absolute top-20 w-full text-center text-black z-10 px-6">
+            <h1 className="text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tight leading-tight inline-block relative animate-float">
+              <span className="relative inline-block text-orange-500">
+                MERRY BERRY
+
+                {/* Wavy underline */}
+                <svg
+                  className="absolute left-0 -bottom-2 w-full h-3"
+                  viewBox="0 0 100 10"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M0,5 Q5,0 10,5 T20,5 T30,5 T40,5 T50,5 T60,5 T70,5 T80,5 T90,5 T100,5"
+                    stroke="#fb923c"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    fill="transparent"
+                  />
+                </svg>
+              </span>
             </h1>
-            <p className="text-sm md:text-xl font-bold mt-2 md:mt-4 uppercase">
-              A Magical Duo of Ice Cream & Chicken Fries
+
+            <p className="text-sm md:text-lg lg:text-xl font-semibold mt-3 md:mt-5 uppercase tracking-wide text-gray-800">
+              A Magical Duo of <span className="text-orange-500">Ice Cream</span> &{" "}
+              <span className="text-orange-500">Chicken Fries</span>
             </p>
           </div>
 

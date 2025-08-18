@@ -70,9 +70,6 @@ export default function IceCreamSection() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
             tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
           </p>
-          <button className="mt-6 px-5 sm:px-6 py-2 sm:py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-full text-sm sm:text-base">
-            Get Started
-          </button>
 
           {/* Image Cards */}
           <div className="mt-10 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 justify-items-center">

@@ -188,13 +188,13 @@ export default function SpecialOffers() {
                           <span className="text-gray-600">{offer.rating.toFixed(1)}</span>
                         </div>
                       )}
-                      <a
+                      {/* <a
                         href={offer.link}
                         className="inline-flex items-center text-orange-500 font-semibold hover:text-orange-600 group"
                       >
                         View Details
                         <ChevronRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
-                      </a>
+                      </a> */}
                     </div>
                   </div>
                 </div>

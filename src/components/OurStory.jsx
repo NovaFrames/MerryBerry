@@ -1,10 +1,11 @@
 import React from "react";
 import { CheckCircle } from "lucide-react";
 import h22 from "../assets/home/22.png";
+import { useNavigate } from "react-router-dom";
 
 const AboutSection = () => {
+  const navigate = useNavigate();
   return (
-
     <>
       {/* Section Heading */}
       <div className="relative top-20 z-10 text-center ">
@@ -87,7 +88,9 @@ const AboutSection = () => {
           </div>
 
           {/* Button */}
-          <button className="bg-[#D98C20] text-white font-semibold px-6 py-3 rounded-full shadow-md hover:bg-[#bf7618] transition">
+          <button
+          onClick={()=>{navigate('/about')}}
+          className="bg-[#D98C20] text-white font-semibold px-6 py-3 rounded-full shadow-md hover:bg-[#bf7618] transition">
             Learn More
           </button>
         </div>

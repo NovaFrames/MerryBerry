@@ -26,7 +26,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
+      setScrolled(window.scrollY > 900);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -65,7 +65,7 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, type: 'spring' }}
-        className={`bg-white ${scrolled ? 'py-2' : 'py-2'} fixed top-0 left-0 right-0 z-50 transition-all duration-300`}
+        className={`bg-white shadow-2xl ${scrolled ? 'py-1' : 'py-2'} fixed top-0 left-0 right-0 z-50 transition-all duration-300`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex justify-between items-center h-16">
