@@ -4,7 +4,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#fff9f0] pt-20 pb-8">
+    <footer className="relative z-50 bg-[#fff9f0] pt-20 pb-8">
       {/* Curve Border */}
       <div className="absolute -top-1 left-0 w-full overflow-hidden leading-[0]">
         <svg
@@ -12,7 +12,7 @@ export default function Footer() {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 320"
         >
-          <path
+          <path 
             fill="#fff9f0"
             d="M0,64L80,74.7C160,85,320,107,480,101.3C640,96,800,64,960,69.3C1120,75,1280,117,1360,138.7L1440,160L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
           ></path>
