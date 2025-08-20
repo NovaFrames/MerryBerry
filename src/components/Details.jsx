@@ -1,5 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import one from '../assets/menu/1.jpg'
+import two from '../assets/menu/2.jpg'
+import three from '../assets/menu/3.jpg'
+import four from '../assets/menu/4.jpg'
 
 const menuItems = [
   {

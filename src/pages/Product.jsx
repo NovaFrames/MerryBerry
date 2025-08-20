@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { allProducts } from "./AllProducts";
+import React, { useEffect, useState } from "react";
 import { Plus, X } from "lucide-react";
 import Footer from "../components/Footer";
+import { getProducts } from "../utils/service";
 
 const categories = [
   "ice-cream",
@@ -14,6 +14,20 @@ const categories = [
 
 const Product = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
+    const [allProducts, setAllProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getProducts();
+        setAllProducts(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="bg-[#fff9f0] min-h-screen py-12 px-4">

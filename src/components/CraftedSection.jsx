@@ -1,21 +1,25 @@
 import React from "react";
+import one from '../assets/scoop/1.jpg'
+import two from '../assets/scoop/2.jpg'
+import three from '../assets/scoop/3.jpg'
+import four from '../assets/scoop/4.jpg'
 
 export default function IceCreamSection() {
   const items = [
     {
-      img: "https://plus.unsplash.com/premium_photo-1675279010969-e85bfbd402dc?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8aWNlY3JlYW18ZW58MHx8MHx8fDA%3D",
+      img: one,
       bg: "bg-pink-100",
     },
     {
-      img: "https://images.unsplash.com/photo-1627222295124-f8b3fc09e47f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fGljZWNyZWFtfGVufDB8fDB8fHww",
+      img: three,
       bg: "bg-yellow-200",
     },
     {
-      img: "https://images.unsplash.com/photo-1597249536924-b226b1a1259d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fGljZWNyZWFtfGVufDB8fDB8fHww",
+      img: two,
       bg: "bg-pink-100",
     },
     {
-      img: "https://images.unsplash.com/photo-1614014077943-840960ce6694?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjJ8fGljZWNyZWFtfGVufDB8fDB8fHww",
+      img: four,
       bg: "bg-yellow-200",
     },
   ];

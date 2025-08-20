@@ -1,22 +1,26 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import one from '../assets/special/1.jpg'
+import two from '../assets/special/2.jpg'
+import three from '../assets/special/3.jpg'
+import four from '../assets/special/4.jpg'
 
 const images = [
   {
-    src: "https://images.unsplash.com/photo-1586769412527-ab0855979b2e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGljZWNyZWFtfGVufDB8fDB8fHww",
-    name: "Ice Cream",
+    src: one,
+    name: "French Fries",
   },
   {
-    src: "https://plus.unsplash.com/premium_photo-1678198786424-c2cc6593f59c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8aWNlY3JlYW18ZW58MHx8MHx8fDA%3D",
-    name: "Brownie Dessert",
+    src: two,
+    name: "Mojito",
   },
   {
-    src: "https://images.unsplash.com/photo-1628585352636-f4a24c2e17d5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGljZWNyZWFtfGVufDB8fDB8fHww",
-    name: "Couple with Ice Cream",
+    src: three,
+    name: "Sandwich",
   },
   {
-    src: "https://images.unsplash.com/photo-1593558159516-d0be2a960c52?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aWNlY3JlYW18ZW58MHx8MHx8fDA%3D",
-    name: "Cafe Vibes",
+    src: four,
+    name: "Chicken Fries",
   },
 ];
 

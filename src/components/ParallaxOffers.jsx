@@ -1,11 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
+import image from '../assets/special/5.jpg'
+
 
 const offers = [
   {
     title: "Summer Chill Offer",
     desc: "Buy 1 mango smoothie and get the 2nd at 50% off. Perfect for sharing!",
-    img: "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2023/2/23/FNK_Indian-Fried-Chicken_s4x3.jpg.rend.hgtvcom.1280.720.suffix/1677264108617.webp",
+    img: image,
     tag: "BUY 1 GET 1 50% OFF",
   },
 ];

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import one from '../assets/Icecreams/1.png'
 import two from '../assets/Icecreams/2.png'
 import three from '../assets/Icecreams/3.png'
-import h6 from '../assets/home/6.png'
 
 const flavors = [
     {
@@ -14,7 +13,7 @@ const flavors = [
       textColor: "#8B4513",       // Warm Brown
       keyword: "If Thailand's full moon party was a flavor",
       theme: "PARTY",
-      mainImage: h6,
+      mainImage: three,
     },
     {
       name: "UBE DREAM",

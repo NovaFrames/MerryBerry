@@ -1,21 +1,24 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import one from '../assets/franchise/franchise1.png'
+import two from '../assets/franchise/franchise3.png'
+import three from '../assets/franchise/franchise4.png'
 
 const franchises = [
   {
-    name: "Delhi Branch",
-    img: "https://images.unsplash.com/photo-1586769412527-ab0855979b2e?w=600&auto=format&fit=crop&q=60",
-    location: "Delhi, India",
+    name: "Ammapet Branch",
+    img: one,
+    location: "salem, Tamil Nadu",
   },
   {
-    name: "Mumbai Branch",
-    img: "https://plus.unsplash.com/premium_photo-1678198786424-c2cc6593f59c?w=600&auto=format&fit=crop&q=60",
-    location: "Mumbai, India",
+    name: "Yercaud Branch",
+    img: two,
+    location: "salem, Tamil Nadu",
   },
   {
-    name: "Bangalore Branch",
-    img: "https://images.unsplash.com/photo-1628585352636-f4a24c2e17d5?w=600&auto=format&fit=crop&q=60",
-    location: "Bangalore, India",
+    name: "Hasthampatti Branch",
+    img: three,
+    location: "salem, Tamil Nadu",
   },
 ];
 

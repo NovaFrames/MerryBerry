@@ -84,7 +84,7 @@ const Career = () => {
             />
           </div>
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 py-40 sm:px-6 lg:px-8 text-center">
+        <div className="relative max-w-7xl mx-auto px-4 py-40 text-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-pulse">
             Join Our <span className="text-yellow-300">Delicious Team</span>
           </h1>
@@ -93,58 +93,59 @@ const Career = () => {
             with flavor and fun.
           </p>
           <div className="mt-8 flex justify-center space-x-4">
-            <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-full p-3 animate-bounce">
-              <ChefHat className="w-8 h-8" />
-            </div>
-            <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-full p-3 animate-bounce">
-              <IceCream className="w-8 h-8" />
-            </div>
-            <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-full p-3 animate-bounce">
-              <Heart className="w-8 h-8" />
-            </div>
+            {[ChefHat, IceCream, Heart].map((Icon, i) => (
+              <div
+                key={i}
+                className="bg-white bg-opacity-20 backdrop-blur-sm rounded-full p-3 animate-bounce"
+                style={{ animationDelay: `${i * 0.2}s` }}
+              >
+                <Icon className="w-8 h-8" />
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
+
       {/* Dynamic Job Sections */}
       {jobs.map((job, index) => (
-  <section key={index} className={`py-24 ${job.bg}`}>
-    <div className="container mx-auto px-6">
-      <div className="grid md:grid-cols-2 gap-10 items-center">
-        
-        {/* Image (alternate with order classes) */}
-        <div className={`${index % 2 === 0 ? "order-2 md:order-2" : "order-1 md:order-1"}`}>
-          <img
-            src={job.image}
-            alt={job.title}
-            className="w-full h-auto object-cover"
-          />
-        </div>
+        <section key={index} className={`py-24 ${job.bg}`}>
+          <div className="container mx-auto px-6">
+            <div className="grid md:grid-cols-2 gap-10 items-center">
 
-        {/* Text Content */}
-        <div className={`${index % 2 === 0 ? "order-1 md:order-1 md:ml-20" : "order-2 md:order-2 md:mr-20"}`}>
-          <h2 className="text-4xl font-bold text-yellow-600 mb-4">
-            {job.title}
-          </h2>
-          <p className="text-lg text-gray-700 mb-6">{job.desc}</p>
-          <ul className="text-gray-700 space-y-2 mb-6">
-            {job.salary.map((s, i) => (
-              <li key={i}>
-                {s.type}: <strong>{s.amount}</strong>
-              </li>
-            ))}
-          </ul>
-          <button
-            onClick={() => openForm(job.buttonTitle)}
-            className="bg-yellow-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-600 transition"
-          >
-            Apply Now
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-))}
+              {/* Image (alternate with order classes) */}
+              <div className={`${index % 2 === 0 ? "order-2 md:order-2" : "order-1 md:order-1"}`}>
+                <img
+                  src={job.image}
+                  alt={job.title}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+
+              {/* Text Content */}
+              <div className={`${index % 2 === 0 ? "order-1 md:order-1 md:ml-20" : "order-2 md:order-2 md:mr-20"}`}>
+                <h2 className="text-4xl font-bold text-yellow-600 mb-4">
+                  {job.title}
+                </h2>
+                <p className="text-lg text-gray-700 mb-6">{job.desc}</p>
+                <ul className="text-gray-700 space-y-2 mb-6">
+                  {job.salary.map((s, i) => (
+                    <li key={i}>
+                      {s.type}: <strong>{s.amount}</strong>
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  onClick={() => openForm(job.buttonTitle)}
+                  className="bg-yellow-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-600 transition"
+                >
+                  Apply Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
 
 
       {/* Popup Modal */}

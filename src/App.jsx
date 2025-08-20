@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Outlet, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Outlet, useLocation, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import Franchise from './pages/Franchise';
@@ -9,8 +9,13 @@ import Navbar from './components/Navbar';
 import Product from './pages/Product';
 import IceCreamFriedChickenLoader from './IceCreamFriedChickenLoader/IceCreamFriedChickenLoader';
 import './App.css';
-import Product2 from './pages/Product2';
-import Product3 from './pages/Product3';
+import Admin from '../src/pages/admin/Admin.jsx'
+import AdminDashboard from '../src/pages/admin/AdminDashboard.jsx'
+import AdminCareers from '../src/pages/admin/AdminCareers.jsx'
+import AdminFranchise from '../src/pages/admin/AdminFranchise.jsx'
+import AdminProducts from '../src/pages/admin/AdminProducts.jsx'
+import AdminOffers from '../src/pages/admin/AdminOffer.jsx'
+
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -36,6 +41,8 @@ const Layout = () => (
 
 const App = () => {
   const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
@@ -57,7 +64,25 @@ const App = () => {
             <Route path="career" element={<Career />} />
             <Route path="enquiry" element={<Enquiry />} />
           </Route>
+          <Route path="/admin" element={<Admin setIsAuthenticated={setIsAuthenticated} />} />
+        <Route
+          path="/dashboard/*"
+          element={
+            isAuthenticated ? (
+              <AdminDashboard />
+            ) : (
+              <Navigate to="/admin" replace />
+            )
+          }
+        >
+          <Route path="offers" element={<AdminOffers />} />
+          <Route path="products" element={<AdminProducts />} />
+          <Route path="franchise" element={<AdminFranchise />} />
+          <Route path="careers" element={<AdminCareers />} />
+        </Route>
         </Routes>
+        
+        
       )}
     </BrowserRouter>
   );
