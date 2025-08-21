@@ -174,7 +174,7 @@ const Products = () => {
         <h1 className="text-3xl font-bold text-gray-800">Product Management</h1>
         <button
           onClick={handleAdd}
-          className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors shadow-md"
+          className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg transition-colors shadow-md"
         >
           <Plus size={18} /> Add Product
         </button>
@@ -384,7 +384,7 @@ const Products = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full flex justify-center items-center gap-2 bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+                  className="w-full flex justify-center items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white py-3 px-4 rounded-lg transition-colors disabled:opacity-50"
                 >
                   {loading && <Loader2 className="animate-spin" size={18} />}
                   {editingId ? "Update Product" : "Add Product"}
@@ -426,7 +426,7 @@ const Products = () => {
                 
                 <div>
                   <h3 className="text-sm font-medium text-gray-500">Category</h3>
-                  <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-sm font-semibold rounded-full">
+                  <span className="inline-block px-3 py-1 bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold rounded-full">
                     {viewingProduct.category}
                   </span>
                 </div>
@@ -444,7 +444,7 @@ const Products = () => {
                   setViewModalOpen(false);
                   handleEdit(viewingProduct);
                 }}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg transition-colors"
               >
                 Edit Product
               </button>
