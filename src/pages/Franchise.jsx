@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Star, MapPin, DollarSign, Users, ChevronLeft, ChevronRight, X, TrendingUp, Clock, Shield, Award, Phone, Mail, CheckCircle, ArrowRight, Zap, Target, Crown, Gift, ChefHat, IceCream, Heart, Locate, LocationEdit } from 'lucide-react';
 import Footer from '../components/Footer';
 import about3 from '../assets/about/about3.png'
@@ -12,94 +12,38 @@ import fra2 from '../assets/franchise/franchise2.png'
 import fra3 from '../assets/franchise/franchise3.png'
 import fra4 from '../assets/franchise/franchise4.png'
 import map from '../assets/map/map.png'
+import { getCards, getFeatures, getFranchises } from '../utils/service';
 
 const Franchise = () => {
 
-  const sections = [
-    {
-      id: 1,
-      title: "Grab & Go",
-      model: "Kiosk Model",
-      price: "₹2.99 Lakhs",
-      totalInvestment: "₹7.00 Lakhs",
-      img: f1,
-      imgAlt: "Grab and Go Kiosk",
-      features: [
-        "Franchise Fee: ₹2.99 Lakhs + GST",
-        "Area Required: 50 to 100 sq.ft",
-        "Low operational cost",
-      ],
-    },
-    {
-      id: 2,
-      title: "Urban Junction",
-      model: "Café Model",
-      price: "₹4.99 Lakhs",
-      totalInvestment: "₹15.00 Lakhs",
-      img: f3,
-      imgAlt: "Urban Junction Café",
-      features: [
-        "Franchise Fee: ₹4.99 Lakhs",
-        "Area Required: 150 to 200 sq.ft",
-        "Premium seating option",
-      ],
-    },
-    {
-      id: 3,
-      title: "Metro Junction",
-      model: "Premium Outlet",
-      price: "₹4.99 Lakhs",
-      totalInvestment: "₹17.50 Lakhs",
-      img: f4,
-      imgAlt: "Metro Junction Outlet",
-      features: [
-        "Franchise Fee: ₹4.99 Lakhs",
-        "Area Required: 200 to 300 sq.ft",
-        "High footfall locations",
-      ],
-    },
-  ]
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [sections, setSections] = useState([]);
+  const [features, setFeatures] = useState([]);
+  const [cards, setCards] = useState([]);
+  const [currentIndexes, setCurrentIndexes] = useState(0);
 
-  const features = [
-    {
-      id: 1,
-      title: "Boost ROI with AI Insights",
-      description: [
-        "AI-driven data analysis tailored for your campaigns",
-        "Predictive insights to optimize ad spend",
-        "Identify top-performing channels instantly",
-        "Automated trend detection for quick action",
-        "Boost overall ROI with actionable strategies",
-      ],
-      image: roi,
-    },
-    {
-      id: 2,
-      title: "Smarter Campaign Automation",
-      description: [
-        "Set up campaigns with minimal effort",
-        "Automate repetitive marketing tasks",
-        "AI-powered scheduling and delivery",
-        "Adaptive workflows for efficiency",
-        "Save time while improving accuracy",
-      ],
-      image: roi,
-    },
-    {
-      id: 3,
-      title: "Real-Time Performance Tracking",
-      description: [
-        "Track campaign metrics live on dashboard",
-        "Instant alerts for underperforming ads",
-        "Detailed reporting with key KPIs",
-        "Compare past and current performance trends",
-        "Stay ahead with real-time competitor insights",
-      ],
-      image: roi,
-    },
-  ];
-
-
+  
+  useEffect(() => {
+    
+    fetchData1();
+    fetchData2();
+    fetchData3();
+  }, []);
+  
+  const fetchData1 = async () => {
+      const data = await getFranchises();
+      setSections(data);
+    };
+    const fetchData2 = async () => {
+      const data = await getFeatures();
+      setFeatures(data);
+    };
+  const fetchData3 = async () => {
+    const data = await getCards();
+    setCards(data);
+  };
+  
+  
   const branches = [
     {
       name: "Merry Berry - Fairlands",
@@ -131,8 +75,8 @@ const Franchise = () => {
     },
   ];
 
-  const [selectedBranch, setSelectedBranch] = useState(branches[0]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+
+    const [selectedBranch, setSelectedBranch] = useState(branches[0]);
 
   const handleNext = () => {
     const newIndex = (currentIndex + 1) % branches.length;
@@ -145,34 +89,6 @@ const Franchise = () => {
     setCurrentIndex(newIndex);
     setSelectedBranch(branches[newIndex]);
   };
-  const [currentIndexes, setCurrentIndexes] = useState(0);
-
-  const cards = [
-    {
-      title: "Grab & Go",
-      sales: "₹3,00,000",
-      expenses: "₹67,500",
-      netProfit: "₹67,500",
-      netProfitPercent: "22.5%",
-      grossProfit: "₹1,35,000",
-    },
-    {
-      title: "Urban Junction",
-      sales: "₹5,50,000",
-      expenses: "₹1,27,500",
-      netProfit: "₹1,20,000",
-      netProfitPercent: "21.82%",
-      grossProfit: "₹2,47,500",
-    },
-    {
-      title: "Metro Junction",
-      sales: "₹7,50,000",
-      expenses: "₹1,62,500",
-      netProfit: "₹1,75,000",
-      netProfitPercent: "23.33%",
-      grossProfit: "₹3,37,500",
-    },
-  ];
 
   const nextCard = () => {
     setCurrentIndexes((prev) => (prev + 1) % cards.length);
@@ -301,14 +217,14 @@ const Franchise = () => {
                 : "bg-gradient-to-br from-amber-50 to-orange-50"
                 } ${zIndexClass}`}
             >
-              <div className="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-8 items-center px-6 py-12 md:p-12">
+              <div className="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-8 md:gap-30 items-center px-6 py-12 md:p-12">
 
                 {/* Image */}
                 <div className={`w-full h-full flex items-center ${isEven ? "order-1" : "order-2"}`}>
                   <img
                     src={section.img}
                     alt={section.imgAlt}
-                    className="rounded-2xl shadow-xl object-cover w-full max-h-[80vh]"
+                    className="rounded-2xl shadow-xl object-cover w-full max-h-[60vh]"
                   />
                 </div>
 
@@ -443,7 +359,7 @@ const Franchise = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                     </svg>
                   </div>
-                  <h3 className="text-lg font-bold text-gray-800">{cards[currentIndexes].title}</h3>
+                  <h3 className="text-lg font-bold text-gray-800">{cards[currentIndexes]?.title}</h3>
                 </div>
 
                 {/* Mini chart for mobile */}
@@ -459,11 +375,11 @@ const Franchise = () => {
 
                 <div className="space-y-3 text-sm">
                   {[
-                    { label: "Monthly Sales", value: cards[currentIndexes].sales },
-                    { label: "Expenses", value: cards[currentIndexes].expenses },
-                    { label: "Net Profit", value: cards[currentIndexes].netProfit, color: "text-green-600" },
-                    { label: "Profit %", value: cards[currentIndexes].netProfitPercent, color: "text-green-600" },
-                    { label: "Gross Profit", value: cards[currentIndexes].grossProfit, color: "text-amber-600" },
+                    { label: "Monthly Sales", value: cards[currentIndexes]?.sales },
+                    { label: "Expenses", value: cards[currentIndexes]?.expenses },
+                    { label: "Net Profit", value: cards[currentIndexes]?.netProfit, color: "text-green-600" },
+                    { label: "Profit %", value: cards[currentIndexes]?.netProfitPercent, color: "text-green-600" },
+                    { label: "Gross Profit", value: cards[currentIndexes]?.grossProfit, color: "text-amber-600" },
                   ].map((item, i) => (
                     <div key={i} className="flex justify-between items-center pb-2 border-b border-gray-100">
                       <span className="text-gray-600 font-medium">{item.label}</span>
@@ -515,7 +431,7 @@ const Franchise = () => {
               key={feature.id}
               className={`${bgClass} relative ${zIndexClass} pt-40 md:pt-20 h-screen sticky top-0 px-10`}
             >
-              <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+              <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 {index % 2 === 0 ? (
                   <>
                     <div className="space-y-6">
