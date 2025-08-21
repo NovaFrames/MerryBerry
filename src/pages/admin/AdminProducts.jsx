@@ -242,7 +242,7 @@ const Products = () => {
           </thead>
           <tbody className="divide-y divide-gray-200">
             {filteredProducts.map((p) => (
-              <tr key={p.id} className="hover:bg-gray-50 transition-colors">
+              <tr key={p.id} className="hover:bg-amber-50 transition-colors">
                 <td className="p-4">
                   <img
                     src={p.image}
@@ -252,7 +252,7 @@ const Products = () => {
                 </td>
                 <td className="p-4 font-medium text-gray-900">{p.name}</td>
                 <td className="p-4">
-                  <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
+                  <span className="px-2 py-1 bg-amber-500  text-white shadow-md text-xs  rounded-full">
                     {p.category}
                   </span>
                 </td>

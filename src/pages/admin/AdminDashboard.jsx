@@ -44,7 +44,6 @@ const Dashboard = () => {
     { id: 3, label: "Products", path: "/dashboard/products", icon: <Package size={20} /> },
     { id: 4, label: "Franchise", path: "/dashboard/franchise", icon: <Building2 size={20} /> },
     { id: 5, label: "Careers", path: "/dashboard/careers", icon: <Briefcase size={20} /> },
-    { id: 6, label: "Analytics", path: "/dashboard/analytics", icon: <TrendingUp size={20} /> },
     { id: 7, label: "Settings", path: "/dashboard/settings", icon: <Settings size={20} /> },
   ];
 
