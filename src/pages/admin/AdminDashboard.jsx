@@ -31,7 +31,7 @@ const Dashboard = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [userData, setUserData] = useState({
-    name: "Alex Johnson",
+    name: "Merry Berry",
     role: "Admin",
     notifications: 3,
     email: "alex.johnson@example.com",

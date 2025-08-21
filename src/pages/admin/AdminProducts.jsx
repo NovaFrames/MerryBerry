@@ -490,6 +490,7 @@ const Products = () => {
                   <option value="mojito">Mojito</option>
                   <option value="sandwich">Sandwich</option>
                   <option value="fried-chicken">Fried Chicken</option>
+                  <option value="milk-shake">Milk Shake</option>
                 </select>
               </div>
 
