@@ -71,3 +71,17 @@ export const getCards = async () => {
     return [];
   }
 };
+
+export const getCareers = async () => {
+  try {
+    const querySnapshot = await getDocs(collection(db, "careers"));
+    const careers = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    return careers;
+  } catch (error) {
+    console.error("Error fetching careers:", error);
+    return [];
+  }
+};

@@ -13,6 +13,7 @@ import fra3 from '../assets/franchise/franchise3.png'
 import fra4 from '../assets/franchise/franchise4.png'
 import map from '../assets/map/map.png'
 import { getCards, getFeatures, getFranchises } from '../utils/service';
+import { useNavigate } from 'react-router-dom';
 
 const Franchise = () => {
 
@@ -21,6 +22,7 @@ const Franchise = () => {
   const [features, setFeatures] = useState([]);
   const [cards, setCards] = useState([]);
   const [currentIndexes, setCurrentIndexes] = useState(0);
+  const navigate = useNavigate()
 
   
   useEffect(() => {
@@ -268,7 +270,7 @@ const Franchise = () => {
                   </div>
 
                   {/* Button */}
-                  <button className="bg-black hover:bg-gray-800 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
+                  <button onClick={()=>navigate('/enquiry')} className="bg-black hover:bg-gray-800 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
                     Enquire Now
                   </button>
                 </div>
@@ -330,7 +332,7 @@ const Franchise = () => {
                           {item.label}
                         </span>
                         <span className={`font-semibold ${item.color} transition-transform duration-300 group-hover:scale-105`}>
-                          {item.value}
+                          ₹ {item.value}
                         </span>
                       </div>
                     ))}
