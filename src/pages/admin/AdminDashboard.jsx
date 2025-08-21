@@ -40,11 +40,10 @@ const Dashboard = () => {
 
   // Sidebar menu items from array
   const menuItems = [
-    { id: 2, label: "Offers", path: "/dashboard/offers", icon: <Gift size={20} /> },
-    { id: 3, label: "Products", path: "/dashboard/products", icon: <Package size={20} /> },
-    { id: 4, label: "Franchise", path: "/dashboard/franchise", icon: <Building2 size={20} /> },
-    { id: 5, label: "Careers", path: "/dashboard/careers", icon: <Briefcase size={20} /> },
-    { id: 7, label: "Settings", path: "/dashboard/settings", icon: <Settings size={20} /> },
+    { id: 1, label: "Offers", path: "/dashboard/offers", icon: <Gift size={20} /> },
+    { id: 2, label: "Products", path: "/dashboard/products", icon: <Package size={20} /> },
+    { id: 3, label: "Franchise", path: "/dashboard/franchise", icon: <Building2 size={20} /> },
+    { id: 4, label: "Careers", path: "/dashboard/careers", icon: <Briefcase size={20} /> },
   ];
 
 
