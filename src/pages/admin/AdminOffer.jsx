@@ -52,9 +52,7 @@ const Offers = () => {
   useEffect(() => {
     if (searchTerm) {
       const filtered = offers.filter(offer => 
-        offer.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        offer.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        offer.description.toLowerCase().includes(searchTerm.toLowerCase())
+        offer.title.toLowerCase().includes(searchTerm.toLowerCase()) 
       );
       setFilteredOffers(filtered);
     } else {
@@ -222,19 +220,19 @@ const Offers = () => {
 
       {/* Stats Overview */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
-          <div className="flex justify-between items-center">
+        <div className="bg-white p-5 rounded-xl shadow-md border-l-4 border-blue-500">
+          <div className="flex justify-between items-center ">
             <div>
               <p className="text-gray-500 text-sm">Total Offers</p>
               <h3 className="text-2xl font-bold text-gray-800">{offers.length}</h3>
             </div>
-            <div className="p-3 rounded-lg bg-amber-100 text-amber-600">
+            <div className="p-3 rounded-lg bg-blue-100 text-blue-600">
               <Gift size={24} />
             </div>
           </div>
         </div>
         
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
+        <div className="bg-white p-5 rounded-xl shadow-md border-l-4 border-green-500">
           <div className="flex justify-between items-center">
             <div>
               <p className="text-gray-500 text-sm">Active Offers</p>
@@ -248,7 +246,7 @@ const Offers = () => {
           </div>
         </div>
         
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
+        <div className="bg-white p-5 rounded-xl shadow-md border-l-4 border-yellow-500">
           <div className="flex justify-between items-center">
             <div>
               <p className="text-gray-500 text-sm">Popular Offers</p>
@@ -256,13 +254,13 @@ const Offers = () => {
                 {offers.filter(offer => offer.popular).length}
               </h3>
             </div>
-            <div className="p-3 rounded-lg bg-blue-100 text-blue-600">
+            <div className="p-3 rounded-lg bg-yellow-100 text-yellow-600">
               <Star size={24} />
             </div>
           </div>
         </div>
         
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
+        <div className="bg-white p-5 rounded-xl shadow-md border-l-4 border-red-500">
           <div className="flex justify-between items-center">
             <div>
               <p className="text-gray-500 text-sm">Expired Offers</p>
