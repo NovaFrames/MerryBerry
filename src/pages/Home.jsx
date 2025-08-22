@@ -146,7 +146,7 @@ const Home = () => {
                 MERRY BERRY
 
                 {/* Wavy underline */}
-                <svg
+                {/* <svg
                   className="absolute left-0 -bottom-2 w-full h-3"
                   viewBox="0 0 100 10"
                   preserveAspectRatio="none"
@@ -158,7 +158,7 @@ const Home = () => {
                     strokeLinecap="round"
                     fill="transparent"
                   />
-                </svg>
+                </svg> */}
               </span>
             </h1>
 
