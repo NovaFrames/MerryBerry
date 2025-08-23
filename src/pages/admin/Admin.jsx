@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Admin = ({ setIsAuthenticated }) => {
@@ -6,10 +6,23 @@ const Admin = ({ setIsAuthenticated }) => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  // ✅ On component mount, check sessionStorage
+  useEffect(() => {
+    const auth = sessionStorage.getItem("authenticated");
+    if (auth === "true") {
+      setIsAuthenticated(true);
+      navigate("/dashboard/offers"); // Auto-redirect if already logged in
+    }
+  }, [navigate, setIsAuthenticated]);
+
   const handleLogin = (e) => {
     e.preventDefault();
-    if (email === "merryberry@gmail.com" && password === "merryberry@gmail.com") {
+    if (
+      email === "merryberry@gmail.com" &&
+      password === "merryberry@gmail.com"
+    ) {
       setIsAuthenticated(true);
+      sessionStorage.setItem("authenticated", "true"); // ✅ Save in sessionStorage
       navigate("/dashboard/offers");
     } else {
       alert("Invalid Credentials");
@@ -18,7 +31,10 @@ const Admin = ({ setIsAuthenticated }) => {
 
   return (
     <div className="h-screen flex items-center justify-center bg-gray-100">
-      <form onSubmit={handleLogin} className="bg-white shadow-lg p-8 rounded-xl w-96">
+      <form
+        onSubmit={handleLogin}
+        className="bg-white shadow-lg p-8 rounded-xl w-96"
+      >
         <h2 className="text-2xl font-bold mb-6 text-center">Admin Login</h2>
         <input
           type="email"

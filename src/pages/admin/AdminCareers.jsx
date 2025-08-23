@@ -35,7 +35,6 @@ const AdminCareers = () => {
     title: "",
     description: "",
     location: "",
-    type: "",
     salary: [{ type: "", amount: "" }],
     image: null,
     active: true,
@@ -159,7 +158,6 @@ const AdminCareers = () => {
           title: formData.title,
           description: formData.description,
           location: formData.location,
-          type: formData.type,
           salary: formData.salary,
           image: imageUrl,
           active: formData.active,
@@ -172,7 +170,6 @@ const AdminCareers = () => {
           title: formData.title,
           description: formData.description,
           location: formData.location,
-          type: formData.salary[0].type,
           salary: formData.salary,
           image: imageUrl,
           active: formData.active,
@@ -554,8 +551,6 @@ const AdminCareers = () => {
                       <option value="">Select Type</option>
                       <option value="Full-time">Full-time</option>
                       <option value="Part-time">Part-time</option>
-                      <option value="Contract">Contract</option>
-                      <option value="Internship">Internship</option>
                     </select>
                     <input
                       type="text"

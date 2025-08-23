@@ -31,7 +31,7 @@ const Dashboard = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [userData, setUserData] = useState({
-    name: "Alex Johnson",
+    name: "Merry Berry",
     role: "Admin",
     notifications: 3,
     email: "alex.johnson@example.com",
@@ -69,6 +69,13 @@ const Dashboard = () => {
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location]);
+
+    const handleLogout = () => {
+  sessionStorage.removeItem("authenticated"); // ✅ Clear session
+  navigate("/", { replace: true }); // ✅ Navigate to login
+  window.location.reload(); // ✅ Refresh the page
+};
+
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -146,7 +153,9 @@ const Dashboard = () => {
                 <p className="text-sm text-gray-500">{userData.role}</p>
               </div>
             </div>
-            <button className="w-full mt-4 flex items-center text-gray-500 hover:text-amber-600 p-2 rounded-lg text-sm font-medium hover:bg-amber-50 transition">
+            <button 
+            onClick={handleLogout} 
+            className="w-full mt-4 flex items-center text-gray-500 hover:text-amber-600 p-2 rounded-lg text-sm font-medium hover:bg-amber-50 transition">
               <LogOut size={16} className="mr-2" />
               Logout
             </button>

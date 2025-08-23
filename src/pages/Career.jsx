@@ -1,54 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ChefHat,
   IceCream,
   Heart
 } from "lucide-react";
 import Footer from "../components/Footer";
-import c1 from "../assets/career/c1.png";
-import c2 from "../assets/career/c2.png";
-import c3 from "../assets/career/c3.png";
 import CareerFormModal from "../components/CareerFormModal";
-
-const jobs = [
-  {
-    title: "We're Hiring Milkshake Makers!",
-    desc: "Love blending flavors and delighting customers? Join our milkshake team and serve joy in every glass!",
-    salary: [
-      { type: "🍧 Part-time", amount: "₹10,000 / month" },
-      { type: "🍨 Full-time", amount: "₹20,000 / month" },
-    ],
-    buttonTitle: "Milkshake Maker",
-    image: c1,
-    bg: "bg-fuchsia-100",
-  },
-  {
-    title: "We're Hiring Chicken Fry Makers!",
-    desc: "Passionate about crispy perfection and savory flavors? Join our kitchen crew and master the art of making the perfect fried chicken!",
-    salary: [
-      { type: "🍗 Part-time", amount: "₹10,000 / month" },
-      { type: "🔥 Full-time", amount: "₹20,000 / month" },
-    ],
-    buttonTitle: "Chicken Fry Maker",
-    image: c2,
-    bg: "bg-[#fff9f0]",
-  },
-  {
-    title: "We're Hiring Ice Cream Sundae Makers!",
-    desc: "Have a passion for sweet creations? Join our team and craft delightful ice cream sundaes that bring smiles to every customer!",
-    salary: [
-      { type: "🍦 Part-time", amount: "₹10,000 / month" },
-      { type: "🍨 Full-time", amount: "₹20,000 / month" },
-    ],
-    buttonTitle: "Ice Cream Sundae Maker",
-    image: c3,
-    bg: "bg-fuchsia-100",
-  },
-];
+import { getCareers } from "../utils/service";
 
 const Career = () => {
   const [showForm, setShowForm] = useState(false);
   const [jobTitle, setJobTitle] = useState("");
+  const [careers, setCareers] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getCareers();
+      setCareers(data);
+    };
+    fetchData();
+  }, []);
 
   const openForm = (title) => {
     setJobTitle(title);
@@ -108,8 +79,11 @@ const Career = () => {
 
 
       {/* Dynamic Job Sections */}
-      {jobs.map((job, index) => (
-        <section key={index} className={`py-24 ${job.bg}`}>
+      {careers.map((job, index) => (
+        <section
+          key={index}
+          className={`py-24 ${index % 2 === 0 ? "bg-fuchsia-100" : "bg-[#fff9f0]"}`}
+        >
           <div className="container mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-10 items-center">
 
@@ -127,25 +101,34 @@ const Career = () => {
                 <h2 className="text-4xl font-bold text-yellow-600 mb-4">
                   {job.title}
                 </h2>
-                <p className="text-lg text-gray-700 mb-6">{job.desc}</p>
+                <p className="text-lg text-gray-700 mb-4">{job.description}</p>
+
+                <p className="text-md text-gray-600 mb-2">
+                  <strong>Location:</strong> {job.location}
+                </p>
+
                 <ul className="text-gray-700 space-y-2 mb-6">
                   {job.salary.map((s, i) => (
                     <li key={i}>
-                      {s.type}: <strong>{s.amount}</strong>
+                      {s.type}: <strong>₹{s.amount} /month</strong>
                     </li>
                   ))}
                 </ul>
-                <button
-                  onClick={() => openForm(job.buttonTitle)}
-                  className="bg-yellow-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-600 transition"
-                >
-                  Apply Now
-                </button>
+
+                
+                  <button
+                    onClick={() => openForm(job.title)}
+                    className="bg-yellow-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-600 transition"
+                  >
+                    Apply Now
+                  </button>
               </div>
             </div>
           </div>
         </section>
       ))}
+
+
 
 
       {/* Popup Modal */}

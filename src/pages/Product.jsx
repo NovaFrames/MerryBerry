@@ -5,11 +5,11 @@ import { getProducts } from "../utils/service";
 
 const categories = [
   "ice-cream",
-  "chicken",
+  "fried-chicken",
+  "milk-shake",
   "burger",
-  "sandwich",
   "mojito",
-  "milkshake",
+  "sandwich",
 ];
 
 const Product = () => {
