@@ -94,7 +94,7 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-6 py-16 md:flex items-center gap-10">
           {/* Left Text */}
           <div className="md:w-1/2">
-            <h2 className="text-2xl md:text-5xl font-extrabold tracking-wider mb-4 text-center text-pink-600 uppercase">
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-wider mb-4 text-center text-pink-600 uppercase">
               Our Story
             </h2>
             <p className="text-black/70 mb-6 text-xl ">
