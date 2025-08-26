@@ -46,7 +46,7 @@ export default function Footer() {
   return (
     <footer className="relative z-50 bg-[#fff9f0] pt-20 pb-8">
       {/* Curve Border */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-0">
+      {/* <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-0">
         <svg
           className="relative block w-full h-10 rotate-180"
           xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +58,7 @@ export default function Footer() {
             d="M0,40 Q45,0 90,40 T180,40 T270,40 T360,40 T450,40 T540,40 T630,40 T720,40 T810,40 T900,40 T990,40 T1080,40 T1170,40 T1260,40 T1350,40 T1440,40 V80 H0 Z"
           />
         </svg>
-      </div>
+      </div> */}
 
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
         {/* Logo & Social */}

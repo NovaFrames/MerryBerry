@@ -1,10 +1,11 @@
 import React from "react";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, IceCream, Store, Star, UserRound } from "lucide-react";
 import h22 from "../assets/home/22.png";
 import { useNavigate } from "react-router-dom";
 
 const AboutSection = () => {
   const navigate = useNavigate();
+
   return (
     <>
       {/* Section Heading */}
@@ -32,13 +33,13 @@ const AboutSection = () => {
           </span>
         </h2>
         <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">
-          Discover the insights and experiences we’ve gained from diverse places and
-          unique situations.
+          Discover the insights and experiences we’ve gained from diverse places
+          and unique situations.
         </p>
       </div>
 
-
-      <section className="relative min-h-screen py-16 px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-center gap-12 bg-transparent">
+      {/* About Section */}
+      <section className="relative  py-16 px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-center gap-12 bg-transparent">
         {/* Transparent Top Wave */}
         <svg
           className="absolute md:-top-[25vw] -top-[40vw] left-0 w-full h-auto z-0 pointer-events-none"
@@ -52,7 +53,6 @@ const AboutSection = () => {
           />
         </svg>
 
-
         {/* Left Image */}
         <div className="flex-1 flex justify-center relative z-10">
           <img src={h22} alt="Ice Cream" className="max-w-sm lg:max-w-md" />
@@ -65,9 +65,9 @@ const AboutSection = () => {
             Enjoy It Before Melting
           </h2>
           <p className="text-gray-600 leading-relaxed mb-6">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo
-            ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis
-            parturient montes, nascetur ridiculus mus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+            commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+            penatibus et magnis dis parturient montes, nascetur ridiculus mus.
           </p>
 
           {/* Features List */}
@@ -89,10 +89,42 @@ const AboutSection = () => {
 
           {/* Button */}
           <button
-          onClick={()=>{navigate('/about')}}
-          className="bg-[#D98C20] text-white font-semibold px-6 py-3 rounded-full shadow-md hover:bg-[#bf7618] transition">
+            onClick={() => {
+              navigate("/about");
+            }}
+            className="bg-[#D98C20] text-white font-semibold px-6 py-3 rounded-full shadow-md hover:bg-[#bf7618] transition"
+          >
             Learn More
           </button>
+        </div>
+      </section>
+
+      {/* Stats Section (Merged Inside) */}
+      <section className="w-full mb-10 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 justify-items-center">
+            {[
+              { icon: IceCream, value: 42, label: "Variant Flavor" },
+              { icon: Store, value: 15, label: "Branch Shop" },
+              { icon: Star, value: 280, label: "Satisfied Client" },
+              { icon: UserRound, value: 30, label: "Professional Staff" },
+            ].map((stat, i) => (
+              <div key={i} className="flex flex-col items-center text-center">
+                <stat.icon className="w-10 h-10 text-amber-500 mb-4" />
+                <div className="relative leading-none mb-2">
+                  <span className="text-3xl md:text-3xl text-neutral-800 tracking-tight">
+                    {stat.value}
+                  </span>
+                  <span className="align-super text-amber-500 text-xl font-bold ml-1">
+                    +
+                  </span>
+                </div>
+                <p className="text-neutral-600 text-lg md:text-xl">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>
