@@ -11,7 +11,7 @@ import { Heart, Clock, Users, CheckCircle2, Award, ChefHat, IceCream,
 import Footer from '../components/Footer';
 import ice from '../assets/home/16.png'
 import milkshake from '../assets/Icecreams/milkshake.png'
-import chicken from '../assets/Icecreams/chicken.png'
+import chicken from '../assets/home/8.png'
 import burger from '../assets/home/108.png'
 import one from '../assets/special/3.jpg'
 import two from '../assets/special/5.jpg'
@@ -94,7 +94,7 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-6 py-16 md:flex items-center gap-10">
           {/* Left Text */}
           <div className="md:w-1/2">
-            <h2 className="text-2xl md:text-5xl font-extrabold tracking-wider mb-4 text-center text-yellow-500 uppercase">
+            <h2 className="text-2xl md:text-5xl font-extrabold tracking-wider mb-4 text-center text-pink-600 uppercase">
               Our Story
             </h2>
             <p className="text-black/70 mb-6 text-xl ">

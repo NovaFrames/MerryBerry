@@ -15,7 +15,7 @@ import AdminCareers from '../src/pages/admin/AdminCareers.jsx'
 import AdminFranchise from '../src/pages/admin/AdminFranchise.jsx'
 import AdminProducts from '../src/pages/admin/AdminProducts.jsx'
 import AdminOffers from '../src/pages/admin/AdminOffer.jsx'
-import WhatsAppButton from './components/Whatsapp.jsx';
+import FloatingSocialMenu from './components/FloatingSocialMenu.jsx';
 
 
 // Scroll to top on route change
@@ -85,7 +85,7 @@ const App = () => {
         
         
       )}
-      <WhatsAppButton/>
+      <FloatingSocialMenu/>
     </BrowserRouter>
   );
 };
