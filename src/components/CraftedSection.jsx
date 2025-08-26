@@ -3,6 +3,7 @@ import one from '../assets/scoop/1.jpg'
 import two from '../assets/scoop/2.jpg'
 import three from '../assets/scoop/3.jpg'
 import four from '../assets/scoop/4.jpg'
+import bg from '../assets/creambg/bgg.jpg'
 
 export default function IceCreamSection() {
   const items = [
@@ -28,8 +29,7 @@ export default function IceCreamSection() {
     <section
       className="relative bg-cover bg-center min-h-screen flex flex-col justify-center"
       style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1581016327131-6cf17ab1f2c1?w=600&auto=format&fit=crop&q=60')",
+        backgroundImage: `url(${bg})`
       }}
     >
       <div className="absolute inset-0 bg-white/60"></div>
