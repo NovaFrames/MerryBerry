@@ -21,7 +21,7 @@ export default function FloatingSocialMenu() {
             />
           </a>
           <a
-            href="https://wa.me/99715768735?text=Hello!"
+            href="https://wa.me/9715768735?text=Hello%20sir%20,%20I%20visited%20your%20website%20and%20can%20I%20speak%20about%20Merry%20Berry"
             target="_blank"
             rel="noopener noreferrer"
             className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition"
