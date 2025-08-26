@@ -24,13 +24,16 @@ const footerData = {
     { name: "Career", href: "career" },
     { name: "Contact", href: "contact" },
   ],
-  usefulLinks: [
-    { name: "Disclaimer", href: "#" },
-    { name: "Privacy Policy", href: "#" },
-    { name: "Term & Condition", href: "#" },
-    { name: "Support", href: "#" },
-    { name: "FAQ", href: "#" },
-  ],
+  highlights: {
+    title: "Why Choose Us",
+    points: [
+      "Freshness",
+      "Quality",
+      "Variety",
+      "Service",
+      "Trust",
+    ],
+  },
   workHours: {
     time: "Everyday 10 AM - 9 PM",
     note: "A wonderful serenity has taken possession of my entire soul",
@@ -43,16 +46,17 @@ export default function Footer() {
   return (
     <footer className="relative z-50 bg-[#fff9f0] pt-20 pb-8">
       {/* Curve Border */}
-      <div className="absolute -top-1 left-0 w-full overflow-hidden leading-[0]">
+      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-0">
         <svg
-          className="relative block w-full h-[60px] sm:h-[80px]"
+          className="relative block w-full h-10 rotate-180"
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 320"
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
         >
           <path
-            fill="#fff9f0"
-            d="M0,64L80,74.7C160,85,320,107,480,101.3C640,96,800,64,960,69.3C1120,75,1280,117,1360,138.7L1440,160L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
-          ></path>
+            fill="#ffffff"
+            d="M0,40 Q45,0 90,40 T180,40 T270,40 T360,40 T450,40 T540,40 T630,40 T720,40 T810,40 T900,40 T990,40 T1080,40 T1170,40 T1260,40 T1350,40 T1440,40 V80 H0 Z"
+          />
         </svg>
       </div>
 
@@ -84,6 +88,19 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Highlights Section */}
+        <div>
+          <h3 className="text-lg font-bold text-gray-800 mb-4 relative">
+            {footerData.highlights.title}
+            <span className="block w-10 h-[2px] bg-[#f4a025] mt-1"></span>
+          </h3>
+          <ul className="space-y-2 text-gray-600 list-disc list-inside">
+            {footerData.highlights.points.map((point, i) => (
+              <li key={i}>{point}</li>
+            ))}
+          </ul>
+        </div>
+
         {/* Quick Links */}
         <div>
           <h3 className="text-lg font-bold text-gray-800 mb-4 relative">
@@ -92,21 +109,6 @@ export default function Footer() {
           </h3>
           <ul className="space-y-2 text-gray-600">
             {footerData.quickLinks.map((link, i) => (
-              <li key={i}>
-                <span onClick={() => (navigate(link.href))} className="cursor-pointer">{link.name}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Useful Links */}
-        <div>
-          <h3 className="text-lg font-bold text-gray-800 mb-4 relative">
-            Useful Links
-            <span className="block w-10 h-[2px] bg-[#f4a025] mt-1"></span>
-          </h3>
-          <ul className="space-y-2 text-gray-600">
-            {footerData.usefulLinks.map((link, i) => (
               <li key={i}>
                 <span onClick={() => (navigate(link.href))} className="cursor-pointer">{link.name}</span>
               </li>

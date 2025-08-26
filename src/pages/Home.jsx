@@ -176,7 +176,7 @@ const Home = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex items-center justify-center absolute z-10 mt-32 md:mt-0"
+              className="flex items-center justify-center absolute z-10 mt-32 md:mt-10"
             >
               {isMobile ? (
                 // Mobile - single image
@@ -253,7 +253,7 @@ const Home = () => {
         </div>
 
         {/* Decorative Bubbles */}
-        <div className="absolute bottom-0 w-full h-[15vh] md:h-48 bg-white rounded-t-[50%] z-20 flex items-center justify-center px-4">
+        <div className="absolute bottom-0 w-full h-[15vh] md:h-30 bg-white rounded-t-[50%] z-20 flex items-center justify-center px-4">
           <p
             className="text-xl md:text-4xl lg:text-5xl font-bold text-center text-black"
           >
