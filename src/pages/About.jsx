@@ -12,7 +12,11 @@ import Footer from '../components/Footer';
 import ice from '../assets/home/16.png'
 import milkshake from '../assets/Icecreams/milkshake.png'
 import chicken from '../assets/Icecreams/chicken.png'
-import burger from '../assets/Icecreams/burger.png'
+import burger from '../assets/home/108.png'
+import one from '../assets/special/3.jpg'
+import two from '../assets/special/5.jpg'
+import three from '../assets/special/6.jpg'
+import four from '../assets/special/6.png'
 
 const About = () => {
   const values = [
@@ -90,10 +94,10 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-6 py-16 md:flex items-center gap-10">
           {/* Left Text */}
           <div className="md:w-1/2">
-            <h2 className="text-2xl md:text-5xl font-extrabold tracking-wider mb-4 text-black uppercase">
+            <h2 className="text-2xl md:text-5xl font-extrabold tracking-wider mb-4 text-center text-yellow-500 uppercase">
               Our Story
             </h2>
-            <p className="text-black/80 mb-6 text-xl ">
+            <p className="text-black/70 mb-6 text-xl ">
               Merry Berry Icecream is your destination for delicious indulgence, offering a wide range of ice creams, sundaes, shakes, fried chicken, burger and mouthwatering add-on snacks like veg burgers and sandwiches. Since opening our doors in April 2023, we have quickly grown and currently operate 3 outlets in Salem, with 4 more outlets in progress across South India-including Bangalore, Chennai, and Erode-as part of our expanding franchise model. With a focus on quality, innovation, and customer satisfaction, we take pride in serving over 50+ varieties of ice cream sundaes, delivering a delightful experience with every scoop. Whether you're a fan of classic flavors or looking for something new and exciting, Merry Berry Icecream has something for everyone!
 
 
@@ -125,22 +129,22 @@ const About = () => {
               {
                 title: "Fresh Daily",
                 caption: "Made every morning",
-                src: "photo-1551024601-bec78aea704b"
+                src: one
               },
               {
                 title: "Perfect Crunch",
                 caption: "24-hour brined chicken",
-                src: "photo-1562967914-608f82629710"
+                src: two
               },
               {
                 title: "Artisan Flavors",
                 caption: "Unique combinations",
-                src: "photo-1497034825429-c343d7c6a68f"
+                src: three
               },
             ].map((item, i) => (
               <div key={i} className="relative overflow-hidden rounded-2xl shadow-xl">
                 <img
-                  src={`https://images.unsplash.com/${item.src}?auto=format&fit=crop&w=800&q=80`}
+                  src={item.src}
                   className="w-full h-48 object-cover transform hover:scale-110 transition-transform duration-500"
                   alt={item.title}
                 />
@@ -392,7 +396,7 @@ const About = () => {
             {/* Middle Image */}
             <div className="flex justify-center">
               <img
-                src={milkshake}
+                src={four}
                 alt="Milkshake"
                 className="max-h-[400px] object-contain"
               />

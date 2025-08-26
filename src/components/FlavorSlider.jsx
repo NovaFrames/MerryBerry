@@ -7,8 +7,8 @@ const flavors = [
     {
       name: "MANGO CHAMOY",
       headline: "FULL MOON PARTY",
-      subtext: "It's a party for your taste buds! A pint of this will have you dancing all night long.",
-      description: "Tangy mango with lime, honey, and chamoy. A full-blown explosion of spicy, sweet, and sour.",
+      subtext: "It's a party for your taste buds!",
+      description: "Tangy mango with lime, honey, and chamoy.",
       backgroundColor: "#FFE9B6", // Light Amber
       textColor: "#8B4513",       // Warm Brown
       keyword: "If Thailand's full moon party was a flavor",
