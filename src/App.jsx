@@ -9,26 +9,22 @@ import Navbar from './components/Navbar';
 import Product from './pages/Product';
 import IceCreamFriedChickenLoader from './IceCreamFriedChickenLoader/IceCreamFriedChickenLoader';
 import './App.css';
-import Admin from '../src/pages/admin/Admin.jsx'
-import AdminDashboard from '../src/pages/admin/AdminDashboard.jsx'
-import AdminCareers from '../src/pages/admin/AdminCareers.jsx'
-import AdminFranchise from '../src/pages/admin/AdminFranchise.jsx'
-import AdminProducts from '../src/pages/admin/AdminProducts.jsx'
-import AdminOffers from '../src/pages/admin/AdminOffer.jsx'
+import Admin from '../src/pages/admin/Admin.jsx';
+import AdminDashboard from '../src/pages/admin/AdminDashboard.jsx';
+import AdminCareers from '../src/pages/admin/AdminCareers.jsx';
+import AdminFranchise from '../src/pages/admin/AdminFranchise.jsx';
+import AdminProducts from '../src/pages/admin/AdminProducts.jsx';
+import AdminOffers from '../src/pages/admin/AdminOffer.jsx';
 import FloatingSocialMenu from './components/FloatingSocialMenu.jsx';
-
+import FranchisePage from './pages/FranchisePage.jsx';
+import Footer from './components/Footer.jsx';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [pathname]);
-
   return null;
 };
 
@@ -37,13 +33,14 @@ const Layout = () => (
   <>
     <Navbar />
     <Outlet />
+    <FloatingSocialMenu />
+    <Footer />
   </>
 );
 
 const App = () => {
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
@@ -56,36 +53,40 @@ const App = () => {
       {loading ? (
         <IceCreamFriedChickenLoader />
       ) : (
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="products" element={<Product />} />
-            <Route path="franchise" element={<Franchise />} />
-            <Route path="career" element={<Career />} />
-            <Route path="enquiry" element={<Enquiry />} />
-          </Route>
-          <Route path="/admin" element={<Admin setIsAuthenticated={setIsAuthenticated} />} />
-        <Route
-          path="/dashboard/*"
-          element={
-            isAuthenticated ? (
-              <AdminDashboard />
-            ) : (
-              <Navigate to="/admin" replace />
-            )
-          }
-        >
-          <Route path="offers" element={<AdminOffers />} />
-          <Route path="products" element={<AdminProducts />} />
-          <Route path="franchise" element={<AdminFranchise />} />
-          <Route path="careers" element={<AdminCareers />} />
-        </Route>
-        </Routes>
-        
-        
+        <>
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="about" element={<About />} />
+              <Route path="products" element={<Product />} />
+              <Route path="franchise" element={<FranchisePage />} />
+              <Route path="career" element={<Career />} />
+              <Route path="enquiry" element={<Enquiry />} />
+            </Route>
+
+            {/* Admin Login */}
+            <Route path="/admin" element={<Admin setIsAuthenticated={setIsAuthenticated} />} />
+
+            {/* Admin Dashboard (Protected) */}
+            <Route
+              path="/dashboard/*"
+              element={
+                isAuthenticated ? (
+                  <AdminDashboard />
+                ) : (
+                  <Navigate to="/admin" replace />
+                )
+              }
+            >
+              <Route path="offers" element={<AdminOffers />} />
+              <Route path="products" element={<AdminProducts />} />
+              <Route path="franchise" element={<AdminFranchise />} />
+              <Route path="careers" element={<AdminCareers />} />
+            </Route>
+          </Routes>
+        </>
       )}
-      <FloatingSocialMenu/>
     </BrowserRouter>
   );
 };
