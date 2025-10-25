@@ -91,7 +91,7 @@ export default function ModelCard({ model, onEnquire, featured }) {
           {/* CTA Button */}
           <button
             className={`w-full mt-6 py-4 px-6 rounded-xl font-semibold transition-all duration-300 
-            bg-black text-white shadow hover:shadow-lg transform hover:scale-105`}
+            bg-[#d18b28] text-white shadow hover:shadow-lg transform hover:scale-105`}
           >
             Enquire About {model.name}
           </button>
