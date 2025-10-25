@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { db } from "../utils/firebaseConfig";
 import { MODELS } from "../utils/franchiseData";
-import HeroSection from "../components/franchise/HeroSection";
+import HeroSection from "../components/Franchise/HeroSection";
 import StatsOverview from "../components/Franchise/StatsOverview";
 import ModelsComparison from "../components/franchise/ModelsComparison";
 import ROISection from "../components/franchise/ROISection";
