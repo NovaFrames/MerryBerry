@@ -4,11 +4,11 @@ import { db } from "../utils/firebaseConfig";
 import { MODELS } from "../utils/franchiseData";
 import HeroSection from "../components/Franchise/HeroSection";
 import StatsOverview from "../components/Franchise/StatsOverview";
-import ModelsComparison from "../components/franchise/ModelsComparison";
-import ROISection from "../components/franchise/ROISection";
-import ProcessTimeline from "../components/franchise/ProcessTimeline";
-import InsightsSupport from "../components/franchise/InsightsSupport";
-import TestimonialsSection from "../components/franchise/TestimonialsSection";
+import ModelsComparison from "../components/Franchise/ModelsComparison";
+import ROISection from "../components/Franchise/ROISection";
+import ProcessTimeline from "../components/Franchise/ProcessTimeline";
+import InsightsSupport from "../components/Franchise/InsightsSupport";
+import TestimonialsSection from "../components/Franchise/TestimonialsSection";
 import SalesProfitExplanation from "../components/Franchise/SalesProfitExplanation";
 import StoreGallery from "../components/Franchise/StoreGallery";
 
