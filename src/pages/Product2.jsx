@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Star, MapPin, DollarSign, Users, TrendingUp, Clock, Shield, Award, Phone, Mail, CheckCircle, ArrowRight, Zap, Target, Crown, Gift, ChefHat, IceCream, Heart, Locate, LocationEdit } from 'lucide-react';
-import Footer from '../components/Footer';
-import about3 from '../assets/about/about3.png'
 import f1 from '../assets/franchise/f1.png'
-import f2 from '../assets/franchise/f2.png'
 import f3 from '../assets/franchise/f3.png'
 import f4 from '../assets/franchise/f4.png'
 import roi from '../assets/franchise/roi.png'
@@ -529,8 +526,6 @@ const [selectedBranch, setSelectedBranch] = useState(branches[0]);
           </div>
         </div>
       </section>
-
-      <Footer />
 
     </div>
   );

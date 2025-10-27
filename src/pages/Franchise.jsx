@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Star, MapPin, DollarSign, Users, ChevronLeft, ChevronRight, X, TrendingUp, Clock, Shield, Award, Phone, Mail, CheckCircle, ArrowRight, Zap, Target, Crown, Gift, ChefHat, IceCream, Heart, Locate, LocationEdit } from 'lucide-react';
-import Footer from '../components/Footer';
 import fra1 from '../assets/franchise/franchise1.png'
 import fra2 from '../assets/franchise/franchise2.png'
 import fra3 from '../assets/franchise/franchise3.png'
@@ -472,8 +471,6 @@ const Franchise = () => {
 
 
       </div>
-
-      <Footer />
     </div>
   );
 };

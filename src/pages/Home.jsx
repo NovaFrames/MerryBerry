@@ -6,7 +6,6 @@ import OurStory from '../components/OurStory';
 import Gallery from '../components/Gallery';
 import Details from '../components/Details';
 import CraftedSection from '../components/CraftedSection';
-import Footer from '../components/Footer';
 import h6 from '../assets/home/6.png';
 import h7 from '../assets/home/7.png';
 import h8 from '../assets/home/8.png';
@@ -271,7 +270,6 @@ const Home = () => {
       <Details />
       <CraftedSection />
       <Gallery />
-      <Footer />
     </div>
   );
 };

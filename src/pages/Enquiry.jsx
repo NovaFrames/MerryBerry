@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle, ChefHat, IceCream, Heart } from 'lucide-react'
-import Footer from '../components/Footer'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -281,8 +280,6 @@ const Contact = () => {
           ></iframe>
         </div>
       </section>
-
-      <Footer />
     </div>
   )
 }

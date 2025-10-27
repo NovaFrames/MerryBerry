@@ -4,7 +4,6 @@ import {
   IceCream,
   Heart
 } from "lucide-react";
-import Footer from "../components/Footer";
 import CareerFormModal from "../components/CareerFormModal";
 import { getCareers } from "../utils/service";
 
@@ -137,8 +136,6 @@ const Career = () => {
         onClose={() => setShowForm(false)}
         jobTitle={jobTitle}
       />
-
-      <Footer />
     </div>
   );
 };

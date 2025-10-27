@@ -8,7 +8,6 @@ import { Heart, Clock, Users, CheckCircle2, Award, ChefHat, IceCream,
   Star,
   DollarSign,
  } from 'lucide-react';
-import Footer from '../components/Footer';
 import ice from '../assets/home/16.png'
 import milkshake from '../assets/Icecreams/milkshake.png'
 import chicken from '../assets/home/8.png'
@@ -421,14 +420,6 @@ const About = () => {
           </div>
         </div>
       </section>
-
-
-
-
-
-
-      {/* === 5. Footer Section === */}
-      <Footer />
     </div>
   );
 };

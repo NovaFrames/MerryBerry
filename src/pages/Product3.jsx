@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { allProducts } from "./AllProducts";
 import { Plus, X } from "lucide-react";
-import Footer from "../components/Footer";
 
 const categories = [
   "ice-cream",
@@ -109,7 +108,6 @@ const Product3 = () => {
       )}
 
       <br />
-      <Footer />
     </div>
   );
 };
