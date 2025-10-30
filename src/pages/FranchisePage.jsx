@@ -11,6 +11,7 @@ import InsightsSupport from "../components/Franchise/InsightsSupport";
 import TestimonialsSection from "../components/Franchise/TestimonialsSection";
 import SalesProfitExplanation from "../components/Franchise/SalesProfitExplanation";
 import StoreGallery from "../components/Franchise/StoreGallery";
+import FranchiseVideos from "../components/FranchiseVideos";
 
 export default function FranchisePage() {
   const [monthlyLeads, setMonthlyLeads] = useState(0);
@@ -109,6 +110,7 @@ export default function FranchisePage() {
 
       <ProcessTimeline />
       <InsightsSupport monthlyLeads={monthlyLeads} topCity={topCity} />
+      <FranchiseVideos/>
       <TestimonialsSection />
     </div>
   );
