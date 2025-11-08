@@ -13,11 +13,11 @@ const flavors = [
       textColor: "#8B4513",       // Warm Brown
       keyword: "If Thailand's full moon party was a flavor",
       theme: "PARTY",
-      mainImage: three,
+      mainImage: one,
     },
     {
-      name: "UBE DREAM",
-      headline: "DREAM NIGHT",
+        name: "UBE DREAM",
+        headline: "DREAM NIGHT",
       subtext: "Sweet, smooth ube cream to end your day perfectly.",
       description: "Creamy, nutty purple yam with sweet coconut for a dreamy flavor.",
       backgroundColor: "#F7F0FF", // Soft Lavender
@@ -27,15 +27,15 @@ const flavors = [
       mainImage: two,
     },
     {
-      name: "RASPBERRY",
-      headline: "BERRY BLAST",
-      subtext: "Bursting with raspberry joy – fruity and fun!",
-      description: "Raspberry punch with bold berry flavor and smooth creamy texture.",
-      backgroundColor: "#FFDDEB", // Soft Pink
-      textColor: "#B71C5E",       // Deep Raspberry
-      keyword: "Bold. Bright. Berrylicious.",
-      theme: "BERRY",
-      mainImage: one,
+        name: "RASPBERRY",
+        headline: "BERRY BLAST",
+        subtext: "Bursting with raspberry joy – fruity and fun!",
+        description: "Raspberry punch with bold berry flavor and smooth creamy texture.",
+        backgroundColor: "#FFDDEB", // Soft Pink
+        textColor: "#B71C5E",       // Deep Raspberry
+        keyword: "Bold. Bright. Berrylicious.",
+        theme: "BERRY",
+        mainImage: three,
     },
   ];
   
